@@ -26,27 +26,52 @@ CREATE TABLE message
     FOREIGN KEY (id_disc) REFERENCES discussion(id_disc)
 );
 
+DELIMITER //
 CREATE TRIGGER insert_upd_email_user
 BEFORE INSERT OR UPDATE ON user
 FOR EACH ROW
 BEGIN
-    DECLARE EMAIL_INTER VARCHAR(30);
-    DECLARE EMAIL_FIND CONDITION FOR -1001;
-    DECLARE EXIT HANDLER FOR EMAIL_FIND SET @error = 'L\'email inserer ou
+    DECLARE email_inter VARCHAR(30);
+    DECLARE email_find CONDITION FOR -1001;
+    DECLARE EXIT HANDLER FOR email_find SET @error = 'L\'email inserer ou
     modifier existe déjà dans la base de donnée';
-    SELECT email INTO EMAIL_INTER FROM user
-    WHERE :NEW.email = user.email;
-    IF EMAIL_INTER IS NOT NULL THEN SIGNAL EMAIL_FIND;
+    SELECT email INTO email_inter FROM user
+    WHERE NEW.email = user.email;
+    IF email_inter IS NOT NULL THEN
+        SIGNAL email_find;
     END IF;
-END;
+END;//
 
+-- DELIMITER //
+-- CREATE TRIGGER insert_upd_email_user
+-- BEFORE INSERT ON user
+-- FOR EACH ROW
+-- BEGIN
+--     DECLARE email_inter VARCHAR(30);
+--     DECLARE done INT DEFAULT FALSE;
+--     DECLARE cur CURSOR FOR SELECT email FROM user
+--     WHERE NEW.email LIKE user.email;
+--     DECLARE EXIT HANDLER FOR SQLSTATE '20001' SET @error = "L\'email inserer ou
+--     modifier existe déjà dans la base de donnée";
+--     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+--     open cur;
+--     read_loop: LOOP
+--     	FETCH cur INTO email_inter;
+--         IF done THEN
+--             LEAVE read_loop;
+--         END IF;
+--     END LOOP;
+--     SIGNAL SQLSTATE;
+-- END;//
+
+DELIMITER //
 CREATE TRIGGER inter_psw
 BEFORE UPDATE ON user
 FOR EACH ROW
 BEGIN
-    DECLARE PSW_CHANGE CONDITION FOR -1002;
-    DECLARE EXIT HANDLER FOR EMAIL_FIND SET @error = 'Le mot de passe ne peut
+    DECLARE psw_change CONDITION FOR -1002;
+    DECLARE EXIT HANDLER FOR psw_change SET @error = 'Le mot de passe ne peut
     être changer';
-    IF !(:OLD.user.password <=> :NEW.user.password) THEN SIGNAL PSW_CHANGE;
+    IF !(OLD.user.password <=> NEW.user.password) THEN SIGNAL psw_change;
     END IF;
-END;
+END;//
