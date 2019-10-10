@@ -2,6 +2,7 @@ header {
     background-color: #049DD9;
     color: #F2F2E9;
     font-size: 3rem;
+    height: 5rem;
 }
 
 body {
@@ -16,9 +17,36 @@ ol {
     margin: 0;
 }
 
-li.Liens {
-    display: inline-block;
+li.Profil {
+    margin-top: 0.75rem;
+    display: inline-flex;
     text-decoration: none;
+    display: none;
+}
+
+li.Accueil {
+    float: left;
+    margin-top: 0.75rem;
+    display: inline-flex;
+    text-decoration: none;
+    opacity: 1;
+}
+
+li.Accueil:hover {
+    background-color: #2B678C;
+    border-radius: 1rem;
+}
+
+li.Liens {
+    float: right;
+    margin-top: 0.75rem;
+    display: inline-flex;
+    text-decoration: none;
+}
+
+li.Liens:hover {
+    background-color: #2B678C;
+    border-radius: 1rem;
 }
 
 a:visited, a:link {
@@ -35,8 +63,9 @@ a:visited, a:link {
     border-radius: 3rem;
     text-align: center;
     list-style-type: none;
-    margin-left: 3rem;
-    margin-right: 3rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
+    margin-top: 5rem;
 }
 
 a.Boutton {
@@ -56,6 +85,14 @@ a.Bouttons {
     text-align: center;
     border-color: #049DD9;
     border-radius: 3rem;
-    margin-left: 3rem;
-    margin-right: 3rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
+    margin-top: 5rem;
+}
+
+#Inscription {
+    text-align: center;
+    border-style: solid;
+    border-color: #049DD9;
+    border-radius: 1rem;
 }
