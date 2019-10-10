@@ -26,21 +26,21 @@ CREATE TABLE message
     FOREIGN KEY (id_disc) REFERENCES discussion(id_disc)
 );
 
-DELIMITER //
-CREATE TRIGGER insert_upd_email_user
-BEFORE INSERT OR UPDATE ON user
-FOR EACH ROW
-BEGIN
-    DECLARE email_inter VARCHAR(30);
-    DECLARE email_find CONDITION FOR -1001;
-    DECLARE EXIT HANDLER FOR email_find SET @error = 'L\'email inserer ou
-    modifier existe déjà dans la base de donnée';
-    SELECT email INTO email_inter FROM user
-    WHERE NEW.email = user.email;
-    IF email_inter IS NOT NULL THEN
-        SIGNAL email_find;
-    END IF;
-END;//
+-- DELIMITER //
+-- CREATE TRIGGER insert_upd_email_user
+-- BEFORE INSERT OR UPDATE ON user
+-- FOR EACH ROW
+-- BEGIN
+--     DECLARE email_inter VARCHAR(30);
+--     DECLARE email_find CONDITION FOR -1001;
+--     DECLARE EXIT HANDLER FOR email_find SET @error = 'L\'email inserer ou
+--     modifier existe déjà dans la base de donnée';
+--     SELECT email INTO email_inter FROM user
+--     WHERE NEW.email = user.email;
+--     IF email_inter IS NOT NULL THEN
+--         SIGNAL email_find;
+--     END IF;
+-- END;//
 
 -- DELIMITER //
 -- CREATE TRIGGER insert_upd_email_user
@@ -65,13 +65,24 @@ END;//
 -- END;//
 
 DELIMITER //
-CREATE TRIGGER inter_psw
+CREATE OR REPLACE TRIGGER inter_psw
 BEFORE UPDATE ON user
 FOR EACH ROW
 BEGIN
-    DECLARE psw_change CONDITION FOR -1002;
-    DECLARE EXIT HANDLER FOR psw_change SET @error = 'Le mot de passe ne peut
-    être changer';
-    IF !(OLD.user.password <=> NEW.user.password) THEN SIGNAL psw_change;
+    IF OLD.password != NEW.password THEN RESIGNAL SQLSTATE '45000';
     END IF;
 END;//
+
+-- UPDATE `user` SET `password` = 'max99' WHERE `id_user` = 1
+
+DELIMITER //
+CREATE OR REPLACE FUNCTION is_exist_email(email_test VARCHAR(30)) RETURN BOOLEAN READS SQL DATA
+BEGIN
+    DECLARE email_inter VARCHAR(30);
+    SELECT email INTO email_inter FROM user
+    WHERE email_test = user.email;
+    IF email_inter IS NULL THEN
+        RETURN TRUE;
+    END IF;
+    RETURN FALSE;
+END; //
