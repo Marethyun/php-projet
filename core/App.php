@@ -1,19 +1,38 @@
 <?php
 
-
 namespace freenote\core;
-
 
 use freenote\controller\ErrorController;
 use freenote\controller\HomeController;
+use freenote\model\ORM;
+use freenote\model\ORMException;
 
+/**
+ * Application main class, represents the application itself
+ * @package freenote\core
+ */
 class App {
+    /**
+     * Entry point, runs the application
+     */
     public function run() {
         $router = Router::getInstance();
 
+        // Initialize the ORM
+        try {
+            ORM::initialize();
+        } catch (ORMException $e) {
+            // throw $e;
+
+            // This is the ONLY TIME we derogate to the MVC pattern by calling a view outside a controller
+            // Because we can't do anything else: controllers needs the ORM.
+            $this->triggerError($e->getMessage());
+            exit;
+        }
+
+        $router->addRoute(new Route('500', new ErrorController(500)));
         $router->addRoute(new Route('404', new ErrorController(404)));
         $router->addRoute(new Route('405', new ErrorController(405)));
-        $router->addRoute(new Route('500', new ErrorController(500)));
         $router->addRoute(new Route('home', new HomeController()));
 
         try {
@@ -33,5 +52,16 @@ class App {
         } catch (RouteException $e) {
             Redirection::fromRef(ERROR_404_URI)->redirect();
         }
+    }
+
+    /**
+     * This method prints an error with the 500 code.
+     * @param $reason string The reason why the error is triggered
+     */
+    private function triggerError($reason) {
+        http_response_code(500);
+        // Global used in the view
+        $GLOBALS['ERROR_REASON'] = $reason;
+        include_once VIEWS_PATH . 'error.php';
     }
 }
