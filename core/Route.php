@@ -1,9 +1,7 @@
 <?php
 
 
-namespace freenote;
-
-use freenote\controller\Controller;
+namespace freenote\core;
 
 class Route {
 

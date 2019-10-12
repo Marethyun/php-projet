@@ -1,12 +1,12 @@
 <?php
 
 
-namespace freenote;
+namespace freenote\core;
 
-
+use Exception;
 use Throwable;
 
-class RouteException extends \Exception {
+class RouteException extends Exception {
 
     /**
      * RouteException constructor.

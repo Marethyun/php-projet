@@ -1,6 +1,6 @@
 <?php
 
-namespace freenote;
+namespace freenote\core;
 
 class View {
     /**

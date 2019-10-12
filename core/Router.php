@@ -1,9 +1,9 @@
 <?php
 
 
-namespace freenote;
+namespace freenote\core;
 
-use freenote\controller\Controller;
+use function array_push;
 
 class Router {
 
@@ -27,7 +27,7 @@ class Router {
      * @param $route Route
      */
     public function addRoute($route) {
-        \array_push($this->routes, $route);
+        array_push($this->routes, $route);
     }
 
     /**

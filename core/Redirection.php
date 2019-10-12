@@ -1,7 +1,7 @@
 <?php
 
 
-namespace freenote;
+namespace freenote\core;
 
 class Redirection {
 

@@ -2,7 +2,8 @@
 
 namespace freenote\controller;
 
-use freenote\View;
+use freenote\core\View;
+use freenote\core\Controller;
 
 class ErrorController extends Controller {
 
