@@ -3,7 +3,6 @@
 
 namespace freenote;
 
-
 class Redirection {
 
     /**
@@ -32,5 +31,13 @@ class Redirection {
      */
     public static function fromRef($to) {
         return new Redirection($to);
+    }
+
+    /**
+     * Changes the HTTP Location header to redirect the client to the target
+     */
+    public function redirect() {
+        header('Location: ' . $this->to);
+        exit;
     }
 }

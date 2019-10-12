@@ -3,13 +3,16 @@
 
 namespace freenote\controller;
 
+use freenote\Redirection;
 use freenote\View;
+
 
 abstract class Controller {
 
+    /**
+     * If This is called, then the method isnt recognized
+     */
     public final function __call($name, $arguments) {
-        \http_response_code(405);
-
-        return new View('405.php', array());
+        return Redirection::fromRef(ERROR_405_URI);
     }
 }

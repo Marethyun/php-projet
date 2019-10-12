@@ -20,11 +20,13 @@ class ErrorController extends Controller {
     }
 
     /**
+     * ANY: Controller applicable to any method
      * @return View
      */
-    public function GET() {
-        return new View($this->code . '.php');
+    public function ANY() {
+        http_response_code(intval($this->code));
+        return new View($this->code . '.php', array(
+            'errorcode' => $this->code
+        ));
     }
-
-
 }
