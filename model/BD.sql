@@ -4,7 +4,7 @@ CREATE TABLE user
     pseudo VARCHAR(12) NOT NULL,
     email VARCHAR(30) NOT NULL,
     password VARCHAR(16) NOT NULL,
-    number_disc int(10)
+    number_disc int(10) DEFAULT 0
 );
 
 CREATE TABLE discussion
@@ -76,12 +76,12 @@ END;//
 -- UPDATE `user` SET `password` = 'max99' WHERE `id_user` = 1
 
 DELIMITER //
-CREATE OR REPLACE FUNCTION is_exist_email(email_test VARCHAR(30)) RETURN BOOLEAN READS SQL DATA
+CREATE OR REPLACE FUNCTION is_exist_email(email_test VARCHAR(30)) RETURN BOOLEAN
 BEGIN
     DECLARE email_inter VARCHAR(30);
-    SELECT email INTO email_inter FROM user
+    SELECT COUNT(email) INTO email_inter FROM user
     WHERE email_test = user.email;
-    IF email_inter IS NULL THEN
+    IF email_inter > 0 THEN
         RETURN TRUE;
     END IF;
     RETURN FALSE;
