@@ -1,28 +1,43 @@
+/** Sur toutes les Pages **/
+
 header {
-    background-color: #8C8C8C;
-    color: #F2F2E9;
+    position: sticky;
+    height: 6rem;
+    top: 0;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-size: 3rem;
-    height: 5rem;
+    color: #F2F2E9;
 }
 
 footer {
-    background-color: #8C8C8C;
-    color: #F2F2E9;
-    font-size: 1rem;
+    position: fixed;
     height: 3rem;
-    margin-bottom: 0;
-}
-
-p.prout {
-    text-align: center;
+    bottom: 0;
+    width: 100%;
+    background-color: #3d3f4c;
+    font-size: 1rem;
+    color: #F2F2E9;
 }
 
 body {
-    background-color:#F2F2E9;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    background-position: center;
+    background-size: cover;
+    background-image: url("./duotone.png");
+    font-family: 'Open Sans', sans-serif;
     font-size: 2rem;
-    color: #595959;
+    color: white;
+    width: 100%;
+    height: auto;
+}
+
+p.pied {
+    text-align: center;
+}
+
+p.paccueil {
+    margin: 2rem;
 }
 
 ol {
@@ -30,92 +45,200 @@ ol {
 }
 
 li.Profil {
-    margin-top: 0.75rem;
-    display: inline-flex;
+    /**display: none;**/
+    list-style-type: none;
     text-decoration: none;
-    display: none;
+    float: right;
+    margin-right: 3rem;
+    margin-top: 0.75rem;
 }
 
 li.Accueil {
-    float: left;
-    margin-top: 0.75rem;
     display: inline-flex;
     text-decoration: none;
+    float: left;
+    margin-top: 0.75rem;
     opacity: 1;
 }
 
 li.Accueil:hover {
-    background-color: #595959;
-    border-radius: 1rem;
+    background-color: #696b80;
+    border-radius: 0.25rem;
 }
 
 li.Liens {
+    display: none;
+    /**display: inline-flex;**/
+    text-decoration: none;
     float: right;
     margin-top: 0.75rem;
-    display: inline-flex;
-    text-decoration: none;
+    margin-right: 3rem;
 }
 
 li.Liens:hover {
-    background-color: #595959;
-    border-radius: 1rem;
+    background-color: #696b80;
+    border-radius: 0.25rem;
+}
+
+.LiensEnTete {
+    color: white;
 }
 
 a:visited, a:link {
-    color: white;
     text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin-right: 1.5rem;
     margin-left: 1.5rem;
 }
 
+/** Page d'Accueil **/
+
 #Discussion {
-    border-color: #8C8C8C;
+    border-color: transparent;
     border-style: solid;
-    border-radius: 3rem;
+    border-radius: 0.25rem;
     text-align: center;
     list-style-type: none;
     margin-left: 15rem;
     margin-right: 15rem;
     margin-top: 5rem;
-}
-
-a.Boutton {
-    border-color: white;
-    border-style: solid;
-    border-radius: 0.5rem;
-}
-
-a.Bouttons {
-    border-radius: 0.5rem;
-    background-color: #0485B8;
-    float: right;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #Description {
     border-style: solid;
     text-align: justify;
-    border-color: #8C8C8C;
-    border-radius: 3rem;
+    border-color: transparent;
+    border-radius: 0.25rem;
     margin-left: 15rem;
     margin-right: 15rem;
-    margin-top: 5rem;
+    margin-top: 3rem;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+/** Inscription - Se Connecter **/
+
 #Inscription {
-    text-align: center;
     border-style: solid;
-    border-color: #8C8C8C;
-    border-radius: 1rem;
-    float: right;
-    margin: 10rem;
+    border-color: transparent;
+    border-radius: 0.5rem;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    margin-left: 35%;
+    margin-right: 35%;
 }
 
 #SeConnecter {
-    text-align: center;
     border-style: solid;
-    border-color: #8C8C8C;
-    border-radius: 1rem;
-    float: left;
-    margin: 10rem;
+    border-color: transparent;
+    border-radius: 0.5rem;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+h1.hform {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.formulaires  {
+    margin: 10%;
+    width: 80%;
+    font-size: 1.75rem;
+}
+
+.textchangementform {
+    color: #696b80;
+    font-size: 1rem;
+}
+
+.changementformulaire {
+    color: #26b1b7;
+    font-size: 1rem;
+}
+
+#mailer {
+    background-color: #26b1b7;
+    border-color: transparent;
+    font-size: 1.25rem;
+}
+
+label {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    color: #F2F2E9;
+    background-color: #343640;
+    border-color: #2d2e37;
+    border-style: solid;
+    border-radius: 0.25rem;
+    height: 2rem;
+}
+
+/** Profil **/
+
+#Profil 
+{
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 0.5rem;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+#ModificationMdp
+{
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 0.5rem;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 3rem;
+    margin-bottom: 6rem;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+.profilform {
+    margin: 10%;
+    width: 80%;
+    font-size: 1.75rem;
+}
+
+.modifmdpform {
+    margin: 10%;
+    width: 80%;
+    font-size: 1.75rem;
+
+}
+
+/** Discussion Type **/
+
+#DiscussionType {
+    border-color: transparent;
+    border-style: solid;
+    border-radius: 0.25rem;
+    text-align: center;
+    list-style-type: none;
+    margin-left: 15rem;
+    margin-right: 15rem;
+    margin-top: 5rem;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

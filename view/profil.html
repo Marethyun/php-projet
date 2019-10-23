@@ -6,19 +6,52 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
         <nav>
-            <ol>
-                <li class="Accueil"><a href="index.html">FreeNote</a></li>
-                <li class="Liens"><a href="formulaire.html">Se Connecter</a></li>
-                <li class="Liens"><a href="formulaire.html">Inscription</a></li>
-                <li class="Profil"><a href="profil.html">Profil</a></li>
+            <ol>           
+                <li class="Accueil"><a class="LiensEnTete" href="index.html">FreeNote</a></li>
+                <li class="Liens"><a class="LiensEnTete" href="seconnecter.html">Se Connecter</a></li>
+                <li class="Liens"><a class="LiensEnTete" href="inscription.html">Inscription</a></li>
+                <li class="Profil"><a class="LiensEnTete" href="profil.html">Profil</a></li>
             </ol>
         </nav>
     </header>
+
+    <main>
+        <div id="Profil">
+            <h1 class="hform">Votre Profil</h1>
+            <form class="profilform" action="blablabla" method="POST">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" name="username" id="username" disabled/>
+    
+                <label for="email">E-mail</label>
+                <input type="text" name="email" id="email" disabled/>
+
+                <p class="textchangementform">Vous voulez vous déconnecter ? <a class="changementformulaire" href="seconnecter.html">Se déconnecter</a></p>
+            </form>
+        </div>
+
+        <div id="ModificationMdp">
+            <h1 class="hform">Modifier votre Mot de Passe</h1>
+            <form class="modifmdpform" action="blablabla" method="POST">
+                <label for="password">Nouveau Mot de Passe</label>
+                <input type="password" name="password" id="password"/>
+    
+                <label for="password">Verifier votre Nouveau Mot de Passe</label>
+                <input type="password" name="password" id="password"/>
+    
+                <input type="submit" name="action" value="Enregistrer les modifications" id="mailer">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p class="pied">copyright machin</p>
+    </footer>
 
 </body>
 </html>
