@@ -1,30 +1,41 @@
-CREATE TABLE user
+CREATE TABLE users
 (
-    id_user INT(10) AUTO_INCREMENT PRIMARY KEY,
-    pseudo VARCHAR(12) NOT NULL UNIQUE,
+    id INT(10) AUTO_INCREMENT PRIMARY KEY,
+    pseudonym VARCHAR(12) NOT NULL UNIQUE,
     email VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(16) NOT NULL,
-    number_disc int(10) DEFAULT 0
 );
 
-CREATE TABLE discussion
+CREATE TABLE threads
 (
-    id_disc INT(10) AUTO_INCREMENT PRIMARY KEY,
-    id_user INT(10) NOT NULL,
-    text VARCHAR(255) NOT NULL,
+    id INT(10) AUTO_INCREMENT PRIMARY KEY,
+    creator_id INT(10) NOT NULL,
     creation_date date DEFAULT CURRENT_TIMESTAMP(),
-    FOREIGN KEY (id_user) REFERENCES user(id_user)
+    number_msg INT(10) DEFAULT 0,
+    opened BOOLEAN(1) DEFAULT 1,
+    FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-CREATE TABLE message
+CREATE TABLE messages
 (
-    id_msg INT(10) AUTO_INCREMENT PRIMARY KEY,
-    id_user INT(10) NOT NULL,
-    id_disc INT(10) NOT NULL,
+    id INT(10) AUTO_INCREMENT PRIMARY KEY,
+    thread_id INT(10) NOT NULL,
+    opened BOOLEAN(1) DEFAULT 1,
+    creation_date date DEFAULT CURRENT_TIMESTAMP(),
+    FOREIGN KEY (thread_id) REFERENCES threads(id) ON DELETE CASCADE
+);
+
+CREATE TABLE messagefragments
+(
+    id INT(10) AUTO_INCREMENT PRIMARY KEY,
+    user_id INT(10) NOT NULL,
+    thread_id INT(10) NOT NULL,
+    msg_id INT(10) NOT NULL,
     msg VARCHAR(255) NOT NULL,
     creation_date date DEFAULT CURRENT_TIMESTAMP(),
-    FOREIGN KEY (id_user) REFERENCES user(id_user),
-    FOREIGN KEY (id_disc) REFERENCES discussion(id_disc) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (thread_id) REFERENCES threads(id),
+    FOREIGN KEY (msg_id) REFERENCES messages(id) ON DELETE CASCADE
 );
 
 CREATE TABLE parametre
@@ -52,18 +63,14 @@ END;//
 -- UPDATE `user` SET `password` = 'max99' WHERE `id_user` = 1
 
 DELIMITER //
-CREATE OR REPLACE TRIGGER insert_msg
-BEFORE INSERT ON message
+CREATE OR REPLACE TRIGGER insert_msgfrag
+BEFORE INSERT ON messagefragments
 FOR EACH ROW
 BEGIN
     DECLARE test INT;
-    SELECT COUNT(id_user) INTO test FROM message
-    WHERE NEW.id_user = message.id_user AND NEW.id_disc = message.id_disc;
-    IF test = 0 THEN
-        UPDATE discussion SET `text` = CONCAT(`text` , ' ' , NEW.msg)
-        WHERE NEW.id_disc = discussion.id_disc;
-    ELSE
-        RESIGNAL;
+    SELECT COUNT(user_id) INTO test FROM messagefragment
+    WHERE NEW.user_id = message.user_id AND NEW.thread_id = message.thread_id;
+    IF test = 1 THEN RESIGNAL;
     END IF;
 END;//
 
@@ -106,3 +113,17 @@ BEGIN
     END IF;
     RETURN FALSE;
 END; //
+
+-- DELIMITER $$
+-- CREATE OR REPLACE FUNCTION is_exist_email(email_test VARCHAR(30)) RETURN VARCHAR(30) DETERMINISTIC
+-- BEGIN
+--     DECLARE email_inter INT(1);
+--     SELECT COUNT(email) INTO email_inter FROM user
+--     WHERE email_test = user.email;
+--     IF email_inter > 0 THEN
+--         RETURN "SALUT";
+--     END IF;
+--     RETURN "AURAVOIr";
+-- END $$
+--
+-- DELIMITER ;
