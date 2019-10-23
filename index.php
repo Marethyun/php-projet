@@ -21,9 +21,9 @@ define('CONTROLLER_GET_PARAMETER', 'controller');
 define('CONTROLLER_ANYMETHOD_NAME', 'ANY');
 define('VIEWS_PATH', 'view/');
 
-define('DBMS_HOST', 'localhost');
-define('DBMS_USERNAME', 'fnote');
-define('DBMS_PASSWORD', 'azerty');
+define('DBMS_HOST', 'marethyun.ovh');
+define('DBMS_USERNAME', 'angebacci');
+define('DBMS_PASSWORD', 'yolo123');
 define('DATABASE_NAME', 'freenote');
 define('DATABASE_DATASOURCE', sprintf('mysql:host=%s;dbname=%s', DBMS_HOST, DATABASE_NAME));
 
