@@ -25,7 +25,10 @@ abstract class QueryBuilder {
         $this->table = $table;
     }
 
-    abstract function build()
+    /**
+     * @return Query
+     */
+    abstract function build();
 
     /**
      * @return Table
