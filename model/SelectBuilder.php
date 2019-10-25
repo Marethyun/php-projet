@@ -15,7 +15,11 @@ class SelectBuilder extends QueryBuilder {
      * @var JoinClause
      */
     private $joinClauses;
-    private $whereClauses;
+
+    /**
+     * @var WhereClause
+     */
+    private $whereClause;
     private $orderClause;
 
     /**

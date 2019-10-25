@@ -10,7 +10,6 @@ namespace freenote\model;
  */
 abstract class QueryBuilder {
 
-
     /**
      * The table
      * @var Table
