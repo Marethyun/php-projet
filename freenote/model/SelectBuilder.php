@@ -79,11 +79,11 @@ class SelectBuilder extends QueryBuilder {
      * @return Query
      */
     public function build() {
-        $rawQuery = $this->fromClause->compile();
+        $rawQuery = $this->fromClause->compile() . ' ';
         foreach ($this->joinClauses as $joinClause) {
-            $rawQuery .= $joinClause->compile() . PHP_EOL;
+            $rawQuery .= $joinClause->compile();
         }
-        $rawQuery .= $this->whereClause->compile() . PHP_EOL;
+        $rawQuery .= $this->whereClause->compile();
         $rawQuery .= $this->orderClause == null ? '' : $this->orderClause->compile();
         $rawQuery .= ';';
 
