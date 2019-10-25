@@ -45,7 +45,7 @@ ol {
 }
 
 li.Profil {
-    /**display: none;**/
+    display: none;
     list-style-type: none;
     text-decoration: none;
     float: right;
@@ -54,7 +54,7 @@ li.Profil {
 }
 
 li.Accueil {
-    display: inline-flex;
+    list-style-type: none;
     text-decoration: none;
     float: left;
     margin-top: 0.75rem;
@@ -67,8 +67,8 @@ li.Accueil:hover {
 }
 
 li.Liens {
-    display: none;
-    /**display: inline-flex;**/
+    /**display: none;**/
+    list-style-type: none;
     text-decoration: none;
     float: right;
     margin-top: 0.75rem;
@@ -120,19 +120,7 @@ a:visited, a:link {
 
 /** Inscription - Se Connecter **/
 
-#Inscription {
-    border-style: solid;
-    border-color: transparent;
-    border-radius: 0.5rem;
-    background-color: #3d3f4c;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-top: 3rem;
-    margin-bottom: 5rem;
-    margin-left: 35%;
-    margin-right: 35%;
-}
-
-#SeConnecter {
+.box {
     border-style: solid;
     border-color: transparent;
     border-radius: 0.5rem;
@@ -147,6 +135,7 @@ a:visited, a:link {
 h1.hform {
     text-align: center;
     font-size: 2.5rem;
+    margin: 5%;
 }
 
 .formulaires  {
@@ -189,8 +178,7 @@ input {
 
 /** Profil **/
 
-#Profil 
-{
+.box {
     border-style: solid;
     border-color: transparent;
     border-radius: 0.5rem;
@@ -198,21 +186,8 @@ input {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-top: 3rem;
     margin-bottom: 5rem;
-    margin-left: 35%;
-    margin-right: 35%;
-}
-
-#ModificationMdp
-{
-    border-style: solid;
-    border-color: transparent;
-    border-radius: 0.5rem;
-    background-color: #3d3f4c;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-top: 3rem;
-    margin-bottom: 6rem;
-    margin-left: 35%;
-    margin-right: 35%;
+    margin-left: 32%;
+    margin-right: 32%;
 }
 
 .profilform {
@@ -225,7 +200,6 @@ input {
     margin: 10%;
     width: 80%;
     font-size: 1.75rem;
-
 }
 
 /** Discussion Type **/
@@ -242,3 +216,97 @@ input {
     background-color: #3d3f4c;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+/** Media Query **/
+
+@media screen and (max-width: 600px) {
+    .box {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    p.textchangementform {
+        color: #696b80;
+        font-size: 1rem;
+    }
+    header {
+        font-size: 2rem;
+        /**height: 25rem; truc qui merde ici jsp pourquoi ça me gonfle**/
+    }
+    li.Liens {
+        float: left;
+    }
+    #Description {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    #Discussion {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .box {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    p.textchangementform {
+        color: #696b80;
+        font-size: 1.5rem;
+    }
+    .changementformulaire {
+        color: #26b1b7;
+        font-size: 1.5rem;
+    }
+    header {
+        font-size: 2.25rem;
+        height: 5rem;
+    }
+    li.Liens {
+        float: left;
+        margin-left: 0rem;
+        margin-right: 0rem;
+    }
+    #Description {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    #Discussion {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .box {
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+    p.textchangementform {
+        color: #696b80;
+        font-size: 1.5rem;
+    }
+    .changementformulaire {
+        color: #26b1b7;
+        font-size: 1.5rem;
+    }    
+    header {
+        font-size: 2.5rem;
+        height: 5rem;
+    }
+    li.Liens {
+        float: right;
+        margin-left: 0rem;
+        margin-right: 0rem;
+    }
+    #Description {
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+    #Discussion {
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+}
+
+
