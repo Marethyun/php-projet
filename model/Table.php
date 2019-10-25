@@ -25,5 +25,21 @@ class Table {
         $this->orm = $orm;
     }
 
+    public function select() {
+        return new SelectBuilder($this);
+    }
 
+    /**
+     * @return string
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * @return ORM
+     */
+    public function getOrm() {
+        return $this->orm;
+    }
 }

@@ -44,6 +44,10 @@ class ORM {
         $this->pdo = $pdo;
     }
 
+    public static function getTable(string $tableName) {
+        return new Table($tableName, self::$instance);
+    }
+
     /**
      * @return PDO The PDO handle
      */

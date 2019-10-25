@@ -5,11 +5,7 @@ namespace freenote\model;
 
 
 class WhereClause implements SQLCompilable {
-
-    /**
-     * @var array
-     */
-    private $comparisons = array();
+    use ComparisonsHolder;
 
     /**
      * @return string
@@ -22,20 +18,5 @@ class WhereClause implements SQLCompilable {
         }
 
         return $compiled;
-    }
-
-    /**
-     * Adds a comparison to the clause
-     * @param ComparisonClause $comparisonClause
-     */
-    public function addComparison(ComparisonClause $comparisonClause) {
-        array_push($this->comparisons, $comparisonClause);
-    }
-
-    /**
-     * @return array
-     */
-    public function getComparisons() {
-        return $this->comparisons;
     }
 }
