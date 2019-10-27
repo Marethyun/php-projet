@@ -17,13 +17,22 @@ class Query {
     private $orm;
 
     /**
+     * Associative array
+     * TODO ARGUMENT
+     * @var array
+     */
+    private $parameters;
+
+    /**
      * Query constructor.
      * @param string $rawQuery
      * @param ORM $orm
+     * @param array $parameters
      */
-    public function __construct(string $rawQuery, ORM $orm) {
+    public function __construct(string $rawQuery, ORM $orm, array $parameters) {
         $this->rawQuery = $rawQuery;
         $this->orm = $orm;
+        $this->parameters = $parameters;
 
         $this->rawQuery = htmlspecialchars($this->rawQuery);
     }
@@ -42,6 +51,13 @@ class Query {
      */
     public function getRawQuery() {
         return $this->rawQuery;
+    }
+
+    /**
+     * @return array
+     */
+    public function getParameters() {
+        return $this->parameters;
     }
 
 }

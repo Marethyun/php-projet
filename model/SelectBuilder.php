@@ -42,7 +42,9 @@ class SelectBuilder extends QueryBuilder {
     public function join(string $tableName, array $comparisons) {
         $clause = new JoinClause($tableName);
         foreach ($comparisons as $comparison) {
-            $clause->addComparison($comparison);
+            $clause->addComparison(new ComparisonClause($comparison[0], $comparison[1], $comparison[2],
+                isset($comparison['type']) ? !($comparison['type'] == 'attribute') : true
+            ));
         }
 
         array_push($this->joinClauses, $clause);
@@ -56,7 +58,9 @@ class SelectBuilder extends QueryBuilder {
      */
     public function where(array $comparisons) {
         foreach ($comparisons as $comparison) {
-            $this->whereClause->addComparison($comparison);
+            $this->whereClause->addComparison(new ComparisonClause($comparison[0], $comparison[1], $comparison[2],
+                isset($comparison['type']) ? !($comparison['type'] == 'attribute') : true
+            ));
         }
 
         return $this;
@@ -79,14 +83,26 @@ class SelectBuilder extends QueryBuilder {
      * @return Query
      */
     public function build() {
+
+        $queryParameters = array();
+
         $rawQuery = $this->fromClause->compile() . ' ';
         foreach ($this->joinClauses as $joinClause) {
+            foreach ($joinClause->getComparisons() as $comparison) {
+                if ($comparison->isValueComparison())
+                    array_push($queryParameters, $comparison->asQueryParameter());
+            }
             $rawQuery .= $joinClause->compile();
+        }
+
+        foreach($this->whereClause->getComparisons() as $comparison) {
+            if ($comparison->isValueComparison())
+                array_push($queryParameters, $comparison->asQueryParameter());
         }
         $rawQuery .= $this->whereClause->compile();
         $rawQuery .= $this->orderClause == null ? '' : $this->orderClause->compile();
         $rawQuery .= ';';
 
-        return new Query($rawQuery, $this->getTable()->getOrm());
+        return new Query($rawQuery, $this->getTable()->getOrm(), $queryParameters);
     }
 }

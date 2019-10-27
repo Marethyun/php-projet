@@ -29,22 +29,36 @@ class ComparisonClause implements SQLCompilable {
     private $operator;
 
     /**
+     * @var bool
+     */
+    private $isValueComparison;
+
+    /**
      * ComparisonClause constructor.
      * @param string $firstElement
-     * @param string $secondElement
      * @param string $operator
+     * @param string $secondElement
+     * @param bool $isValueComparison
      */
-    public function __construct(string $firstElement, string $secondElement, string $operator) {
+    public function __construct(string $firstElement, string $operator, string $secondElement, bool $isValueComparison = true) {
         $this->firstElement = $firstElement;
-        $this->secondElement = $secondElement;
         $this->operator = $operator;
+        $this->secondElement = $secondElement;
+        $this->isValueComparison = $isValueComparison;
     }
 
     /**
      * @return string
      */
     function compile() {
-        return sprintf('%s %s %s', $this->firstElement, $this->operator, $this->secondElement);
+        return sprintf('%s %s %s', $this->firstElement, $this->operator, $this->isValueComparison ? '?' : $this->secondElement);
+    }
+
+    /**
+     * @return string|null
+     */
+    function asQueryParameter() {
+        return $this->isValueComparison ? $this->secondElement : null;
     }
 
     /**
@@ -66,5 +80,12 @@ class ComparisonClause implements SQLCompilable {
      */
     public function getOperator() {
         return $this->operator;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isValueComparison() {
+        return $this->isValueComparison;
     }
 }
