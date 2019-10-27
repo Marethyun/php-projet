@@ -1,7 +1,7 @@
 <?php
 
 
-namespace freenote\model;
+namespace model;
 
 
 class WhereClause implements SQLCompilable {

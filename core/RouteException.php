@@ -1,7 +1,7 @@
 <?php
 
 
-namespace freenote\core;
+namespace core;
 
 use Exception;
 use Throwable;

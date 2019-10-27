@@ -1,7 +1,7 @@
 <?php
 
 
-namespace freenote\model;
+namespace model;
 
 
 class JoinClause implements SQLCompilable {

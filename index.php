@@ -1,33 +1,10 @@
 <?php
 
-namespace freenote;
-
-use freenote\core\App;
-use freenote\model\ComparisonClause;
-use freenote\model\JoinClause;
-use freenote\model\ORM;
-use freenote\model\SelectBuilder;
-use freenote\model\WhereClause;
-
-//require_once 'core/App.php';
-//require_once 'core/Route.php';
-//require_once 'core/Router.php';
-//require_once 'core/View.php';
-//require_once 'core/RouteException.php';
-//require_once 'core/Redirection.php';
-//require_once 'core/Controller.php';
-//require_once 'model/ORM.php';
-//require_once 'model/ORMException.php';
-//require_once 'model/QueryBuilder.php';
-//require_once 'model/SelectBuilder.php';
-//require_once 'model/SQLCompilable.php';
-//require_once 'model/WhereClause.php';
-//require_once 'model/ComparisonsHolder.php';
-//require_once 'model/ComparisonClause.php';
-//require_once 'controller/ErrorController.php';
-//require_once 'controller/HomeController.php';
+use core\App;
 
 spl_autoload_register(function ($className) {
+    // The classname contains the class' namespace name, so they're imported successfully as they're contained in directories named after theirs namespaces
+    // (what a long sentence, eh ?)
     include $className . '.php';
 });
 
@@ -46,19 +23,4 @@ define('ERROR_405_URI', '/?controller=405');
 define('ERROR_404_URI', '/?controller=404');
 define('ERROR_500_URI', '/?controller=500');
 
-//(new App())->run();
-
-ORM::initialize();
-
-$table = ORM::getTable('users');
-
-echo $table->select()
-    ->join('threads', array(
-        new ComparisonClause('users.id', 'threads.id', ComparisonClause::EQUAL)
-    ))
-    ->where(array(
-        new ComparisonClause('username', 'marethyun', ComparisonClause::EQUAL),
-        new ComparisonClause('password', 'yolo123', ComparisonClause::EQUAL)
-    ))
-    ->build()
-    ->getRawQuery();
+(new App())->run();

@@ -1,9 +1,9 @@
 <?php
 
-namespace freenote\controller;
+namespace controller;
 
-use freenote\core\View;
-use freenote\core\Controller;
+use core\View;
+use core\Controller;
 
 class HomeController extends Controller {
     public function GET() {

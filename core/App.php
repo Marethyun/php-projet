@@ -1,11 +1,11 @@
 <?php
 
-namespace freenote\core;
+namespace core;
 
-use freenote\controller\ErrorController;
-use freenote\controller\HomeController;
-use freenote\model\ORM;
-use freenote\model\ORMException;
+use controller\ErrorController;
+use controller\HomeController;
+use model\ORM;
+use model\ORMException;
 
 /**
  * Application main class, represents the application itself
