@@ -4,6 +4,7 @@ use core\App;
 use model\BinaryComparison;
 use model\entities\User;
 use model\ORM;
+use model\wrappers\Users;
 
 spl_autoload_register(function ($className) {
     // The classname contains the class' namespace name, so they're imported successfully as they're contained in directories named after theirs namespaces
@@ -28,13 +29,8 @@ define('ERROR_500_URI', '/?controller=500');
 
 //(new App())->run();
 
-ORM::initialize();
+//ORM::initialize();
+//
+//var_dump(Users::getById(15401751));
 
-$query = ORM::getTable('users')
-    ->select()
-    ->where(array(
-        new BinaryComparison('username', 'LIKE', 'a%')
-    ))
-    ->build();
-
-var_dump($query);
+var_dump();
