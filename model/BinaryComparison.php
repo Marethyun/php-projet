@@ -4,7 +4,9 @@
 namespace model;
 
 
-class ComparisonClause implements SQLCompilable {
+use model\Comparison;
+
+class BinaryComparison extends Comparison {
 
     public const EQUAL = '=';
     public const GREATER = '>';
@@ -29,36 +31,31 @@ class ComparisonClause implements SQLCompilable {
     private $operator;
 
     /**
-     * @var bool
-     */
-    private $isValueComparison;
-
-    /**
      * ComparisonClause constructor.
      * @param string $firstElement
      * @param string $operator
      * @param string $secondElement
-     * @param bool $isValueComparison
+     * @param bool $isLiteral
      */
-    public function __construct(string $firstElement, string $operator, string $secondElement, bool $isValueComparison = true) {
+    public function __construct(string $firstElement, string $operator, string $secondElement, bool $isLiteral = false) {
+        parent::__construct($isLiteral);
         $this->firstElement = $firstElement;
         $this->operator = $operator;
         $this->secondElement = $secondElement;
-        $this->isValueComparison = $isValueComparison;
     }
 
     /**
      * @return string
      */
     function compile() {
-        return sprintf('%s %s %s', $this->firstElement, $this->operator, $this->isValueComparison ? '?' : $this->secondElement);
+        return sprintf('%s %s %s', $this->firstElement, $this->operator, $this->isLiteral() ? $this->secondElement : '?');
     }
 
     /**
      * @return string|null
      */
     function asQueryParameter() {
-        return $this->isValueComparison ? $this->secondElement : null;
+        return $this->isLiteral() ? null : $this->secondElement;
     }
 
     /**
@@ -82,10 +79,4 @@ class ComparisonClause implements SQLCompilable {
         return $this->operator;
     }
 
-    /**
-     * @return bool
-     */
-    public function isValueComparison() {
-        return $this->isValueComparison;
-    }
 }

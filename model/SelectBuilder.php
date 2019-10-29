@@ -32,7 +32,6 @@ class SelectBuilder extends QueryBuilder {
         $this->fromClause = new FromClause($table->getName());
     }
 
-
     /**
      * @param string $tableName
      * @param array $comparisons
@@ -41,9 +40,7 @@ class SelectBuilder extends QueryBuilder {
     public function join(string $tableName, array $comparisons) {
         $clause = new JoinClause($tableName);
         foreach ($comparisons as $comparison) {
-            $clause->addComparison(new ComparisonClause($comparison[0], $comparison[1], $comparison[2],
-                isset($comparison['type']) ? !($comparison['type'] == 'attribute') : true
-            ));
+            $clause->addComparison($comparison);
         }
 
         array_push($this->joinClauses, $clause);
@@ -60,9 +57,7 @@ class SelectBuilder extends QueryBuilder {
         if ($this->whereClause == null) $this->whereClause = new WhereClause();
 
         foreach ($comparisons as $comparison) {
-            $this->whereClause->addComparison(new ComparisonClause($comparison[0], $comparison[1], $comparison[2],
-                isset($comparison['type']) ? !($comparison['type'] == 'attribute') : true
-            ));
+            $this->whereClause->addComparison($comparison);
         }
 
         return $this;
@@ -89,25 +84,23 @@ class SelectBuilder extends QueryBuilder {
         $queryParameters = array();
 
         $rawQuery = 'SELECT * ';
+        // Adds the FROM clause
         $rawQuery .= $this->fromClause->compile() . ' ';
+        // Adds the join clauses
         foreach ($this->joinClauses as $joinClause) {
-            foreach ($joinClause->getComparisons() as $comparison) {
-                if ($comparison->isValueComparison())
-                    array_push($queryParameters, $comparison->asQueryParameter());
-            }
+            $queryParameters = array_merge($queryParameters, $joinClause->asQueryParameters());
             $rawQuery .= $joinClause->compile();
         }
 
+        // Adds the where clause if it isn't null
         if ($this->whereClause != null) {
-            foreach ($this->whereClause->getComparisons() as $comparison) {
-                if ($comparison->isValueComparison())
-                    array_push($queryParameters, $comparison->asQueryParameter());
-            }
-
+            $queryParameters = array_merge($queryParameters, $this->whereClause->asQueryParameters());
             $rawQuery .= $this->whereClause->compile();
         }
 
+        // Adds the order by clause if it isn't null
         $rawQuery .= $this->orderClause == null ? '' : $this->orderClause->compile();
+        // Adds the semicolon
         $rawQuery .= ';';
 
         return new Query($rawQuery, $this->getTable()->getOrm(), $queryParameters);

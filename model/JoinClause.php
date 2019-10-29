@@ -24,12 +24,6 @@ class JoinClause implements SQLCompilable {
      * @return string
      */
     function compile() {
-        $compiled = sprintf('JOIN %s ON ', $this->tableName);
-
-        foreach ($this->comparisons as $k => $comparison) {
-            $compiled = $compiled . $comparison->compile() . ($k + 1 == count($this->comparisons) ? ' ' : ' AND ');
-        }
-
-        return $compiled;
+        return sprintf('JOIN %s ON %s', $this->tableName, $this->asChainedComparisons());
     }
 }

@@ -1,6 +1,9 @@
 <?php
 
+$start = microtime(true);
+
 use core\App;
+use model\BinaryComparison;
 use model\entities\User;
 use model\ORM;
 
@@ -31,12 +34,13 @@ ORM::initialize();
 
 $query = ORM::getTable('users')
     ->select()
+    ->where(array(
+        new BinaryComparison('username', 'LIKE', 'a%')
+    ))
     ->build();
 
-//var_dump($query);
+var_dump($query);
 
-//$query->execute();
-
-var_dump($set = $query->execute());
-
-var_dump($set->map(User::class));
+$end = microtime(true);
+$creationtime = ($end - $start);
+printf("Page created in %.6f seconds.", $creationtime);
