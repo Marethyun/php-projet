@@ -4,6 +4,6 @@
 namespace model\entities;
 
 
-class Entity {
+abstract class Entity {
 
 }

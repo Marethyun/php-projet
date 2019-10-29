@@ -1,11 +1,6 @@
 <?php
 
 use core\App;
-use model\BinaryComparison;
-use model\entities\User;
-use model\ORM;
-use model\Projection;
-use model\wrappers\Users;
 
 spl_autoload_register(function ($className) {
     // The classname contains the class' namespace name, so they're imported successfully as they're contained in directories named after theirs namespaces
@@ -28,17 +23,4 @@ define('ERROR_405_URI', '/?controller=405');
 define('ERROR_404_URI', '/?controller=404');
 define('ERROR_500_URI', '/?controller=500');
 
-//(new App())->run();
-
-ORM::initialize();
-
-$unique = 5316424;
-
-$query = ORM::table('users')
-    ->gather(array(Projection::createCount('id')))
-    ->where(array(
-        new BinaryComparison('id', BinaryComparison::EQUAL, $unique)
-    ))
-    ->build();
-
-var_dump($query);
+(new App())->run();

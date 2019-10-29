@@ -8,7 +8,7 @@ use model\BinaryComparison;
 use model\entities\User;
 use model\ORM;
 
-final class Users {
+abstract class Users {
 
     public const TABLE_NAME = 'users';
 

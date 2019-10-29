@@ -9,7 +9,7 @@ use model\ORMException;
 
 /**
  * Application main class, represents the application itself
- * @package freenote\core
+ * @package core
  */
 class App {
     /**
@@ -17,6 +17,9 @@ class App {
      */
     public function run() {
         $router = Router::getInstance();
+
+        // Initialize the session
+        Session::initialize();
 
         // Initialize the ORM
         try {
@@ -30,12 +33,17 @@ class App {
             exit;
         }
 
+        // Routes definitions
         $router->addRoute(new Route('500', new ErrorController(500)));
         $router->addRoute(new Route('404', new ErrorController(404)));
         $router->addRoute(new Route('405', new ErrorController(405)));
         $router->addRoute(new Route('home', new HomeController()));
 
         try {
+            if (!isset($_GET[CONTROLLER_GET_PARAMETER])) {
+                throw new RouteException('GET Parameter not found');
+            }
+
             $controller = $router->retrieveRoute($_GET[CONTROLLER_GET_PARAMETER]);
             $o = $controller->{method_exists($controller, CONTROLLER_ANYMETHOD_NAME) ? CONTROLLER_ANYMETHOD_NAME : $_SERVER['REQUEST_METHOD']}();
 
