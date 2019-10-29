@@ -1,7 +1,5 @@
 <?php
 
-$start = microtime(true);
-
 use core\App;
 use model\BinaryComparison;
 use model\entities\User;
@@ -40,7 +38,3 @@ $query = ORM::getTable('users')
     ->build();
 
 var_dump($query);
-
-$end = microtime(true);
-$creationtime = ($end - $start);
-printf("Page created in %.6f seconds.", $creationtime);
