@@ -4,8 +4,12 @@
 namespace model;
 
 
-class SelectBuilder extends QueryBuilder {
+class GatheringBuilder extends QueryBuilder {
 
+    /**
+     * @var SelectClause
+     */
+    private $selectClause;
 
     /**
      * @var FromClause
@@ -27,15 +31,27 @@ class SelectBuilder extends QueryBuilder {
      */
     private $orderClause = null;
 
-    public function __construct(Table $table) {
+    /**
+     * @var LimitClause|null
+     */
+    private $limitClause = null;
+
+    /**
+     * SelectBuilder constructor.
+     * @param Table $table
+     * @param array|null $projections
+     */
+    public function __construct(Table $table, array $projections = null) {
         parent::__construct($table);
+
+        $this->selectClause =  new SelectClause($projections == null ? array(new Projection('*')) : $projections);
         $this->fromClause = new FromClause($table->getName());
     }
 
     /**
      * @param string $tableName
      * @param array $comparisons
-     * @return SelectBuilder
+     * @return GatheringBuilder
      */
     public function join(string $tableName, array $comparisons) {
         $clause = new JoinClause($tableName);
@@ -68,12 +84,20 @@ class SelectBuilder extends QueryBuilder {
      * @param bool $descending
      * @return $this
      */
-    public function orderBy(string $attribute, bool $descending) {
+    public function orderBy(string $attribute, bool $descending = true) {
 
         $this->orderClause = new OrderClause($attribute);
         $this->orderClause->setDescending($descending);
 
         return $this;
+    }
+
+    /**
+     * Adds a limit clause
+     * @param int $limit
+     */
+    public function limit(int $limit = 1) {
+        $this->limitClause = new LimitClause($limit);
     }
 
     /**
@@ -83,9 +107,9 @@ class SelectBuilder extends QueryBuilder {
 
         $queryParameters = array();
 
-        $rawQuery = 'SELECT * ';
+        $rawQuery = $this->selectClause->compile();
         // Adds the FROM clause
-        $rawQuery .= $this->fromClause->compile() . ' ';
+        $rawQuery .=  ' ' . $this->fromClause->compile();
         // Adds the join clauses
         foreach ($this->joinClauses as $joinClause) {
             $queryParameters = array_merge($queryParameters, $joinClause->asQueryParameters());
@@ -95,11 +119,14 @@ class SelectBuilder extends QueryBuilder {
         // Adds the where clause if it isn't null
         if ($this->whereClause != null) {
             $queryParameters = array_merge($queryParameters, $this->whereClause->asQueryParameters());
-            $rawQuery .= $this->whereClause->compile();
+            $rawQuery .= ' ' . $this->whereClause->compile();
         }
 
         // Adds the order by clause if it isn't null
-        $rawQuery .= $this->orderClause == null ? '' : $this->orderClause->compile();
+        $rawQuery .= $this->orderClause == null ? '' : ' ' . $this->orderClause->compile();
+        // Adds the limit clause if it isn't null
+        $rawQuery .= $this->limitClause == null ? '' : ' ' . $this->limitClause->compile();
+
         // Adds the semicolon
         $rawQuery .= ';';
 
