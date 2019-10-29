@@ -20,7 +20,7 @@ class SelectBuilder extends QueryBuilder {
     /**
      * @var WhereClause
      */
-    private $whereClause;
+    private $whereClause = null;
 
     /**
      * @var OrderClause
@@ -30,7 +30,6 @@ class SelectBuilder extends QueryBuilder {
     public function __construct(Table $table) {
         parent::__construct($table);
         $this->fromClause = new FromClause($table->getName());
-        $this->whereClause = new WhereClause();
     }
 
 
@@ -57,6 +56,9 @@ class SelectBuilder extends QueryBuilder {
      * @return $this
      */
     public function where(array $comparisons) {
+
+        if ($this->whereClause == null) $this->whereClause = new WhereClause();
+
         foreach ($comparisons as $comparison) {
             $this->whereClause->addComparison(new ComparisonClause($comparison[0], $comparison[1], $comparison[2],
                 isset($comparison['type']) ? !($comparison['type'] == 'attribute') : true
@@ -86,7 +88,8 @@ class SelectBuilder extends QueryBuilder {
 
         $queryParameters = array();
 
-        $rawQuery = $this->fromClause->compile() . ' ';
+        $rawQuery = 'SELECT * ';
+        $rawQuery .= $this->fromClause->compile() . ' ';
         foreach ($this->joinClauses as $joinClause) {
             foreach ($joinClause->getComparisons() as $comparison) {
                 if ($comparison->isValueComparison())
@@ -95,11 +98,15 @@ class SelectBuilder extends QueryBuilder {
             $rawQuery .= $joinClause->compile();
         }
 
-        foreach($this->whereClause->getComparisons() as $comparison) {
-            if ($comparison->isValueComparison())
-                array_push($queryParameters, $comparison->asQueryParameter());
+        if ($this->whereClause != null) {
+            foreach ($this->whereClause->getComparisons() as $comparison) {
+                if ($comparison->isValueComparison())
+                    array_push($queryParameters, $comparison->asQueryParameter());
+            }
+
+            $rawQuery .= $this->whereClause->compile();
         }
-        $rawQuery .= $this->whereClause->compile();
+
         $rawQuery .= $this->orderClause == null ? '' : $this->orderClause->compile();
         $rawQuery .= ';';
 

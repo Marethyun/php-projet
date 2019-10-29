@@ -34,16 +34,18 @@ class Query {
         $this->orm = $orm;
         $this->parameters = $parameters;
 
+        // Sanitize a bit
         $this->rawQuery = htmlspecialchars($this->rawQuery);
     }
 
     /**
-     * @return array
+     * @return ResultSet
      */
     public function execute() {
-        //TODO Implement
+        $prepared = $this->orm->getPdo()->prepare($this->rawQuery);
+        $prepared->execute($this->parameters);
 
-        return array();
+        return new ResultSet($prepared->fetchAll());
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use core\App;
+use model\entities\User;
 use model\ORM;
 
 spl_autoload_register(function ($className) {
@@ -28,12 +29,14 @@ define('ERROR_500_URI', '/?controller=500');
 
 ORM::initialize();
 
-$user = new \model\entities\User(865316894, 'marethyun', '98651320315648', 'ange.bacci@etu.univ-amu.fr');
-
 $query = ORM::getTable('users')
-    ->persist($user);
+    ->select()
+    ->build();
 
+//var_dump($query);
 
-var_dump(get_object_vars($user));
+//$query->execute();
 
-var_dump($query);
+var_dump($set = $query->execute());
+
+var_dump($set->map(User::class));
