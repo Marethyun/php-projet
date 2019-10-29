@@ -19,7 +19,7 @@ final class Users {
     public static function getAll() {
         try {
             return ORM::table(self::TABLE_NAME)
-                ->select()
+                ->gather()
                 ->build()
                 ->execute()
                 ->map(User::class);
@@ -30,7 +30,7 @@ final class Users {
     public static function getById(int $id) {
         try {
             return ORM::table(self::TABLE_NAME)
-                ->select()
+                ->gather()
                 ->where(array(
                     new BinaryComparison('id', BinaryComparison::EQUAL, $id)
                 ))

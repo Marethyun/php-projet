@@ -27,11 +27,17 @@ class Table {
         $this->orm = $orm;
     }
 
-    public function select() {
-        return new SelectBuilder($this);
+    /**
+     * Creates and returns an object gathering builder
+     * @param array|null $projections
+     * @return GatheringBuilder
+     */
+    public function gather(array $projections = null) {
+        return new GatheringBuilder($this, $projections);
     }
 
     /**
+     * Persists an entity
      * @param Entity $entity
      * @return Query
      * @throws ORMException
