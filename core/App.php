@@ -4,6 +4,7 @@ namespace core;
 
 use controller\ErrorController;
 use controller\HomeController;
+use controller\LoginController;
 use model\ORM;
 use model\ORMException;
 
@@ -38,6 +39,7 @@ class App {
         $router->addRoute(new Route('404', new ErrorController(404)));
         $router->addRoute(new Route('405', new ErrorController(405)));
         $router->addRoute(new Route('home', new HomeController()));
+        $router->addRoute(new Route('login', new LoginController()));
 
         try {
             if (!isset($_GET[CONTROLLER_GET_PARAMETER])) {
