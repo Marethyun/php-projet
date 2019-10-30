@@ -13,7 +13,7 @@ final class User extends Entity {
     /**
      * @var string
      */
-    public $pseudonym;
+    public $username;
 
     /**
      * @var string
@@ -28,13 +28,13 @@ final class User extends Entity {
     /**
      * User constructor.
      * @param int $id
-     * @param string $pseudonym
+     * @param string $username
      * @param string $email
      * @param string $password
      */
-    public function __construct(int $id = null, string $pseudonym = null, string $email = null, string $password = null) {
+    public function __construct(int $id = null, string $username = null, string $email = null, string $password = null) {
         $this->id = $id;
-        $this->pseudonym = $pseudonym;
+        $this->username = $username;
         $this->email = $email;
         $this->password = $password;
     }

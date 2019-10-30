@@ -43,17 +43,18 @@ abstract class Users {
     }
 
     /**
-     * Returns whether there is a user matching the provided credentials
-     * @param string $username
+     * Returns whether there is a user matching the provided email or username
+     * @param string $comparative email|username
+     * @param bool $byEmail
      * @return User
      */
-    public static function getIfExists(string $username) {
+    public static function getIfExists(string $comparative, bool $byEmail = false) {
         try {
-            // There can be only one user with the same username (SQL UNIQUE)
+            // There can be only one user with the same username or email (SQL UNIQUE)
             $users = ORM::table(self::TABLE_NAME)
                 ->gather()
                 ->where(array(
-                    new BinaryComparison('username', BinaryComparison::EQUAL, $username)
+                    new BinaryComparison($byEmail ? 'email' : 'username', BinaryComparison::EQUAL, $comparative)
                 ))
                 ->limit(1)
                 ->build()
@@ -73,5 +74,14 @@ abstract class Users {
      */
     public static function verifyPassword(User $user, string $password) {
         return password_verify($password, $user->password);
+    }
+
+    /**
+     * Hashes a password using bcrypt
+     * @param string $password
+     * @return false|string
+     */
+    public static function hashPassword(string $password) {
+        return password_hash($password, PASSWORD_BCRYPT);
     }
 }
