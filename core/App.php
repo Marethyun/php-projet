@@ -12,7 +12,7 @@ use model\ORMException;
  * Application main class, represents the application itself
  * @package core
  */
-class App {
+final class App {
 
     /**
      * Entry point, runs the application

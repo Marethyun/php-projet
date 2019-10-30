@@ -9,9 +9,9 @@ namespace model;
  * Represents an SQL ORDER BY clause, only supports one attribute, because we don't really care implementing a
  * multi-attribute clause for this project.
  *
- * @package freenote\model
+ * @package model
  */
-class OrderClause implements SQLCompilable {
+final class OrderClause implements SQLCompilable {
 
     /**
      * @var bool

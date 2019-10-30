@@ -4,7 +4,7 @@
 namespace model;
 
 
-class Query {
+final class Query {
 
     /**
      * @var string

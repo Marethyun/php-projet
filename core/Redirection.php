@@ -3,7 +3,7 @@
 
 namespace core;
 
-class Redirection {
+final class Redirection {
 
     /**
      * @var string

@@ -3,7 +3,7 @@
 
 namespace core;
 
-class Route {
+final class Route {
 
     /**
      * @var string

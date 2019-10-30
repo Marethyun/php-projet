@@ -4,7 +4,7 @@
 namespace model;
 
 
-class FromClause implements SQLCompilable {
+final class FromClause implements SQLCompilable {
     /**
      * @var string
      */

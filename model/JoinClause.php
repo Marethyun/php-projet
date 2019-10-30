@@ -4,7 +4,7 @@
 namespace model;
 
 
-class JoinClause implements SQLCompilable {
+final class JoinClause implements SQLCompilable {
     use ComparisonsHolder;
 
     /**

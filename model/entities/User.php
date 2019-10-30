@@ -4,7 +4,7 @@
 namespace model\entities;
 
 
-class User extends Entity {
+final class User extends Entity {
     /**
      * @var integer
      */

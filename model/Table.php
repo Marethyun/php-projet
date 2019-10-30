@@ -6,7 +6,7 @@ namespace model;
 
 use model\entities\Entity;
 
-class Table {
+final class Table {
     /**
      * @var string
      */

@@ -4,7 +4,7 @@
 namespace model;
 
 
-class LimitClause implements SQLCompilable {
+final class LimitClause implements SQLCompilable {
 
     /**
      * @var int

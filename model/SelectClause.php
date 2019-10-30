@@ -4,7 +4,7 @@
 namespace model;
 
 
-class SelectClause implements SQLCompilable {
+final class SelectClause implements SQLCompilable {
 
     /**
      * Array of projections

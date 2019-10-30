@@ -6,7 +6,7 @@ namespace model;
 use PDO;
 use PDOException;
 
-class ORM {
+final class ORM {
     /**
      * The ORM instance
      * @var ORM

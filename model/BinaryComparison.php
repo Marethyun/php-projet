@@ -6,7 +6,7 @@ namespace model;
 
 use model\Comparison;
 
-class BinaryComparison extends Comparison {
+final class BinaryComparison extends Comparison {
 
     public const EQUAL = '=';
     public const GREATER = '>';

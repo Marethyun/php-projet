@@ -6,7 +6,7 @@ namespace core;
 use Exception;
 use Throwable;
 
-class RouteException extends Exception {
+final class RouteException extends Exception {
 
     /**
      * RouteException constructor.

@@ -5,7 +5,7 @@ namespace core;
 
 use function array_push;
 
-class Router {
+final class Router {
 
     private static $INSTANCE;
 

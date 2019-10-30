@@ -11,7 +11,7 @@ use core\Session;
 use core\View;
 use model\wrappers\Users;
 
-class LoginController extends Controller {
+final class LoginController extends Controller {
 
     public const VIEW_FILE = 'login.php';
 
@@ -54,7 +54,6 @@ class LoginController extends Controller {
             // Else, log the user in and send him home
             Session::logUser($user);
             return Redirection::fromRef(HOME_URI);
-
 
         } else {
             // Render the view with an error

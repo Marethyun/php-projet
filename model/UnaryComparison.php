@@ -4,7 +4,7 @@
 namespace model;
 
 
-class UnaryComparison extends Comparison {
+final class UnaryComparison extends Comparison {
 
     /**
      * @var string

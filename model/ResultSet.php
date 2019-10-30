@@ -4,10 +4,9 @@
 namespace model;
 
 
-use model\entities\Entity;
 use ReflectionException;
 
-class ResultSet {
+final class ResultSet {
     /**
      * The data in an array
      * @var array

@@ -7,7 +7,7 @@ namespace model;
 use Exception;
 use Throwable;
 
-class ORMException extends Exception {
+final class ORMException extends Exception {
     /**
      * DatabaseException constructor.
      * @param string $message

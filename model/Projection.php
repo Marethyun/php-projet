@@ -3,7 +3,7 @@
 
 namespace model;
 
-class Projection implements SQLCompilable {
+final class Projection implements SQLCompilable {
 
     /**
      * @var string

@@ -2,7 +2,7 @@
 
 namespace core;
 
-class View {
+final class View {
     /**
      * @var array
      */

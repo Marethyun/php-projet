@@ -4,7 +4,7 @@
 namespace model;
 
 
-class WhereClause implements SQLCompilable {
+final class WhereClause implements SQLCompilable {
     use ComparisonsHolder;
 
     /**

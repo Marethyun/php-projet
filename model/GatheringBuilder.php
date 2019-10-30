@@ -4,7 +4,7 @@
 namespace model;
 
 
-class GatheringBuilder extends QueryBuilder {
+final class GatheringBuilder extends QueryBuilder {
 
     /**
      * @var SelectClause
