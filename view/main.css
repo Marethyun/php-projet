@@ -80,7 +80,7 @@ li.Liens:hover {
     border-radius: 0.25rem;
 }
 
-.LiensEnTete {
+.LiensVariés {
     color: white;
 }
 
@@ -91,13 +91,17 @@ a:visited, a:link {
     margin-left: 1.5rem;
 }
 
-img {
+img, img:hover {
   width: 3rem;
   height: 3rem;
 }
 
-i {
+.fermé {
   color: #B14244;
+}
+
+.ouvert {
+  color: #A5EB78;
 }
 
 /** Page d'Accueil **/
@@ -108,10 +112,10 @@ i {
     border-radius: 0.25rem;
     text-align: center;
     list-style-type: none;
-    margin-left: 15rem;
-    margin-right: 15rem;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    margin-bottom: 8%;
     background-color: #3d3f4c;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -121,12 +125,44 @@ i {
     text-align: justify;
     border-color: transparent;
     border-radius: 0.25rem;
-    margin-left: 15rem;
-    margin-right: 15rem;
-    margin-top: 3rem;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
     background-color: #3d3f4c;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 90%;
+}
+
+th {
+  border-radius: 0.25rem;
+  border-color: transparent;
+  border-style: solid;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/** Page d'erreur **/
+
+#erreur {
+  border-style: solid;
+  text-align: center;
+  border-color: transparent;
+  border-radius: 0.25rem;
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-top: 15%;
+  width: 25%;
+  height: 25%;
+  background-color: #3d3f4c;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 
 /** Inscription - Se Connecter **/
 
@@ -189,6 +225,20 @@ input {
     border-style: solid;
     border-radius: 0.25rem;
     height: 2rem;
+}
+
+/** Page de réinitialisation de mot de passse **/
+
+.boxreini {
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 0.5rem;
+  background-color: #3d3f4c;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-left: 32%;
+  margin-right: 32%;
 }
 
 /** Profil **/
