@@ -96,6 +96,10 @@ img {
   height: 3rem;
 }
 
+i {
+  color: #B14244;
+}
+
 /** Page d'Accueil **/
 
 #Discussion {
@@ -153,6 +157,11 @@ h1.hform {
 .textchangementform {
     color: #696b80;
     font-size: 1rem;
+}
+
+.messageerreur {
+    color: #B14244;
+    font-size : 1rem;
 }
 
 .changementformulaire {
