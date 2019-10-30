@@ -44,4 +44,12 @@ final class Form {
     public function getInputs() {
         return $this->inputs;
     }
+
+    /**
+     * @param $name
+     * @return mixed|null
+     */
+    public function __get($name) {
+        return isset($this->inputs[$name]) ? $this->inputs[$name] : null;
+    }
 }

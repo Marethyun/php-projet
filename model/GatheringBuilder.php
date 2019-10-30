@@ -95,9 +95,12 @@ class GatheringBuilder extends QueryBuilder {
     /**
      * Adds a limit clause
      * @param int $limit
+     * @return
      */
     public function limit(int $limit = 1) {
         $this->limitClause = new LimitClause($limit);
+
+        return $this;
     }
 
     /**

@@ -38,6 +38,7 @@ class ResultSet {
         $mapped = array();
 
         foreach ($this->data as $row) {
+            var_dump($row);
             array_push($mapped, (new \ReflectionClass($class))->newInstanceArgs($row));
         }
 

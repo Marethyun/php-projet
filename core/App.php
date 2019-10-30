@@ -13,6 +13,7 @@ use model\ORMException;
  * @package core
  */
 class App {
+
     /**
      * Entry point, runs the application
      */
@@ -38,6 +39,7 @@ class App {
         $router->addRoute(new Route('500', new ErrorController(500)));
         $router->addRoute(new Route('404', new ErrorController(404)));
         $router->addRoute(new Route('405', new ErrorController(405)));
+        $router->addRoute(new Route('403', new ErrorController(403)));
         $router->addRoute(new Route('home', new HomeController()));
         $router->addRoute(new Route('login', new LoginController()));
 
@@ -50,7 +52,7 @@ class App {
             $o = $controller->{method_exists($controller, CONTROLLER_ANYMETHOD_NAME) ? CONTROLLER_ANYMETHOD_NAME : $_SERVER['REQUEST_METHOD']}();
 
             if ($o instanceof View) {
-                $GLOBALS['DATASET'] = $o->getDataset();
+                $GLOBALS[DATASET_ENTRY] = $o->getDataset();
                 include_once VIEWS_PATH . $o->getFile();
             } else if ($o instanceof Redirection) {
                 $o->redirect();
