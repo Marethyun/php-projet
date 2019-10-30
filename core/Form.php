@@ -23,7 +23,7 @@ final class Form {
     public function __construct(array $scheme, array $container) {
         $this->scheme = $scheme;
         foreach ($container as $key => $item) {
-            if (in_array($key, $this->scheme)) $this->inputs[$key] = $item;
+            if (in_array($key, $this->scheme)) $this->inputs[$key] = htmlspecialchars($item);
         }
     }
 
