@@ -84,7 +84,7 @@ abstract class Users {
                 new BinaryComparison('user_id', BinaryComparison::EQUAL, $user->id)
             ))
             ->buildAndExecute()
-            ->getData()[0]['cnt'] > 0;
+            ->getRows()[0]['cnt'] > 0;
     }
 
     /**
