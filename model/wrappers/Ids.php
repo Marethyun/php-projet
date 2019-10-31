@@ -19,7 +19,15 @@ abstract class Ids {
      * @return string
      */
     public static function toHex(int $id) {
-        return dechex($id);
+        return str_pad(dechex($id), 6, '0', STR_PAD_LEFT);
+    }
+
+    /**
+     * @param string $hex
+     * @return int
+     */
+    public static function fromHex(string $hex) {
+        return hexdec($hex);
     }
 
     /**
