@@ -2,6 +2,7 @@
 
 namespace core;
 
+use controller\AskResetController;
 use controller\ErrorController;
 use controller\HomeController;
 use controller\LoginController;
@@ -46,6 +47,7 @@ final class App {
         $router->addRoute(new Route('home', new HomeController()));
         $router->addRoute(new Route('login', new LoginController()));
         $router->addRoute(new Route('register', new RegisterController()));
+        $router->addRoute(new Route('askreset', new AskResetController()));
         $router->addRoute(new Route('reset', new PasswordResetController()));
 
         try {

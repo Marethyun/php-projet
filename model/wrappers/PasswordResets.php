@@ -4,9 +4,12 @@
 namespace model\wrappers;
 
 
+use Exception;
 use model\BinaryComparison;
+use model\entities\PasswordReset;
 use model\entities\User;
 use model\ORM;
+use model\ORMException;
 use model\Projection;
 
 abstract class PasswordResets {
@@ -48,6 +51,31 @@ abstract class PasswordResets {
                 new BinaryComparison('UNIX_TIMESTAMP(NOW())', BinaryComparison::LESS, sprintf('UNIX_TIMESTAMP(creation_date) + %d', self::SECONDS_VALID), true)
             ))
             ->buildAndExecute();
+    }
+
+    /**
+     * @param User $user
+     * @return string
+     * @throws ORMException
+     */
+    public static function newEntry(User $user) {
+        $token = self::generateToken();
+
+        $entry = new PasswordReset($user->id, $token);
+
+        ORM::table(self::RESETS_TABLE)
+            ->persist($entry)
+            ->execute();
+
+        return $token;
+    }
+
+    public static function generateToken() {
+        try {
+            return bin2hex(random_bytes(32));
+        } catch (Exception $e) {
+            die('YOU MAY DIE IN HELL');
+        }
     }
 
     /**

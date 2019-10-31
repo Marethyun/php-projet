@@ -23,7 +23,8 @@ final class RegisterController extends Controller {
     public const PASSWORD_REGEX = '#.{6,255}#';
     public const USERNAME_REGEX = '#[a-zA-Z0-9_]{6,255}#';
     public const REGISTRATION_MAIL_SUBJECT = 'Votre compte a été créé !';
-    public const REGISTRATION_MAIL_FROM = 'noreply@freenote.marethyun.ovh';
+    // TODO: Generalize to the app scope
+    public const MAIL_FROM = 'noreply@freenote.marethyun.ovh';
 
     /**
      * Serves the form
@@ -100,8 +101,8 @@ final class RegisterController extends Controller {
 
                 // TODO TEST ON THE SERVER WITH LOCALHOST
 
-                $mail->from(self::REGISTRATION_MAIL_FROM);
-                $mail->replyTo(self::REGISTRATION_MAIL_FROM);
+                $mail->from(self::MAIL_FROM);
+                $mail->replyTo(self::MAIL_FROM);
 
                 $mail->send();
 
