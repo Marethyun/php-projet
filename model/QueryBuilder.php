@@ -30,6 +30,13 @@ abstract class QueryBuilder {
     abstract function build();
 
     /**
+     * @return ResultSet
+     */
+    public function buildAndExecute() {
+        return $this->build()->execute();
+    }
+
+    /**
      * @return Table
      */
     public function getTable() {

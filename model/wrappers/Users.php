@@ -4,6 +4,7 @@
 namespace model\wrappers;
 
 
+use model\Assignment;
 use model\BinaryComparison;
 use model\entities\User;
 use model\ORM;
@@ -19,26 +20,20 @@ abstract class Users {
      * @return array
      */
     public static function getAll() {
-        try {
-            return ORM::table(self::USERS_TABLE)
-                ->gather()
-                ->buildAndExecute()
-                ->map(User::class);
-        } catch (\ReflectionException $e) {}
-        return null; // We should not get to this point as the ReflectionException should not occur..
+        return ORM::table(self::USERS_TABLE)
+            ->gather()
+            ->buildAndExecute()
+            ->map(User::class);
     }
 
     public static function getById(int $id) {
-        try {
-            return ORM::table(self::USERS_TABLE)
-                ->gather()
-                ->where(array(
-                    new BinaryComparison('id', BinaryComparison::EQUAL, $id)
-                ))
-                ->buildAndExecute()
-                ->map(User::class);
-        } catch (\ReflectionException $e) {}
-        return null; // We should not get to this point as the ReflectionException should not occur..
+        return ORM::table(self::USERS_TABLE)
+            ->gather()
+            ->where(array(
+                new BinaryComparison('id', BinaryComparison::EQUAL, $id)
+            ))
+            ->buildAndExecute()
+            ->map(User::class);
     }
 
     /**
@@ -48,21 +43,16 @@ abstract class Users {
      * @return User
      */
     public static function getIfExists(string $comparative, bool $byEmail = false) {
-        try {
-            // There can be only one user with the same username or email (SQL UNIQUE)
-            $users = ORM::table(self::USERS_TABLE)
-                ->gather()
-                ->where(array(
-                    new BinaryComparison($byEmail ? 'email' : 'username', BinaryComparison::EQUAL, $comparative)
-                ))
-                ->limit(1)
-                ->buildAndExecute()
-                ->map(User::class);
+        $users = ORM::table(self::USERS_TABLE)
+            ->gather()
+            ->where(array(
+                new BinaryComparison($byEmail ? 'email' : 'username', BinaryComparison::EQUAL, $comparative)
+            ))
+            ->limit(1)
+            ->buildAndExecute()
+            ->map(User::class);
 
-            return count($users) > 0 ? $users[0] : null;
-
-        } catch (\ReflectionException $e) {}
-        return null; // We should not get to this point as the ReflectionException should not occur..
+        return count($users) > 0 ? $users[0] : null;
     }
 
     /**
@@ -83,6 +73,10 @@ abstract class Users {
         return password_hash($password, PASSWORD_BCRYPT);
     }
 
+    /**
+     * @param User $user
+     * @return bool
+     */
     public static function isAdmin(User $user) {
         return ORM::table(self::ADMINS_TABLE)
             ->gather(array(Projection::createCount('user_id', 'cnt')))
@@ -91,5 +85,25 @@ abstract class Users {
             ))
             ->buildAndExecute()
             ->getData()[0]['cnt'] > 0;
+    }
+
+    /**
+     * Updates the user with the provided attributes
+     * @param User $user
+     * @param array $attributes
+     */
+    public static function update(User $user, array $attributes) {
+        $assignments = array();
+
+        foreach ($attributes as $attribute) {
+            array_push($assignments, new Assignment($attribute, $user->{$attribute}));
+        }
+
+        ORM::table(self::USERS_TABLE)
+            ->update($assignments)
+            ->where(array(
+                new BinaryComparison('id', BinaryComparison::EQUAL, $user->id)
+            ))
+            ->buildAndExecute();
     }
 }

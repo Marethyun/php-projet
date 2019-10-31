@@ -5,6 +5,7 @@ namespace core;
 use controller\ErrorController;
 use controller\HomeController;
 use controller\LoginController;
+use controller\PasswordResetController;
 use controller\RegisterController;
 use model\ORM;
 use model\ORMException;
@@ -38,12 +39,14 @@ final class App {
 
         // Routes definitions
         $router->addRoute(new Route('500', new ErrorController(500)));
-        $router->addRoute(new Route('404', new ErrorController(404)));
         $router->addRoute(new Route('405', new ErrorController(405)));
+        $router->addRoute(new Route('404', new ErrorController(404)));
         $router->addRoute(new Route('403', new ErrorController(403)));
+        $router->addRoute(new Route('400', new ErrorController(400)));
         $router->addRoute(new Route('home', new HomeController()));
         $router->addRoute(new Route('login', new LoginController()));
         $router->addRoute(new Route('register', new RegisterController()));
+        $router->addRoute(new Route('reset', new PasswordResetController()));
 
         try {
             if (!isset($_GET[CONTROLLER_GET_PARAMETER])) {

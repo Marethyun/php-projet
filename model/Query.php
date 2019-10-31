@@ -33,9 +33,6 @@ final class Query {
         $this->rawQuery = $rawQuery;
         $this->orm = $orm;
         $this->parameters = $parameters;
-
-        // Sanitize a bit
-        $this->rawQuery = htmlspecialchars($this->rawQuery);
     }
 
     /**

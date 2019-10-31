@@ -21,10 +21,12 @@ define('DATABASE_NAME', 'freenote');
 define('DATABASE_DATASOURCE', sprintf('mysql:host=%s;dbname=%s', DBMS_HOST, DATABASE_NAME));
 
 define('HOME_URI', '/?controller=home');
+define('LOGIN_URI', '/?controller=login');
 define('ERROR_405_URI', '/?controller=405');
 define('ERROR_404_URI', '/?controller=404');
 define('ERROR_500_URI', '/?controller=500');
 define('ERROR_403_URI', '/?controller=403');
+define('ERROR_400_URI', '/?controller=400');
 
 (new App())->run();
 

@@ -116,7 +116,7 @@ final class GatheringBuilder extends QueryBuilder {
         // Adds the join clauses
         foreach ($this->joinClauses as $joinClause) {
             $queryParameters = array_merge($queryParameters, $joinClause->asQueryParameters());
-            $rawQuery .= $joinClause->compile();
+            $rawQuery .= ' ' . $joinClause->compile();
         }
 
         // Adds the where clause if it isn't null
@@ -134,12 +134,5 @@ final class GatheringBuilder extends QueryBuilder {
         $rawQuery .= ';';
 
         return new Query($rawQuery, $this->getTable()->getOrm(), $queryParameters);
-    }
-
-    /**
-     * @return ResultSet
-     */
-    public function buildAndExecute() {
-        return $this->build()->execute();
     }
 }

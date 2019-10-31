@@ -37,6 +37,18 @@ final class Table {
     }
 
     /**
+     * Creates and returns an object deleting builder
+     * @return DeleteBuilder
+     */
+    public function delete() {
+        return new DeleteBuilder($this);
+    }
+
+    public function update(array $assignments) {
+        return new UpdateBuilder($this, $assignments);
+    }
+
+    /**
      * Persists an entity
      * @param Entity $entity
      * @return Query

@@ -52,4 +52,12 @@ final class Form {
     public function __get($name) {
         return isset($this->inputs[$name]) ? $this->inputs[$name] : null;
     }
+
+    /**
+     * @param $name
+     * @param $value
+     */
+    public function __set($name, $value) {
+        $this->inputs[$name] = $value;
+    }
 }

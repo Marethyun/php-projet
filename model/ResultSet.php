@@ -31,14 +31,14 @@ final class ResultSet {
     /**
      * @param string $class
      * @return array
-     * @throws ReflectionException
      */
     public function map($class) {
         $mapped = array();
 
         foreach ($this->data as $row) {
-            var_dump($row);
-            array_push($mapped, (new \ReflectionClass($class))->newInstanceArgs($row));
+            try {
+                array_push($mapped, (new \ReflectionClass($class))->newInstanceArgs($row));
+            } catch (ReflectionException $e) {} // We ignore the exception
         }
 
         return $mapped;
