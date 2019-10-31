@@ -11,7 +11,8 @@ use model\Projection;
 
 abstract class Users {
 
-    public const TABLE_NAME = 'users';
+    public const USERS_TABLE = 'users';
+    public const ADMINS_TABLE = 'admins';
 
     /**
      * Returns all users stored in the database
@@ -19,10 +20,9 @@ abstract class Users {
      */
     public static function getAll() {
         try {
-            return ORM::table(self::TABLE_NAME)
+            return ORM::table(self::USERS_TABLE)
                 ->gather()
-                ->build()
-                ->execute()
+                ->buildAndExecute()
                 ->map(User::class);
         } catch (\ReflectionException $e) {}
         return null; // We should not get to this point as the ReflectionException should not occur..
@@ -30,13 +30,12 @@ abstract class Users {
 
     public static function getById(int $id) {
         try {
-            return ORM::table(self::TABLE_NAME)
+            return ORM::table(self::USERS_TABLE)
                 ->gather()
                 ->where(array(
                     new BinaryComparison('id', BinaryComparison::EQUAL, $id)
                 ))
-                ->build()
-                ->execute()
+                ->buildAndExecute()
                 ->map(User::class);
         } catch (\ReflectionException $e) {}
         return null; // We should not get to this point as the ReflectionException should not occur..
@@ -51,14 +50,13 @@ abstract class Users {
     public static function getIfExists(string $comparative, bool $byEmail = false) {
         try {
             // There can be only one user with the same username or email (SQL UNIQUE)
-            $users = ORM::table(self::TABLE_NAME)
+            $users = ORM::table(self::USERS_TABLE)
                 ->gather()
                 ->where(array(
                     new BinaryComparison($byEmail ? 'email' : 'username', BinaryComparison::EQUAL, $comparative)
                 ))
                 ->limit(1)
-                ->build()
-                ->execute()
+                ->buildAndExecute()
                 ->map(User::class);
 
             return count($users) > 0 ? $users[0] : null;
@@ -83,5 +81,15 @@ abstract class Users {
      */
     public static function hashPassword(string $password) {
         return password_hash($password, PASSWORD_BCRYPT);
+    }
+
+    public static function isAdmin(User $user) {
+        return ORM::table(self::ADMINS_TABLE)
+            ->gather(array(Projection::createCount('user_id', 'cnt')))
+            ->where(array(
+                new BinaryComparison('user_id', BinaryComparison::EQUAL, $user->id)
+            ))
+            ->buildAndExecute()
+            ->getData()[0]['cnt'] > 0;
     }
 }

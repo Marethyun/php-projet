@@ -72,7 +72,7 @@ final class RegisterController extends Controller {
                 return new View(self::VIEW_FILE, array('error' => 'The password length must be between 6 and 255 characters'));
             }
 
-            $table = ORM::table(Users::TABLE_NAME);
+            $table = ORM::table(Users::USERS_TABLE);
 
             $user = new User(
                 Ids::newUnique($table),

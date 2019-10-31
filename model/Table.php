@@ -49,9 +49,12 @@ final class Table {
         $values = 'VALUES(';
         $params = array();
         foreach ($vars as $k => $v) {
-            $attributes.= $k . ', ';
-            $values .= '?, ';
-            array_push($params, $v);
+            // If the value isn't null
+            if (!is_null($v)) {
+                $attributes .= $k . ', ';
+                $values .= '?, ';
+                array_push($params, $v);
+            }
         }
         $attributes = substr($attributes, 0, strlen($attributes) - 2) . ')';
         $values = substr($values, 0, strlen($values) - 2) . ')';

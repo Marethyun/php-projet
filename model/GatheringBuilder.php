@@ -135,4 +135,11 @@ final class GatheringBuilder extends QueryBuilder {
 
         return new Query($rawQuery, $this->getTable()->getOrm(), $queryParameters);
     }
+
+    /**
+     * @return ResultSet
+     */
+    public function buildAndExecute() {
+        return $this->build()->execute();
+    }
 }
