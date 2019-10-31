@@ -6,6 +6,8 @@ namespace controller;
 
 use core\Controller;
 use core\Form;
+use core\Mail;
+use core\MailException;
 use core\Redirection;
 use core\Session;
 use core\View;
@@ -20,6 +22,8 @@ final class RegisterController extends Controller {
     public const VIEW_FILE = 'register.php';
     public const PASSWORD_REGEX = '#.{6,255}#';
     public const USERNAME_REGEX = '#[a-zA-Z0-9_]{6,255}#';
+    public const REGISTRATION_MAIL_SUBJECT = 'Votre compte a été créé !';
+    public const REGISTRATION_MAIL_FROM = 'noreply@freenote.marethyun.ovh';
 
     /**
      * Serves the form
@@ -78,12 +82,35 @@ final class RegisterController extends Controller {
             );
 
             try {
-                $table->persist($user);
+                $table->persist($user)->execute();
 
                 // TODO Envoyer un mail, créer un objet mail
-                die('todo');
+
+                $mail = new Mail($user->email, self::REGISTRATION_MAIL_SUBJECT,
+                    <<<MESSAGE
+                        Bonjour, $user->username !
+                        
+                        Votre compte FreeNote a bien été enregistré.
+                        
+                        Cordialement,
+                        
+                        L'équipe FreeNote.
+                    MESSAGE
+                );
+
+                // TODO TEST ON THE SERVER WITH LOCALHOST
+
+                $mail->from(self::REGISTRATION_MAIL_FROM);
+                $mail->replyTo(self::REGISTRATION_MAIL_FROM);
+
+                $mail->send();
+
+                return Redirection::fromRef(HOME_URI);
+
             } catch (ORMException $e) {
                 return new View(self::VIEW_FILE, array('error' => 'An error occurred'));
+            } catch (MailException $e) {
+                return new View(self::VIEW_FILE, array('error' => 'Your account has been created but we could not send you an email..'));
             }
 
         } else {
