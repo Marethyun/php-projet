@@ -84,7 +84,7 @@ final class GatheringBuilder extends QueryBuilder {
      * @param bool $descending
      * @return $this
      */
-    public function orderBy(string $attribute, bool $descending = true) {
+    public function orderBy(string $attribute, bool $descending = false) {
 
         $this->orderClause = new OrderClause($attribute);
         $this->orderClause->setDescending($descending);

@@ -3,13 +3,17 @@
 namespace core;
 
 use controller\AskResetController;
+use controller\DisconnectController;
 use controller\ErrorController;
 use controller\HomeController;
 use controller\LoginController;
 use controller\PasswordResetController;
 use controller\RegisterController;
+use controller\ThreadsController;
+use model\entities\Thread;
 use model\ORM;
 use model\ORMException;
+use model\wrappers\Threads;
 
 /**
  * Application main class, represents the application itself
@@ -49,6 +53,8 @@ final class App {
         $router->addRoute(new Route('register', new RegisterController()));
         $router->addRoute(new Route('askreset', new AskResetController()));
         $router->addRoute(new Route('reset', new PasswordResetController()));
+        $router->addRoute(new Route('thread', new ThreadsController()));
+        $router->addRoute(new Route('disconnect', new DisconnectController()));
 
         try {
             if (!isset($_GET[CONTROLLER_GET_PARAMETER])) {

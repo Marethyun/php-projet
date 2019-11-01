@@ -16,7 +16,7 @@ final class OrderClause implements SQLCompilable {
     /**
      * @var bool
      */
-    private $descending = false;
+    private $descending;
 
     /**
      * @var string

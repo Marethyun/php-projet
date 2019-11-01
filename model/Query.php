@@ -6,6 +6,8 @@ namespace model;
 
 final class Query {
 
+    public static $queries = array();
+
     /**
      * @var string
      */
@@ -42,6 +44,8 @@ final class Query {
         $prepared = $this->orm->getPdo()->prepare($this->rawQuery);
         $prepared->execute($this->parameters);
 
+        $this->log();
+
         return new ResultSet($prepared->fetchAll());
     }
 
@@ -57,6 +61,13 @@ final class Query {
      */
     public function getParameters() {
         return $this->parameters;
+    }
+
+    /**
+     * Log the query
+     */
+    private function log() {
+        array_push(self::$queries, $this);
     }
 
 }

@@ -75,20 +75,6 @@ abstract class Users {
     }
 
     /**
-     * @param User $user
-     * @return bool
-     */
-    public static function isAdmin(User $user) {
-        return ORM::table(self::ADMINS_TABLE)
-            ->gather(array(Projection::createCount('user_id', 'cnt')))
-            ->where(array(
-                new BinaryComparison('user_id', BinaryComparison::EQUAL, $user->id)
-            ))
-            ->buildAndExecute()
-            ->getRows()[0]['cnt'] > 0;
-    }
-
-    /**
      * Updates the user with the provided attributes
      * @param User $user
      * @param array $attributes

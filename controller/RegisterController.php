@@ -76,10 +76,7 @@ final class RegisterController extends Controller {
             $table = ORM::table(Users::USERS_TABLE);
 
             $user = new User(
-                Ids::newUnique($table),
-                $form->username,
-                $form->email,
-                Users::hashPassword($form->password)
+                Ids::newUnique($table), $form->username, $form->email, Users::hashPassword($form->password)
             );
 
             try {
