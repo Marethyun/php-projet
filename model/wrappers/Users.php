@@ -7,6 +7,7 @@ namespace model\wrappers;
 use model\Assignment;
 use model\BinaryComparison;
 use model\entities\User;
+use model\mappers\GenericMapper;
 use model\ORM;
 use model\Projection;
 
@@ -23,7 +24,7 @@ abstract class Users {
         return ORM::table(self::USERS_TABLE)
             ->gather()
             ->buildAndExecute()
-            ->map(User::class);
+            ->map(new GenericMapper(User::class));
     }
 
     public static function getById(int $id) {
@@ -33,7 +34,7 @@ abstract class Users {
                 new BinaryComparison('id', BinaryComparison::EQUAL, $id)
             ))
             ->buildAndExecute()
-            ->map(User::class);
+            ->map(new GenericMapper(User::class));
     }
 
     /**
@@ -50,7 +51,7 @@ abstract class Users {
             ))
             ->limit(1)
             ->buildAndExecute()
-            ->map(User::class);
+            ->map(new GenericMapper(User::class));
 
         return count($users) > 0 ? $users[0] : null;
     }
