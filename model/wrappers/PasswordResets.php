@@ -8,6 +8,7 @@ use Exception;
 use model\BinaryComparison;
 use model\entities\PasswordReset;
 use model\entities\User;
+use model\mappers\GenericMapper;
 use model\ORM;
 use model\ORMException;
 use model\Projection;
@@ -36,7 +37,7 @@ abstract class PasswordResets {
                 new BinaryComparison('UNIX_TIMESTAMP(NOW())', BinaryComparison::LESS, sprintf('UNIX_TIMESTAMP(creation_date) + %d', self::SECONDS_VALID), true)
             ))
             ->buildAndExecute()
-            ->map(User::class);
+            ->map(new GenericMapper(User::class));
 
         return count($users) > 0 ? $users[0] : null;
     }
