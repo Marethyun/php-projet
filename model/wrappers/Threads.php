@@ -10,6 +10,7 @@ use model\entities\Thread;
 use model\entities\User;
 use model\mappers\GenericMapper;
 use model\ORM;
+use model\ORMException;
 use model\Projection;
 
 abstract class Threads {
@@ -68,6 +69,27 @@ abstract class Threads {
         }
 
         return $threads;
+    }
+
+    /**
+     * Persists a new thread with a new message and returns its id
+     *
+     * @param int $creator_id
+     * @return int
+     */
+    public static function persistNew(int $creator_id) {
+        $thread = new Thread(Ids::newUnique(ORM::table(self::THREADS_TABLE)), $creator_id);
+
+        // Creates a new message
+        Messages::persistNew($thread);
+
+        try {
+            ORM::table(self::THREADS_TABLE)
+                ->persist($thread)
+                ->execute();
+        } catch (ORMException $e) {} // Pf à l'aide
+
+        return $thread->id;
     }
 
     /**
