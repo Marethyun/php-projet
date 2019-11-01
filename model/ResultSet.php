@@ -4,6 +4,7 @@
 namespace model;
 
 
+use model\mappers\Mapper;
 use ReflectionException;
 
 final class ResultSet {
@@ -29,25 +30,17 @@ final class ResultSet {
     }
 
     /**
-     * @param string $class
+     * @param Mapper $mapper
      * @return array
      */
-    public function map($class) {
-        $mapped = array();
-
-        foreach ($this->data as $row) {
-            try {
-                array_push($mapped, (new \ReflectionClass($class))->newInstanceArgs($row));
-            } catch (ReflectionException $e) {} // We ignore the exception
-        }
-
-        return $mapped;
+    public function map(Mapper $mapper) {
+        return $mapper->map($this);
     }
 
     /**
      * @return array
      */
-    public function getData() {
+    public function getRows() {
         return $this->data;
     }
 }

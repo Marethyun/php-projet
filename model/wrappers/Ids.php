@@ -49,7 +49,7 @@ abstract class Ids {
                 ))
                 ->build()
                 ->execute()
-                ->getData()[0]['cnt'];
+                ->getRows()[0]['cnt'];
 
         } while ($cnt > 0);
 
