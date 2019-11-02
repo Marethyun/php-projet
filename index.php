@@ -42,6 +42,6 @@ define('ROUTE_DISCONNECT', 'disconnect');
 
 define('NOREPLY_ADDRESS', 'noreply@freenote.marethyun.ovh');
 
-define('WEBSITE_HOST', 'localhost');
+define('WEBSITE_HOST', 'freenote.marethyun.ovh');
 
 (new App())->run();

@@ -51,7 +51,7 @@ final class Router {
      * @return mixed
      * @throws RouteException
      */
-    public function routeUrl(string $routeName, array $parameters = array()) {
+    public function routeUri(string $routeName, array $parameters = array()) {
         foreach ($this->routes as $route) {
             if ($route->getName() === $routeName) {
                 return $route->url($parameters);

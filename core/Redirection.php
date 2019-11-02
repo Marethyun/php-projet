@@ -32,7 +32,7 @@ final class Redirection {
      */
     public static function fromRoute($routeName, array $parameters = array()) {
         try {
-            $url = Router::getInstance()->routeUrl($routeName, $parameters);
+            $url = Router::getInstance()->routeUri($routeName, $parameters);
         } catch (RouteException $e) {
             return new Redirection('/');
         }
