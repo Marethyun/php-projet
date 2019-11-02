@@ -46,8 +46,4 @@ define('NOREPLY_ADDRESS', 'noreply@freenote.marethyun.ovh');
 
 define('WEBSITE_HOST', 'freenote.marethyun.ovh');
 
-//(new App())->run();
-
-$properties = \core\Properties::readAll(CONFIG_FILE);
-
-var_dump($properties);
+(new App())->run();
