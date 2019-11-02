@@ -45,7 +45,7 @@ final class App {
         }
 
         // Routes definitions
-        $router->addRoute(new Route('home',       '/home', new HomeController()));
+        $router->addRoute(new Route('home',       '/', new HomeController()));
         $router->addRoute(new Route('500',        '/500', new ErrorController(500)));
         $router->addRoute(new Route('405',        '/405', new ErrorController(405)));
         $router->addRoute(new Route('404',        '/404', new ErrorController(404)));
