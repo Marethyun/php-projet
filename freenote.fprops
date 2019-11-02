@@ -1,0 +1,7 @@
+str: dbms_host = localhost
+str: dbms_username = freenote
+str: dbms_password = +pF420d^m
+str: database_name = freenote
+int: max_threads_user = 3
+str: noreply_address = noreply@freenote.marethyun.ovh
+str: domain_name = freenote.marethyun.ovh

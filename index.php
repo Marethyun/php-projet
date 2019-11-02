@@ -13,6 +13,8 @@ spl_autoload_register(function ($className) {
 
 });
 
+define('CONFIG_FILE' , 'freenote.fprops');
+
 define('CONTROLLER_GET_PARAMETER', 'controller');
 // Controller's method to call if it is applicable to any method
 define('CONTROLLER_ANYMETHOD_NAME', 'ANY');
@@ -44,4 +46,8 @@ define('NOREPLY_ADDRESS', 'noreply@freenote.marethyun.ovh');
 
 define('WEBSITE_HOST', 'freenote.marethyun.ovh');
 
-(new App())->run();
+//(new App())->run();
+
+$properties = \core\Properties::readAll(CONFIG_FILE);
+
+var_dump($properties);

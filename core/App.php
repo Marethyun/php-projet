@@ -2,6 +2,7 @@
 
 namespace core;
 
+use controller\AdminController;
 use controller\AskResetController;
 use controller\DisconnectController;
 use controller\ErrorController;
@@ -54,6 +55,7 @@ final class App {
         $router->addRoute(new Route('disconnect', '/disconnect', new DisconnectController()));
         $router->addRoute(new Route('register',   '/register', new RegisterController()));
         $router->addRoute(new Route('askreset',   '/askreset', new AskResetController()));
+        $router->addRoute(new Route('admin',      '/admin', new AdminController()));
         $router->addRoute(new Route('reset',      '/reset/{token}', new PasswordResetController()));
         $router->addRoute(new Route('thread',     '/thread/{thread}', new ThreadsController()));
 
