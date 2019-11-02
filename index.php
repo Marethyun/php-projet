@@ -20,8 +20,8 @@ define('VIEWS_PATH', 'view/');
 define('DATASET_ENTRY', 'DATASET');
 
 define('DBMS_HOST', 'localhost');
-define('DBMS_USERNAME', 'angebacci');
-define('DBMS_PASSWORD', 'yolo123');
+define('DBMS_USERNAME', 'freenote');
+define('DBMS_PASSWORD', '+pF420d^m');
 define('DATABASE_NAME', 'freenote');
 define('DATABASE_DATASOURCE', sprintf('mysql:host=%s;dbname=%s', DBMS_HOST, DATABASE_NAME));
 
