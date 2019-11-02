@@ -36,7 +36,7 @@ class PasswordResetController extends Controller {
             // If the token isn't what we expect
             if (preg_match(self::TOKEN_REGEX, $form->token) !== 1) {
                 // If the user malformed the token, send him in hell
-                return Redirection::fromRef(ERROR_403_URI);
+                return Redirection::fromRoute(ROUTE_403);
             }
 
             $user = PasswordResets::getUserIfValid($form->token);
@@ -50,7 +50,7 @@ class PasswordResetController extends Controller {
             return new View(self::PASSWORD_RESET_VIEW, array('reset_token' => $form->token));
         } else {
             // If the user did not provide the token, send him in hell
-            return Redirection::fromRef(ERROR_403_URI);
+            return Redirection::fromRoute(ROUTE_403);
         }
     }
 
@@ -64,7 +64,7 @@ class PasswordResetController extends Controller {
             // If the token isn't what we expect
             if (preg_match(self::TOKEN_REGEX, $form->reset_token) !== 1) {
                 // If the user malformed the token, send him in hell
-                return Redirection::fromRef(ERROR_403_URI);
+                return Redirection::fromRoute(ROUTE_403);
             }
 
             $user = PasswordResets::getUserIfValid($form->reset_token);
@@ -96,12 +96,10 @@ class PasswordResetController extends Controller {
             // Cleanup the tokens FIXME: This isn't really the place to do this
             PasswordResets::cleanup();
 
-
-
-            return Redirection::fromRef(LOGIN_URI);
+            return Redirection::fromRoute(ROUTE_LOGIN);
         } else {
             // Send the user to belize
-            return Redirection::fromRef(ERROR_403_URI);
+            return Redirection::fromRoute(ROUTE_403);
         }
     }
 }

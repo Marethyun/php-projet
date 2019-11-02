@@ -12,9 +12,9 @@ final class DisconnectController extends Controller {
     public function GET() {
         if (Session::isLogged()) {
             Session::disconnectUser();
-            return Redirection::fromRef(HOME_URI);
+            return Redirection::fromRoute(ROUTE_HOME);
         } else {
-            return Redirection::fromRef(ERROR_403_URI);
+            return Redirection::fromRoute(ROUTE_403);
         }
     }
 }

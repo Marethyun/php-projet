@@ -73,7 +73,7 @@ abstract class PasswordResets {
 
     public static function generateToken() {
         try {
-            return bin2hex(random_bytes(32));
+            return bin2hex(random_bytes(16));
         } catch (Exception $e) {
             die('YOU MAY DIE IN HELL');
         }

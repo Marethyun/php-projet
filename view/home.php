@@ -29,7 +29,7 @@
             <?php foreach ($GLOBALS[DATASET_ENTRY]['threads'] as $thread) { ?>
                 <tr>
                     <!-- TODO Généraliser la création de liens -->
-                    <td style="font-family: monospace"><a href="<?= sprintf("/?controller=thread&thread=%s", \model\wrappers\Ids::toHex($thread->id)) ?>">#<?= \model\wrappers\Ids::toHex($thread->id) ?></a></td>
+                    <td style="font-family: monospace"><a href="<?= \core\Router::getInstance()->routeUri(ROUTE_THREAD, array('thread' => \model\wrappers\Ids::toHex($thread->id))) ?>">#<?= \model\wrappers\Ids::toHex($thread->id) ?></a></td>
                     <td>
                         <?php if(empty($thread->messages)) { ?>(Discussion vide)<?php }?>
                         <?php if(empty(end($thread->messages)->fragments)) {?>
