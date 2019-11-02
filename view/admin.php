@@ -18,7 +18,7 @@
         <form action="<?= \core\Router::getInstance()->routeUri(ROUTE_ADMIN) ?>" method="post">
             <?php foreach ($GLOBALS[DATASET_ENTRY]['properties'] as $property) { ?>
                 <label>
-                    <input type="hidden" name="<?= 'type_' . $property->name ?>" value="<? $property->type ?>">
+                    <input type="hidden" name="<?= 'type_' . $property->name ?>" value="<?= $property->type ?>">
                     <input style="width: 200px" type="<?= $property->type === \core\Properties::STRING_TYPE ? 'text' : 'number' ?>" name="<?= $property->name ?>" value="<?= $property->value ?>">
                     <span style="font-family: monospace"><?= $property->name ?></span>
                 </label><br>
