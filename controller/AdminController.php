@@ -38,6 +38,8 @@ class AdminController extends Controller {
             return Redirection::fromRoute(ROUTE_403);
         }
 
+        var_dump($_POST);
+
         $properties = array();
 
         foreach ($_POST as $name => $value) {
