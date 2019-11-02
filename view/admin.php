@@ -21,7 +21,7 @@
                     <span style="font-family: monospace"><?= $property->name ?></span>
                     <input type="hidden" name="<?= 'type_' . $property->name ?>" value="<? $property->type ?>">
                     <input type="<?= $property->type === \core\Properties::STRING_TYPE ? 'text' : 'number' ?>" name="<?= $property->name ?>" value="<?= $property->value ?>">
-                </label>
+                </label><br>
             <?php } ?>
 
             <input type="submit">
