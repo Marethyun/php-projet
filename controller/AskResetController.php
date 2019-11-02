@@ -61,9 +61,7 @@ class AskResetController extends Controller {
 
             try {
                 $url = Router::getInstance()->routeUrl(ROUTE_RESET, array('token' => $token));
-            } catch (RouteException $e) {
-                var_dump($e);
-            }
+            } catch (RouteException $e) {}
 
             $mail = new Mail($user->email, 'Freenote: Réinitialisation de mot de passe', "
             Bonjour,<br>
@@ -78,8 +76,8 @@ class AskResetController extends Controller {
             L'équipe Freenote."
             );
 
-            $mail->from(RegisterController::MAIL_FROM);
-            $mail->replyTo(RegisterController::MAIL_FROM);
+            $mail->from(NOREPLY_ADDRESS);
+            $mail->replyTo(NOREPLY_ADDRESS);
             $mail->header('Content-Type', 'text/html');
 
             try {
