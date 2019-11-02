@@ -18,7 +18,7 @@ define('CONTROLLER_ANYMETHOD_NAME', 'ANY');
 define('VIEWS_PATH', 'view/');
 define('DATASET_ENTRY', 'DATASET');
 
-define('DBMS_HOST', 'marethyun.ovh');
+define('DBMS_HOST', 'localhost');
 define('DBMS_USERNAME', 'angebacci');
 define('DBMS_PASSWORD', 'yolo123');
 define('DATABASE_NAME', 'freenote');
