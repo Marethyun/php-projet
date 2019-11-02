@@ -24,6 +24,8 @@ define('DBMS_PASSWORD', 'yolo123');
 define('DATABASE_NAME', 'freenote');
 define('DATABASE_DATASOURCE', sprintf('mysql:host=%s;dbname=%s', DBMS_HOST, DATABASE_NAME));
 
+define('MAX_THREADS_USER', 3);
+
 define('HOME_URI', '/?controller=home');
 define('LOGIN_URI', '/?controller=login');
 define('RESET_URI', '/?controller=reset');

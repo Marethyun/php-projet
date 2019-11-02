@@ -63,6 +63,10 @@ abstract class Threads {
         return $thread;
     }
 
+    /**
+     * @param array $threads
+     * @return array
+     */
     public static function fillAll(array $threads) {
         foreach ($threads as $thread) {
             self::fill($thread);
@@ -80,16 +84,26 @@ abstract class Threads {
     public static function persistNew(int $creator_id) {
         $thread = new Thread(Ids::newUnique(ORM::table(self::THREADS_TABLE)), $creator_id);
 
-        // Creates a new message
-        Messages::persistNew($thread);
-
         try {
             ORM::table(self::THREADS_TABLE)
                 ->persist($thread)
                 ->execute();
         } catch (ORMException $e) {} // Pf à l'aide
 
+        // Creates a new message, must be AFTER the thread insertion (foreign key constraint)
+        Messages::persistNew($thread);
+
         return $thread->id;
+    }
+
+    public static function threadCountForUser(User $user) {
+        return ORM::table(self::THREADS_TABLE)
+            ->gather(array(Projection::createCount('id', 'cnt')))
+            ->where(array(
+                new BinaryComparison('creator_id', BinaryComparison::EQUAL, $user->id)
+            ))
+            ->buildAndExecute()
+            ->getRows()[0]['cnt'];
     }
 
     /**

@@ -98,6 +98,8 @@ abstract class Messages {
         return $messages[0]->id === $id;
     }
 
+    //public static function remove
+
     /**
      * Persists a new message in the provided thread and return its ID
      * @param Thread $thread

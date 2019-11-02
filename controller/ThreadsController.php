@@ -131,6 +131,8 @@ final class ThreadsController extends Controller {
 
                 Threads::close($thread);
 
+                $thread = Threads::fill(Threads::getById($thread->id)[0]);
+
                 return new View(self::THREADS_VIEW, array('success' => 'La discussion a bien été fermée !', 'thread' => $thread));
             }
 

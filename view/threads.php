@@ -16,8 +16,8 @@ $thread = $GLOBALS[DATASET_ENTRY]['thread'];
         <p style="color: green"><?= $GLOBALS[DATASET_ENTRY]['success'] ?></p>
     <?php } ?>
 
-        <h1>Discussion #<?= \model\wrappers\Ids::toHex($thread->id) ?> <?= $thread->opened ? '' : '(Fermée)' ?></h1>
-    <?php if (\core\Session::isLogged() and \core\Session::getLogged()->admin) { ?>
+        <h1>Discussion <span style="font-family: monospace">#<?= \model\wrappers\Ids::toHex($thread->id) ?></span> <?= $thread->opened ? '' : '(Fermée)' ?></h1>
+    <?php if (\core\Session::isLogged() and \core\Session::getLogged()->admin and $thread->opened) { ?>
         <form action="/?controller=thread&thread=<?= \model\wrappers\Ids::toHex($thread->id) ?>" method="post">
             <input type="hidden" name="action" value="close_thread">
             <label>
@@ -29,7 +29,7 @@ $thread = $GLOBALS[DATASET_ENTRY]['thread'];
     <?php foreach ($thread->messages as $km => $message) { ?>
         <div id="message">
         <?php if (empty($message->fragments)) { ?>
-            <p> - (message vide, suite à écrire..)</p>
+            <p> - (suite à écrire..)</p>
         <?php } else { ?>
             <p> - <?php foreach ($message->fragments as $kf => $fragment) { ?><?= $fragment->content ?> <?php } ?> <?php if (array_key_last($thread->messages) === $km) { ?>(suite à écrire..)<?php } ?></p>
         <?php } ?>
