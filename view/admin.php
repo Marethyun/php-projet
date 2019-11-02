@@ -15,7 +15,7 @@
         <p style="color: red">Une erreur tragique est survenue lors de modification du fichier de configuration</p>
         <?php } else { ?>
 
-        <form action="/?controller=admin" method="post">
+        <form action="<?= \core\Router::getInstance()->routeUri(ROUTE_ADMIN) ?>" method="post">
             <?php foreach ($GLOBALS[DATASET_ENTRY]['properties'] as $property) { ?>
                 <label>
                     <input type="hidden" name="<?= 'type_' . $property->name ?>" value="<? $property->type ?>">

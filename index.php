@@ -41,6 +41,7 @@ define('ROUTE_ASKRESET', 'askreset');
 define('ROUTE_RESET', 'reset');
 define('ROUTE_THREAD', 'thread');
 define('ROUTE_DISCONNECT', 'disconnect');
+define('ROUTE_ADMIN', 'admin');
 
 define('NOREPLY_ADDRESS', 'noreply@freenote.marethyun.ovh');
 
