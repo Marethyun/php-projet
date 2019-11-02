@@ -14,7 +14,7 @@ use core\View;
 class AdminController extends Controller {
 
     public const ADMIN_VIEW = 'admin.php';
-    public const TYPE_REGEX = '#(\w)+_type#';
+    public const TYPE_REGEX = '#type_(\w)+#';
 
     public function GET() {
         if (!Session::isLogged()) {
