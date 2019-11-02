@@ -55,7 +55,7 @@ final class Mail {
      */
     public function send() {
         // Max 70 lines
-        $message = wordwrap($this->message, 70);
+        //$message = wordwrap($this->message, 70);
 
         if (!mail($this->to, $this->subject, $message, $this->headers)) {
             throw new MailException('An error occurred sending the mail...');
