@@ -20,7 +20,7 @@
                 <label>
                     <input type="hidden" name="<?= 'type_' . $property->name ?>" value="<? $property->type ?>">
                     <input type="<?= $property->type === \core\Properties::STRING_TYPE ? 'text' : 'number' ?>" name="<?= $property->name ?>" value="<?= $property->value ?>">
-                    <span style="font-family: monospace"><?= $property->name ?></span>
+                    <span style="font-family: monospace; margin-left: 20px"><?= $property->name ?></span>
                 </label><br>
             <?php } ?>
 
