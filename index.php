@@ -10,6 +10,8 @@ spl_autoload_register(function ($className) {
     // The classname contains the class' namespace name, so they're imported successfully as they're contained in directories named after theirs namespaces
     // (what a long sentence, eh ?)
     include $className . '.php';
+
+    die('test');
 });
 
 define('CONTROLLER_GET_PARAMETER', 'controller');
