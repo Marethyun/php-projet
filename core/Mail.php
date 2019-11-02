@@ -45,7 +45,7 @@ final class Mail {
         $this->header('Reply-To', $replyTo);
     }
 
-    private function header(string $header, string $value) {
+    public function header(string $header, string $value) {
         $this->headers[$header] = $value;
     }
 

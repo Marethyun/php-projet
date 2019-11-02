@@ -48,9 +48,6 @@ class AskResetController extends Controller {
 
             // If the user isn't recognized, act like we did send the mail (that's a way of sending the user in hell, silently)
             if (is_null($user)) {
-                var_dump('Coucou');
-                die();
-
                 return new View(self::ASK_RESET_VIEW, array('success' => self::SUCCESS_MESSAGE));
             }
 
@@ -61,27 +58,26 @@ class AskResetController extends Controller {
             }
 
             // TODO Généraliser la création du lien
-            $url = sprintf('http://%s/?controller=reset&token=%s', WEBSITE_HOST, $token);
+            $url = sprintf('http://freenote.marethyun.ovh/?controller=reset&token=%s', $token);
 
             // TODO Test tout ça avec le serveur
             $mail = new Mail($user->email, 'Freenote: Réinitialisation de mot de passe',
                 <<<MESSAGE
-                    Bonjour,
+                Bonjour,
+                
+                Vous avez demandé une réinitialisation de mot de passe. Nous avons créé un lien spécialement pour vous, mais il n'est valable de 5 (cinq) minutes.
+                
+                Le voici: <a href="$url">$url</a>
                     
-                    Vous avez demandé une réinitialisation de mot de passe. Nous avons créé un lien spécialement pour vous,
-                    mais il n'est valable de 5 (cinq) minutes.
+                Cordialement,
                     
-                    Le voici:
-                    <a href="$url">$url</a>
-                        
-                    Cordialement,
-                        
-                    L'équipe Freenote.
+                L'équipe Freenote.
                 MESSAGE
             );
 
             $mail->from(RegisterController::MAIL_FROM);
             $mail->replyTo(RegisterController::MAIL_FROM);
+            $mail->header('Content-Type', 'text/html');
 
             try {
                 $mail->send();
