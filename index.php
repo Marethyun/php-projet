@@ -13,7 +13,7 @@ spl_autoload_register(function ($className) {
 
 });
 
-define('CONFIG_FILE' , 'freenote.fprops');
+define('CONFIG_FILE' , realpath('freenote.fprops'));
 
 define('CONTROLLER_GET_PARAMETER', 'controller');
 // Controller's method to call if it is applicable to any method
