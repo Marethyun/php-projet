@@ -18,9 +18,9 @@
         <form action="/?controller=admin" method="post">
             <?php foreach ($GLOBALS[DATASET_ENTRY]['properties'] as $property) { ?>
                 <label>
-                    <span style="font-family: monospace"><?= $property->name ?></span>
                     <input type="hidden" name="<?= 'type_' . $property->name ?>" value="<? $property->type ?>">
                     <input type="<?= $property->type === \core\Properties::STRING_TYPE ? 'text' : 'number' ?>" name="<?= $property->name ?>" value="<?= $property->value ?>">
+                    <span style="font-family: monospace"><?= $property->name ?></span>
                 </label><br>
             <?php } ?>
 
