@@ -44,18 +44,18 @@ final class App {
         }
 
         // Routes definitions
-        $router->addRoute(new Route('500',        '?controller=500', new ErrorController(500)));
-        $router->addRoute(new Route('405',        '?controller=405', new ErrorController(405)));
-        $router->addRoute(new Route('404',        '?controller=404', new ErrorController(404)));
-        $router->addRoute(new Route('403',        '?controller=403', new ErrorController(403)));
-        $router->addRoute(new Route('400',        '?controller=400', new ErrorController(400)));
-        $router->addRoute(new Route('home',       '?controller=home', new HomeController()));
-        $router->addRoute(new Route('login',      '?controller=login', new LoginController()));
-        $router->addRoute(new Route('register',   '?controller=register', new RegisterController()));
-        $router->addRoute(new Route('askreset',   '?controller=askreset', new AskResetController()));
-        $router->addRoute(new Route('reset',      '?controller=reset&token={token}', new PasswordResetController()));
-        $router->addRoute(new Route('thread',     '?controller=thread&thread={thread}', new ThreadsController()));
-        $router->addRoute(new Route('disconnect', '?controller=disconnect', new DisconnectController()));
+        $router->addRoute(new Route('home',       '/home', new HomeController()));
+        $router->addRoute(new Route('500',        '/500', new ErrorController(500)));
+        $router->addRoute(new Route('405',        '/405', new ErrorController(405)));
+        $router->addRoute(new Route('404',        '/404', new ErrorController(404)));
+        $router->addRoute(new Route('403',        '/403', new ErrorController(403)));
+        $router->addRoute(new Route('400',        '/400', new ErrorController(400)));
+        $router->addRoute(new Route('login',      '/login', new LoginController()));
+        $router->addRoute(new Route('disconnect', '/disconnect', new DisconnectController()));
+        $router->addRoute(new Route('register',   '/register', new RegisterController()));
+        $router->addRoute(new Route('askreset',   '/askreset', new AskResetController()));
+        $router->addRoute(new Route('reset',      '/reset/{token}', new PasswordResetController()));
+        $router->addRoute(new Route('thread',     '/thread/{thread}', new ThreadsController()));
 
         try {
             if (!isset($_GET[CONTROLLER_GET_PARAMETER])) {
