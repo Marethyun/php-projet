@@ -31,7 +31,8 @@ class AdminController extends Controller {
     }
 
     /**
-     * Warning: This is the UNIQUE CASE in which we __TRUST THE INPUT__
+     * Warning: This is the UNIQUE CASE in which we __TRUST THE USER INPUT__ because the user is an admin.
+     * This is really dangerous but I wanted it to be quick and easy (deadline obliges)
      */
     public function POST() {
         if (!Session::isLogged()) {
