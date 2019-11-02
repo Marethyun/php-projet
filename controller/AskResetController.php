@@ -53,6 +53,9 @@ class AskResetController extends Controller {
                 return new View(self::ASK_RESET_VIEW, array('success' => self::SUCCESS_MESSAGE));
             }
 
+            // Invalidate all tokens previous tokens associated with this user
+            PasswordResets::invalidate($user);
+
             try {
                 $token = PasswordResets::newEntry($user);
             } catch (ORMException $e) {
