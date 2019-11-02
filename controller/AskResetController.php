@@ -89,9 +89,6 @@ class AskResetController extends Controller {
                 return new View(self::ASK_RESET_VIEW, array('error' => 'Nous n\'avons pas pu vous envoyer le mail et ceci est très grave..'));
             }
 
-            var_dump('Coucou');
-            die();
-
             return new View(self::ASK_RESET_VIEW, array('success' => self::SUCCESS_MESSAGE));
         } else {
             return new View(self::ASK_RESET_VIEW, array('error' => 'Champ manquant'));
