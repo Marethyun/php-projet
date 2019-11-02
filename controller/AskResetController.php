@@ -64,8 +64,6 @@ class AskResetController extends Controller {
             } catch (RouteException $e) {
                 var_dump($e);
             }
-            var_dump($url);
-            die('hello my friend');
 
             $mail = new Mail($user->email, 'Freenote: Réinitialisation de mot de passe', "
             Bonjour,<br>
