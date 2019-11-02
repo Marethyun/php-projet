@@ -82,24 +82,21 @@ final class RegisterController extends Controller {
             try {
                 $table->persist($user)->execute();
 
-                // TODO Envoyer un mail, créer un objet mail
-
                 $mail = new Mail($user->email, self::REGISTRATION_MAIL_SUBJECT,
                     <<<MESSAGE
-                        Bonjour, $user->username !
-                        
-                        Votre compte FreeNote a bien été enregistré.
-                        
-                        Cordialement,
-                        
-                        L'équipe FreeNote.
+                    Bonjour, $user->username !<br>
+                    <br>
+                    Votre compte FreeNote a bien été enregistré.<br>
+                    <br>
+                    Cordialement,<br>
+                    <br>
+                    L'équipe FreeNote.
                     MESSAGE
                 );
 
-                // TODO TEST ON THE SERVER WITH LOCALHOST
-
                 $mail->from(self::MAIL_FROM);
                 $mail->replyTo(self::MAIL_FROM);
+                $mail->header('Content-Type', 'text/html');
 
                 $mail->send();
 
