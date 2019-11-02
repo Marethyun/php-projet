@@ -15,3 +15,4 @@ RewriteRule ^/?reset/([a-zA-Z0-9]{32})$ /index.php?controller=reset&token=$1
 RewriteRule ^/?thread/([a-zA-Z0-9]{6})$ /index.php?controller=thread&thread=$1
 ErrorDocument 404 /index.php?controller=404
 ErrorDocument 500 /index.php?controller=500
+ErrorDocument 403 /index.php?controller=403
