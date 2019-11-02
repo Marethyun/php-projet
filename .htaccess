@@ -1,6 +1,6 @@
+Options +FollowSymLinks
 RewriteEngine On
 RewriteCond %{HTTP_HOST} ^(freenote.marethyun.ovh)$
-RewriteRule ^/?aled$ /aled.php
 RewriteRule ^/?$ /index.php?controller=home
 RewriteRule ^/?500/?$ /index.php?controller=500
 RewriteRule ^/?405/?$ /index.php?controller=405
