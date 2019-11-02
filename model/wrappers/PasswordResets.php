@@ -62,7 +62,10 @@ abstract class PasswordResets {
     public static function newEntry(User $user) {
         $token = self::generateToken();
 
+        var_dump($token);
+
         $entry = new PasswordReset($user->id, $token);
+
 
         ORM::table(self::RESETS_TABLE)
             ->persist($entry)
