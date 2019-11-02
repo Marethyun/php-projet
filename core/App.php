@@ -38,7 +38,10 @@ final class App {
 
             // This is the ONLY TIME we derogate to the MVC pattern by calling a view outside a controller
             // Because we can't do anything else: controllers needs the ORM.
+            var_dump($e);
+            die('error');
             $this->triggerError($e->getMessage());
+
             exit;
         }
 
