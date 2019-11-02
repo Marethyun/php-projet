@@ -9,7 +9,9 @@ ini_set("xdebug.var_display_max_depth", -1);
 spl_autoload_register(function ($className) {
     // The classname contains the class' namespace name, so they're imported successfully as they're contained in directories named after theirs namespaces
     // (what a long sentence, eh ?)
-    require $className . '.php';
+    require __DIR__ . $className . '.php';
+
+    var_dump( __DIR__ . $className . '.php');
 });
 
 define('CONTROLLER_GET_PARAMETER', 'controller');
