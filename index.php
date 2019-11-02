@@ -27,7 +27,7 @@ if (is_null($properties)) {
     define('DATABASE_NAME', 'freenote');
     define('MAX_THREADS_USER', 3);
     define('NOREPLY_ADDRESS', 'noreply@freenote.marethyun.ovh');
-    define('WEBSITE_HOST', 'freenote.marethyun.ovh');
+    define('DOMAIN_NAME', 'freenote.marethyun.ovh');
 } else foreach ($properties as $property) {
     define(strtoupper($property->name), $property->value);
 }

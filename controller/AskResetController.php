@@ -63,7 +63,7 @@ class AskResetController extends Controller {
             }
 
             try {
-                $url = sprintf('http://%s%s', WEBSITE_HOST, Router::getInstance()->routeUri(ROUTE_RESET, array('token' => $token)));
+                $url = sprintf('http://%s%s', DOMAIN_NAME, Router::getInstance()->routeUri(ROUTE_RESET, array('token' => $token)));
             } catch (RouteException $e) {}
 
             $mail = new Mail($user->email, 'Freenote: Réinitialisation de mot de passe', "
