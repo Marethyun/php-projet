@@ -18,7 +18,7 @@ $thread = $GLOBALS[DATASET_ENTRY]['thread'];
 
         <h1>Discussion <span style="font-family: monospace">#<?= \model\wrappers\Ids::toHex($thread->id) ?></span> <?= $thread->opened ? '' : '(Fermée)' ?></h1>
     <?php if (\core\Session::isLogged() and \core\Session::getLogged()->admin and $thread->opened) { ?>
-        <form action="/?controller=thread&thread=<?= \model\wrappers\Ids::toHex($thread->id) ?>" method="post">
+        <form action="<?= \core\Router::getInstance()->routeUri(ROUTE_THREAD, array('thread' => \model\wrappers\Ids::toHex($thread->id))) ?>" method="post">
             <input type="hidden" name="action" value="close_thread">
             <label>
                 <input type="submit" value="Fermer la discussion">
@@ -35,7 +35,7 @@ $thread = $GLOBALS[DATASET_ENTRY]['thread'];
         <?php } ?>
         </div>
         <?php if ($thread->opened and \core\Session::isLogged() and array_key_last($thread->messages) === $km) { ?>
-        <form action="/?controller=thread&thread=<?= \model\wrappers\Ids::toHex($thread->id) ?>" method="post">
+        <form action="<?= \core\Router::getInstance()->routeUri(ROUTE_THREAD, array('thread' => \model\wrappers\Ids::toHex($thread->id))) ?>" method="post">
             <label>
                 Message
                 <input type="text" name="fragment">

@@ -49,7 +49,6 @@ final class Router {
      * @param string $routeName
      * @param array $parameters
      * @return mixed
-     * @throws RouteException
      */
     public function routeUri(string $routeName, array $parameters = array()) {
         foreach ($this->routes as $route) {
@@ -57,8 +56,7 @@ final class Router {
                 return $route->url($parameters);
             }
         }
-
-        throw new RouteException("Unrecognized route '$routeName'.");
+        return '/';
     }
 
     /**

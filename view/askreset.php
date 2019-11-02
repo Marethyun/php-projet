@@ -10,7 +10,7 @@
     <?php if (isset($GLOBALS[DATASET_ENTRY]['success'])) { ?>
         <p style="color: green"><?= $GLOBALS[DATASET_ENTRY]['success'] ?></p>
     <?php } ?>
-        <form action="/?controller=askreset" method="post">
+        <form action="<?= \core\Router::getInstance()->routeUri(ROUTE_ASKRESET) ?>" method="post">
             <label>
                 Email
                 <input type="email" name="email">

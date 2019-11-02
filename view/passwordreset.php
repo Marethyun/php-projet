@@ -7,7 +7,7 @@
     <?php if (isset($GLOBALS[DATASET_ENTRY]['error'])) { ?>
         <p style="color: red"><?= $GLOBALS[DATASET_ENTRY]['error'] ?></p>
     <?php } ?>
-        <form action="/?controller=reset" method="post">
+        <form action="<?= \core\Router::getInstance()->routeUri(ROUTE_RESET) ?>" method="post">
             <label>
                 Password
                 <input type="password" name="password">

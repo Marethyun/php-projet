@@ -11,7 +11,7 @@
         <h1>Bienvenue !</h1>
 
     <?php if (\core\Session::isLogged()) { ?>
-        <form action="/?controller=home" method="post">
+        <form action="<?= \core\Router::getInstance()->routeUri(ROUTE_HOME) ?>" method="post">
             <input type="hidden" name="action" value="new_thread">
             <input type="submit" value="Nouvelle discussion">
         </form>
