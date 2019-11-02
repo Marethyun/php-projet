@@ -27,14 +27,20 @@ define('DATABASE_DATASOURCE', sprintf('mysql:host=%s;dbname=%s', DBMS_HOST, DATA
 
 define('MAX_THREADS_USER', 3);
 
-define('HOME_URI', '/?controller=home');
-define('LOGIN_URI', '/?controller=login');
-define('RESET_URI', '/?controller=reset');
-define('ERROR_405_URI', '/?controller=405');
-define('ERROR_404_URI', '/?controller=404');
-define('ERROR_500_URI', '/?controller=500');
-define('ERROR_403_URI', '/?controller=403');
-define('ERROR_400_URI', '/?controller=400');
+define('ROUTE_500', '500');
+define('ROUTE_405', '405');
+define('ROUTE_404', '404');
+define('ROUTE_403', '403');
+define('ROUTE_400', '400');
+define('ROUTE_HOME', 'home');
+define('ROUTE_LOGIN', 'login');
+define('ROUTE_REGISTER', 'register');
+define('ROUTE_ASKRESET', 'askreset');
+define('ROUTE_RESET', 'reset');
+define('ROUTE_THREAD', 'thread');
+define('ROUTE_DISCONNECT', 'disconnect');
+
+define('NOREPLY_ADDRESS', 'noreply@freenote.marethyun.ovh');
 
 define('WEBSITE_HOST', 'localhost');
 

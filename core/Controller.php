@@ -13,6 +13,6 @@ abstract class Controller {
      * @return \core\Redirection
      */
     public final function __call($name, $arguments) {
-        return Redirection::fromRef(ERROR_405_URI);
+        return Redirection::fromRoute(ERROR_405_URI);
     }
 }

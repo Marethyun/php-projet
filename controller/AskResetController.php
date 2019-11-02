@@ -8,6 +8,7 @@ use core\Controller;
 use core\Form;
 use core\Mail;
 use core\MailException;
+use core\Router;
 use core\View;
 use model\entities\PasswordReset;
 use model\ORMException;
@@ -57,10 +58,8 @@ class AskResetController extends Controller {
                 return new View(self::ASK_RESET_VIEW, array('error' => 'Une erreur est survenue..'));
             }
 
-            // TODO Généraliser la création du lien
-            $url = sprintf('http://freenote.marethyun.ovh/?controller=reset&token=%s', $token);
+            $url = Router::getInstance()->routeUrl(ROUTE_RESET, array('token' => $token));
 
-            // TODO Test tout ça avec le serveur
             $mail = new Mail($user->email, 'Freenote: Réinitialisation de mot de passe', "
             Bonjour,<br>
             <br>

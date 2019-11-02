@@ -26,11 +26,18 @@ final class Redirection {
     }
 
     /**
-     * @param $to string
+     * @param $routeName string
+     * @param array $parameters
      * @return Redirection
      */
-    public static function fromRef($to) {
-        return new Redirection($to);
+    public static function fromRoute($routeName, array $parameters = array()) {
+        try {
+            $url = Router::getInstance()->routeUrl($routeName, $parameters);
+        } catch (RouteException $e) {
+            return new Redirection('/');
+        }
+
+        return new Redirection($url);
     }
 
     /**

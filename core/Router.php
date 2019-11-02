@@ -46,6 +46,22 @@ final class Router {
     }
 
     /**
+     * @param string $routeName
+     * @param array $parameters
+     * @return mixed
+     * @throws RouteException
+     */
+    public function routeUrl(string $routeName, array $parameters = array()) {
+        foreach ($this->routes as $route) {
+            if ($route->getName() === $routeName) {
+                return $route->url($parameters);
+            }
+        }
+
+        throw new RouteException("Unrecognized route '$routeName'.");
+    }
+
+    /**
      * @return array
      */
     public function getRoutes() {

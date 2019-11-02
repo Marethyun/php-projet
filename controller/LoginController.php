@@ -20,7 +20,7 @@ final class LoginController extends Controller {
      */
     public final function GET() {
         // If the user is already logged, we send him home
-        if (Session::isLogged()) return Redirection::fromRef(HOME_URI);
+        if (Session::isLogged()) return Redirection::fromRoute(ROUTE_HOME);
 
         return new View(self::VIEW_FILE);
     }
@@ -33,7 +33,7 @@ final class LoginController extends Controller {
         $form = new Form(array('username', 'password'), $_POST);
 
         // If the user is already logged, he has no right of authenticating again -> 403
-        if (Session::isLogged()) return Redirection::fromRef(ERROR_403_URI);
+        if (Session::isLogged()) return Redirection::fromRoute(ROUTE_403);
 
         // If all the form inputs has been provided
         if ($form->isFull()) {
@@ -53,7 +53,7 @@ final class LoginController extends Controller {
 
             // Else, log the user in and send him home
             Session::logUser($user);
-            return Redirection::fromRef(HOME_URI);
+            return Redirection::fromRoute(ROUTE_HOME);
 
         } else {
             // Render the view with an error

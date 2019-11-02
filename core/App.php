@@ -44,18 +44,18 @@ final class App {
         }
 
         // Routes definitions
-        $router->addRoute(new Route('500', new ErrorController(500)));
-        $router->addRoute(new Route('405', new ErrorController(405)));
-        $router->addRoute(new Route('404', new ErrorController(404)));
-        $router->addRoute(new Route('403', new ErrorController(403)));
-        $router->addRoute(new Route('400', new ErrorController(400)));
-        $router->addRoute(new Route('home', new HomeController()));
-        $router->addRoute(new Route('login', new LoginController()));
-        $router->addRoute(new Route('register', new RegisterController()));
-        $router->addRoute(new Route('askreset', new AskResetController()));
-        $router->addRoute(new Route('reset', new PasswordResetController()));
-        $router->addRoute(new Route('thread', new ThreadsController()));
-        $router->addRoute(new Route('disconnect', new DisconnectController()));
+        $router->addRoute(new Route('500',        '?controller=500', new ErrorController(500)));
+        $router->addRoute(new Route('405',        '?controller=405', new ErrorController(405)));
+        $router->addRoute(new Route('404',        '?controller=404', new ErrorController(404)));
+        $router->addRoute(new Route('403',        '?controller=403', new ErrorController(403)));
+        $router->addRoute(new Route('400',        '?controller=400', new ErrorController(400)));
+        $router->addRoute(new Route('home',       '?controller=home', new HomeController()));
+        $router->addRoute(new Route('login',      '?controller=login', new LoginController()));
+        $router->addRoute(new Route('register',   '?controller=register', new RegisterController()));
+        $router->addRoute(new Route('askreset',   '?controller=askreset', new AskResetController()));
+        $router->addRoute(new Route('reset',      '?controller=reset&token={token}', new PasswordResetController()));
+        $router->addRoute(new Route('thread',     '?controller=thread&thread={thread}', new ThreadsController()));
+        $router->addRoute(new Route('disconnect', '?controller=disconnect', new DisconnectController()));
 
         try {
             if (!isset($_GET[CONTROLLER_GET_PARAMETER])) {
@@ -72,11 +72,11 @@ final class App {
                 $o->redirect();
             } else {
                 // 500 Error: the returned object isn't recognized as a treatable one
-                Redirection::fromRef(ERROR_500_URI)->redirect();
+                Redirection::fromRoute(ROUTE_500)->redirect();
             }
 
         } catch (RouteException $e) {
-            Redirection::fromRef(ERROR_404_URI)->redirect();
+            Redirection::fromRoute(ROUTE_404)->redirect();
         }
     }
 

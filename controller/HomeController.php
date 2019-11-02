@@ -25,7 +25,7 @@ final class HomeController extends Controller {
     public function POST() {
         if (!Session::isLogged()) {
             // Forbidden
-            return Redirection::fromRef(ERROR_403_URI);
+            return Redirection::fromRoute(ERROR_403_URI);
         }
 
         $form = new Form(array('action'), $_POST);
@@ -39,8 +39,7 @@ final class HomeController extends Controller {
 
             $newThreadId = Threads::persistNew(Session::getLogged()->id);
 
-            // TODO FIXME: Build l'URL pour le contrôleur thread($newthreadid) rediriger vers nouvelle thread
-            return Redirection::fromRef(sprintf('/?controller=thread&thread=%s', Ids::toHex($newThreadId)));
+            return Redirection::fromRoute(ROUTE_THREAD, array('thread' => Ids::toHex($newThreadId)));
         } else {
             return new View(self::HOME_VIEW, array('threads' => Threads::fillAll(Threads::getAll()), 'error' => 'Champs manquants'));
         }

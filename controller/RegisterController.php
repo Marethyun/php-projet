@@ -23,15 +23,13 @@ final class RegisterController extends Controller {
     public const PASSWORD_REGEX = '#.{6,255}#';
     public const USERNAME_REGEX = '#[a-zA-Z0-9_]{6,255}#';
     public const REGISTRATION_MAIL_SUBJECT = 'Votre compte a été créé !';
-    // TODO: Generalize to the app scope
-    public const MAIL_FROM = 'noreply@freenote.marethyun.ovh';
 
     /**
      * Serves the form
      */
     public function GET() {
         // If the user is logged, he isn't welcomed here: send him to belize - by order of the peaky blinders -
-        if (Session::isLogged()) return Redirection::fromRef(ERROR_403_URI);
+        if (Session::isLogged()) return Redirection::fromRoute(ROUTE_403);
 
         // Serve the view
         return new View(self::VIEW_FILE);
@@ -40,7 +38,7 @@ final class RegisterController extends Controller {
     public function POST() {
         // Well, er, I thought we made ourselves clear..
         // If you ever come here again, I swear that I will destroy your session, you bloody idiot
-        if (Session::isLogged()) return Redirection::fromRef(ERROR_403_URI);
+        if (Session::isLogged()) return Redirection::fromRoute(ROUTE_403);
 
         // Builds the form
         $form = new Form(array('username', 'email', 'password', 'password_repeat'), $_POST);
@@ -92,13 +90,13 @@ final class RegisterController extends Controller {
                 L'équipe FreeNote."
                 );
 
-                $mail->from(self::MAIL_FROM);
-                $mail->replyTo(self::MAIL_FROM);
+                $mail->from(NOREPLY_ADDRESS);
+                $mail->replyTo(NOREPLY_ADDRESS);
                 $mail->header('Content-Type', 'text/html');
 
                 $mail->send();
 
-                return Redirection::fromRef(HOME_URI);
+                return Redirection::fromRoute(ROUTE_HOME);
 
             } catch (ORMException $e) {
                 return new View(self::VIEW_FILE, array('error' => 'An error occurred'));

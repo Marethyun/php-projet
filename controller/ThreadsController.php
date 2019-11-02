@@ -34,13 +34,14 @@ final class ThreadsController extends Controller {
             // If the thread ID does not match
             if (preg_match(self::THREAD_ID_REGEX, $form->thread) !== 1) {
                 // PAF: 400 Bad Request !
-                return Redirection::fromRef(ERROR_400_URI);
+                return Redirection::fromRoute(ROUTE_400);
             }
 
             $threads = Threads::getById(Ids::fromHex($form->thread));
 
             if (empty($threads)) {
-                return Redirection::fromRef(ERROR_404_URI);
+                // Not found
+                return Redirection::fromRoute(ROUTE_404);
             }
 
             $thread = Threads::fill($threads[0]);
@@ -48,7 +49,7 @@ final class ThreadsController extends Controller {
             return new View(self::THREADS_VIEW, array('thread' => $thread));
         } else {
             // Buys to the user a one-way ticket to belize
-            return Redirection::fromRef(ERROR_400_URI);
+            return Redirection::fromRoute(ROUTE_400);
         }
     }
 
@@ -60,7 +61,7 @@ final class ThreadsController extends Controller {
 
         // Must be logged
         if (!Session::isLogged()) {
-            return Redirection::fromRef(ERROR_403_URI);
+            return Redirection::fromRoute(ROUTE_403);
         }
 
 
@@ -72,13 +73,13 @@ final class ThreadsController extends Controller {
 
             // If the thread ID does not match
             if (preg_match(self::THREAD_ID_REGEX, $urlForm->thread) !== 1) {
-                return Redirection::fromRef(ERROR_400_URI);
+                return Redirection::fromRoute(ROUTE_400);
             }
 
             $threads = Threads::getById(Ids::fromHex($urlForm->thread));
 
             if (empty($threads)) {
-                return Redirection::fromRef(ERROR_404_URI);
+                return Redirection::fromRoute(ROUTE_400);
             }
 
             $thread = Threads::fill($threads[0]);
@@ -93,7 +94,7 @@ final class ThreadsController extends Controller {
 
                 // The message ID must be valid
                 if (preg_match(self::MESSAGE_ID_REGEX, $form->message_id) !== 1) {
-                    return Redirection::fromRef(ERROR_400_URI);
+                    return Redirection::fromRoute(ROUTE_400);
                 }
 
                 // If we cannot store the new fragment in the new message
@@ -126,7 +127,7 @@ final class ThreadsController extends Controller {
 
             if ($form->action === 'close_thread') {
                 if (!Session::getLogged()->admin) {
-                    return Redirection::fromRef(ERROR_403_URI);
+                    return Redirection::fromRoute(ROUTE_403);
                 }
 
                 Threads::close($thread);
@@ -137,10 +138,10 @@ final class ThreadsController extends Controller {
             }
 
             // If the form 'action' does not correspond with something handleable
-            return Redirection::fromRef(ERROR_400_URI);
+            return Redirection::fromRoute(ROUTE_400);
         } else {
             // If the form isn't full
-            return Redirection::fromRef(ERROR_400_URI);
+            return Redirection::fromRoute(ROUTE_400);
         }
     }
 }
