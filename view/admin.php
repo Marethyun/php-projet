@@ -4,6 +4,9 @@
         <title>Panneau d'administration</title>
     </head>
     <body>
+    <?php if (isset($GLOBALS[DATASET_ENTRY]['success'])) { ?>
+        <p style="color: green"><?= $GLOBALS[DATASET_ENTRY]['success'] ?></p>
+    <?php } ?>
         <h1>Panneau d'administration</h1>
         <p>Faites attention à ne pas changer une valeur dont vous ne comprendriez pas l'utilité.</p>
         <p>

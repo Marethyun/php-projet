@@ -38,8 +38,6 @@ class AdminController extends Controller {
             return Redirection::fromRoute(ROUTE_403);
         }
 
-        var_dump($_POST);
-
         $properties = array();
 
         foreach ($_POST as $name => $value) {
@@ -55,6 +53,6 @@ class AdminController extends Controller {
 
         }
 
-        return new View(self::ADMIN_VIEW, array('properties' => $properties));
+        return new View(self::ADMIN_VIEW, array('properties' => $properties, 'success' => 'Configuration enregistrée avec succès'));
     }
 }
