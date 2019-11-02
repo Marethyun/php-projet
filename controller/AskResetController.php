@@ -61,19 +61,17 @@ class AskResetController extends Controller {
             $url = sprintf('http://freenote.marethyun.ovh/?controller=reset&token=%s', $token);
 
             // TODO Test tout ça avec le serveur
-            $mail = new Mail($user->email, 'Freenote: Réinitialisation de mot de passe',
-                <<<MESSAGE
-                Bonjour,<br>
-                <br>
-                Vous avez demandé une réinitialisation de mot de passe. Nous avons créé un lien spécialement pour vous,<br>
-                mais il n'est valable que 5 (cinq) minutes. <br>
-                <br>
-                Le voici: <a href="$url">$url</a><br>
-                <br>
-                Cordialement,<br>
-                <br>
-                L'équipe Freenote.
-                MESSAGE
+            $mail = new Mail($user->email, 'Freenote: Réinitialisation de mot de passe', "
+            Bonjour,<br>
+            <br>
+            Vous avez demandé une réinitialisation de mot de passe. Nous avons créé un lien spécialement pour vous,<br>
+            mais il n'est valable que 5 (cinq) minutes. <br>
+            <br>
+            Le voici: <a href=\"$url\">$url</a><br>
+            <br>
+            Cordialement,<br>
+            <br>
+            L'équipe Freenote."
             );
 
             $mail->from(RegisterController::MAIL_FROM);

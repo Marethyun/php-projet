@@ -82,16 +82,14 @@ final class RegisterController extends Controller {
             try {
                 $table->persist($user)->execute();
 
-                $mail = new Mail($user->email, self::REGISTRATION_MAIL_SUBJECT,
-                    <<<MESSAGE
-                    Bonjour, $user->username !<br>
-                    <br>
-                    Votre compte FreeNote a bien été enregistré.<br>
-                    <br>
-                    Cordialement,<br>
-                    <br>
-                    L'équipe FreeNote.
-                    MESSAGE
+                $mail = new Mail($user->email, self::REGISTRATION_MAIL_SUBJECT, "
+                Bonjour, $user->username !<br>
+                <br>
+                Votre compte FreeNote a bien été enregistré.<br>
+                <br>
+                Cordialement,<br>
+                <br>
+                L'équipe FreeNote."
                 );
 
                 $mail->from(self::MAIL_FROM);
