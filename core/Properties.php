@@ -72,6 +72,9 @@ class Properties {
 
         if ($handle === false) return false;
 
+        // Clears the file before writing
+        file_put_contents($path, "");
+
         foreach ($properties as $property) {
             fwrite($handle, sprintf('%s%s %s %s %s' . PHP_EOL,
                 $property->type,
