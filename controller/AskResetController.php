@@ -8,6 +8,7 @@ use core\Controller;
 use core\Form;
 use core\Mail;
 use core\MailException;
+use core\RouteException;
 use core\Router;
 use core\View;
 use model\entities\PasswordReset;
@@ -58,7 +59,13 @@ class AskResetController extends Controller {
                 return new View(self::ASK_RESET_VIEW, array('error' => 'Une erreur est survenue..'));
             }
 
-            $url = Router::getInstance()->routeUrl(ROUTE_RESET, array('token' => $token));
+            try {
+                $url = Router::getInstance()->routeUrl(ROUTE_RESET, array('token' => $token));
+            } catch (RouteException $e) {
+                var_dump($e);
+            }
+            var_dump($url);
+            die('hello my friend');
 
             $mail = new Mail($user->email, 'Freenote: Réinitialisation de mot de passe', "
             Bonjour,<br>
