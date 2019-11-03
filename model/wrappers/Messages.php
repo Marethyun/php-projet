@@ -65,15 +65,16 @@ abstract class Messages {
     /**
      * Is valid if: it does exist, is in the provided thread (id), and is the last message of its category (ORDER BY creation_date DESC)
      *
-     * @param int $id
+     * @param int $message_id
      * @param int $thread_id
+     * @param int $user_id
      * @return bool
      */
-    public static function isValidForExtension(int $id, int $thread_id) {
+    public static function isValidForExtension(int $message_id, int $thread_id, int $user_id) {
         $cnt = ORM::table(self::MESSAGES_TABLE)
             ->gather(array(Projection::createCount('id', 'cnt')))
             ->where(array(
-                new BinaryComparison('id', BinaryComparison::EQUAL, $id),
+                new BinaryComparison('id', BinaryComparison::EQUAL, $message_id),
                 new BinaryComparison('thread_id', BinaryComparison::EQUAL, $thread_id)
             ))
             ->buildAndExecute()
@@ -83,6 +84,9 @@ abstract class Messages {
 
         // If it does not exists or isn't in the thread
         if ($cnt == 0) return false;
+
+        // If the user has already posted a fragment in the message
+        if (count(Fragments::getByUserAndMessageId($user_id, $message_id)) > 0) return false;
 
         // Gets all the messages of the thread
         $messages = ORM::table(self::MESSAGES_TABLE)
@@ -95,7 +99,7 @@ abstract class Messages {
             ->map(new GenericMapper(Message::class));
 
         // Return if the first returned message is this message
-        return $messages[0]->id === $id;
+        return $messages[0]->id === $message_id;
     }
 
     //public static function remove

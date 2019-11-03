@@ -90,8 +90,8 @@ final class ThreadsController extends Controller {
                 }
 
                 // If we cannot store the new fragment in the new message
-                if (!Messages::isValidForExtension(Ids::fromHex($form->message_id), $thread->id)) {
-                    return new View(self::THREADS_VIEW, array('error' => FeedbackMessages::INVALID_MESSAGE_METADATA, 'thread' => $thread));
+                if (!Messages::isValidForExtension(Ids::fromHex($form->message_id), $thread->id, Session::getLogged()->id)) {
+                    return new View(self::THREADS_VIEW, array('error' => FeedbackMessages::INVALID_MESSAGE, 'thread' => $thread));
                 }
 
                 // Don't pay attention to the white spaces

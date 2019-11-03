@@ -19,7 +19,7 @@ abstract class FeedbackMessages {
     public const PASSWORD_CHANGE_SUCCESS = 'Votre mot de passe a bien été modifié.';
     public const USER_ALREADY_EXISTS = 'Un utilisateur est déjà enregistré avec ce nom ou cette adresse mail.';
     public const REGISTRATION_SUCCESS = 'Votre compte a bien été créé, vous devez avoir reçu un mail le confirmant.';
-    public const INVALID_MESSAGE_METADATA = 'Message ou métadonnées du message invalides.';
+    public const INVALID_MESSAGE = 'Vous ne respectez pas la règle du jeu..';
     public const MALFORMED_FRAGMENT = 'Votre fragment ne respecte pas les règles !';
     public const FRAGMENT_SUCCESS = 'Votre fragment de message a été inséré avec succès !';
     public const THREAD_CLOSED_SUCCESS = 'La discussion a été fermée avec succès !';

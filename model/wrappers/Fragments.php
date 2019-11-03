@@ -61,6 +61,18 @@ abstract class Fragments {
             ->map(new GenericMapper(MessageFragment::class));
     }
 
+    public static function getByUserAndMessageId(int $user_id, int $message_id) {
+        return ORM::table(self::FRAGMENTS_TABLE)
+            ->gather(self::PROJECTIONS())
+            ->where(array(
+                new BinaryComparison('creator_id', BinaryComparison::EQUAL, $user_id),
+                new BinaryComparison('message_id', BinaryComparison::EQUAL, $message_id)
+            ))
+            ->orderBy('creation_date')
+            ->buildAndExecute()
+            ->map(new GenericMapper(MessageFragment::class));
+    }
+
     /**
      * Persists a new fragment given these parameters
      *
