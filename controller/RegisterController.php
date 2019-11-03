@@ -40,6 +40,12 @@ final class RegisterController extends Controller {
         // If you ever come here again, I swear that I will destroy your session, you bloody idiot
         if (Session::isLogged()) return Redirection::fromRoute(ROUTE_403);
 
+        // if the registrations are closed
+        if (!filter_var(REGISTRATIONS_OPENED, FILTER_VALIDATE_BOOLEAN)) {
+            // Forbidden
+            return Redirection::fromRoute(ROUTE_403);
+        }
+
         // Builds the form
         $form = new Form(array('username', 'email', 'password', 'password_repeat'), $_POST);
 

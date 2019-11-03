@@ -11,6 +11,7 @@
     <main>
         <div class="box">
             <h1 class="hform">Inscription</h1>
+            <?php if (filter_var(REGISTRATIONS_OPENED, FILTER_VALIDATE_BOOLEAN)) { ?>
             <form class="formulaires" action="<?= \core\Router::getInstance()->routeUri(ROUTE_REGISTER) ?>" method="POST">
                 <label for="username">Nom d'utilisateur</label>
                 <input type="text" name="username" id="username"/>
@@ -31,6 +32,9 @@
                 <input type="submit" name="action" value="Valider" id="mailer">
                 <p class="textchangementform">Tu as déjà un compte ? <a class="changementformulaire" href="<?= \core\Router::getInstance()->routeUri(ROUTE_LOGIN) ?>">Se Connecter</a></p>
             </form>
+            <?php } else { ?>
+            <p>Nous sommes désolés, mais les inscriptions sont fermées pour le moment.</p>
+            <?php } ?>
         </div>
     </main>
 

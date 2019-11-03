@@ -28,6 +28,7 @@ if (is_null($properties)) {
     define('MAX_THREADS_USER', 3);
     define('NOREPLY_ADDRESS', 'noreply@freenote.marethyun.ovh');
     define('DOMAIN_NAME', 'freenote.marethyun.ovh');
+    define('REGISTRATIONS_OPENED', 'yes');
 } else foreach ($properties as $property) {
     define(strtoupper($property->name), $property->value);
 }
