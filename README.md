@@ -21,6 +21,8 @@ Le front-end a été réalisé par Léonie.
 
 Le back-end a été réalisé par Ange.
 
+Le fichier `assets` est un lien symbolique pour déroger à la règle apache interdisant l'accès direct aux vues.
+
 ### Base de données
 
 La base de données a été configurée par Maxime.
