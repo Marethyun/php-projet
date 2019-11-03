@@ -13,14 +13,14 @@
             <h1 class="hform">Inscription</h1>
             <?php if (filter_var(REGISTRATIONS_OPENED, FILTER_VALIDATE_BOOLEAN)) { ?>
             <form class="formulaires" action="<?= \core\Router::getInstance()->routeUri(ROUTE_REGISTER) ?>" method="POST">
-                <label for="username">Nom d'utilisateur</label>
+                <label for="username">Nom d'utilisateur</label><br>
                 <small>Caractères aphanumériques et underscore, minimum 6 caractères, maximum 255</small><br>
                 <input type="text" name="username" id="username"/>
 
                 <label for="email">E-mail</label>
                 <input type="text" name="email" id="email"/>
 
-                <label for="password">Mot de Passe</label>
+                <label for="password">Mot de Passe</label><br>
                 <small>Minimum 6 caractères, maximum 255</small><br>
                 <input type="password" name="password" id="password"/>
 
