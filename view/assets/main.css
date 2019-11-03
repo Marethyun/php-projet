@@ -90,6 +90,10 @@ li.Liens:hover {
     color: white;
 }
 
+.mono {
+    font-family: monospace;
+}
+
 a:visited, a:link {
     text-decoration: none;
     font-family: 'Open Sans', sans-serif;
