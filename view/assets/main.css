@@ -91,7 +91,7 @@ li.Liens:hover {
 }
 
 .mono {
-    font-family: monospace;
+    font-family: monospace !important;
 }
 
 a:visited, a:link {

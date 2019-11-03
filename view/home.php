@@ -36,7 +36,7 @@
                                 <span class="fermé">Fermée <i class="fas fa-times"></i>
                                 <?php } ?>
                             </th>
-                            <th><a class="LiensVariés mono" href="<?= \core\Router::getInstance()->routeUri(ROUTE_THREAD, array('thread' => \model\wrappers\Ids::toHex($thread->id))) ?>">#<?= \model\wrappers\Ids::toHex($thread->id) ?></a></th>
+                            <th><a class="LiensVariés mono" href="<?= \core\Router::getInstance()->routeUri(ROUTE_THREAD, array('thread' => \model\wrappers\Ids::toHex($thread->id))) ?>">#<?= \model\wrappers\Ids::toHex($thread->id) ?> <i class="fas fa-3x fa-external-link-alt"></i></a></th>
                             <th>
                                 <?php if(empty($thread->messages)) { ?>(Discussion vide)<?php }?>
                                 <?php if(empty(end($thread->messages)->fragments)) {?>
