@@ -6,7 +6,7 @@
     </head>
 
     <body>
-    <?php include_once 'header.php'?>
+    <?php include_once 'header.php' ?>
 
     <main>
         <div class="Zone">
