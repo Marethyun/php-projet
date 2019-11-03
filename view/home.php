@@ -67,7 +67,7 @@
             <?php } ?>
             <form class="formboutton" action="<?= \core\Router::getInstance()->routeUri(ROUTE_HOME) ?>" method="post">
                 <input type="hidden" name="action" value="new_thread">
-                <input type="submit" value="Créer une discussion">
+                <input type="submit" value="Créer une discussion" id="mailer">
             </form>
         </div>
         <?php } ?>
