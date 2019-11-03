@@ -7,6 +7,8 @@ Le groupe est composé de:
 
 Le service est disponible à l'URL http://freenote.marethyun.ovh/
 
+Le dépôt git associé est hébergé sur github et est disponible à cette adresse: https://github.com/ange-bacci/projet-php
+
 Nous restons à votre disposition par mail pour des renseignements.
 
 ## Répartitions des tâches
