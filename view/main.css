@@ -309,7 +309,7 @@ input {
 
 /** Media Query **/
 
-@media screen and (max-width: 600px) {
+@media only screen and (min-width:1px) and (max-width: 300px) {
     .box {
         margin-left: 10%;
         margin-right: 10%;
@@ -318,9 +318,25 @@ input {
         color: #696b80;
         font-size: 1rem;
     }
+    .LiensVariés {
+      font-size: 0.5rem;
+    }
+    li.Liens {
+      margin-top: 0.25rem;
+    }
+    img {
+      height: 1.25rem;
+      width: 1.25rem;
+    }
     header {
         font-size: 2rem;
-        /**height: 25rem; truc qui merde ici jsp pourquoi ça me gonfle**/
+        height: 10rem;
+    }
+    h1.hform {
+      font-size: 1.5rem;
+    }
+    body {
+      font-size: 0.5rem;
     }
     li.Liens {
         float: left;
@@ -333,9 +349,80 @@ input {
         margin-left: 10%;
         margin-right: 10%;
     }
+    main {
+      margin-top: 5%;
+      margin-bottom: 30%;
+    }
+
 }
 
-@media screen and (max-width: 900px) {
+@media only screen and (min-width:300px) and (max-width: 560px) {
+    .box {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    p.textchangementform {
+        color: #696b80;
+        font-size: 1rem;
+    }
+    header {
+        font-size: 2rem;
+        height: 12rem;
+    }
+    h1.hform {
+      font-size: 1.5rem;
+    }
+    body {
+      font-size: 1rem;
+    }
+    li.Liens {
+        float: left;
+    }
+    #Description {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    #Discussion {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    main {
+      margin-top: 5%;
+      margin-bottom: 35%;
+    }
+}
+
+@media only screen and (min-width:560px) and (max-width: 770px) {
+    .box {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    p.textchangementform {
+        color: #696b80;
+        font-size: 1rem;
+    }
+    header {
+        font-size: 2rem;
+        height: 7.5rem;
+    }
+    li.Liens {
+        float: left;
+    }
+    #Description {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    #Discussion {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    main {
+      margin-top: 5%;
+      margin-bottom: 25%;
+    }
+}
+
+@media only screen and (min-width: 770px) and (max-width: 900px) {
     .box {
         margin-left: 20%;
         margin-right: 20%;
@@ -365,9 +452,13 @@ input {
         margin-left: 20%;
         margin-right: 20%;
     }
+    main {
+      margin-top: 5%;
+      margin-bottom: 15%;
+    }
 }
 
-@media screen and (max-width: 1200px) {
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
     .box {
         margin-left: 25%;
         margin-right: 25%;
@@ -396,5 +487,9 @@ input {
     #Discussion {
         margin-left: 25%;
         margin-right: 25%;
+    }
+    main {
+      margin-top: 5%;
+      margin-bottom: 15%;
     }
 }
