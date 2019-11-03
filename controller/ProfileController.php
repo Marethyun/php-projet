@@ -7,17 +7,15 @@ namespace controller;
 use core\Controller;
 use core\Form;
 use core\Redirection;
+use core\Regexes;
 use core\Session;
 use core\View;
 use model\wrappers\Users;
+use view\FeedbackMessages;
 
 class ProfileController extends Controller {
 
     public const PROFILE_VIEW = 'profile.php';
-
-    // TODO Generalize regexes in a single file
-    public const PASSWORD_REGEX = '#.{6,255}#';
-
 
     public function GET() {
         // You must be logged in to see your profile
@@ -42,13 +40,13 @@ class ProfileController extends Controller {
 
             // If the passwords doesn't match
             if ($form->password !== $form->password_repeat) {
-                return new View(self::PROFILE_VIEW, array('user' => Session::getLogged(), 'error' => 'Les mots de passes ne correspondent pas.'));
+                return new View(self::PROFILE_VIEW, array('user' => Session::getLogged(), 'error' => FeedbackMessages::PASSWORDS_MISMATCH));
             }
 
             // If the password isn't correct
-            if (preg_match(self::PASSWORD_REGEX, $form->password) !== 1) {
+            if (preg_match(Regexes::PASSWORD, $form->password) !== 1) {
                 // TODO Generalize message
-                return new View(self::PROFILE_VIEW, array('user' => Session::getLogged(), 'error' => 'Mot de passe incorrect'));
+                return new View(self::PROFILE_VIEW, array('user' => Session::getLogged(), 'error' => FeedbackMessages::MALFORMED_PASSWORD));
             }
 
             // Changes the password
@@ -59,10 +57,10 @@ class ProfileController extends Controller {
             // Relog the user in
             Session::logUser($user);
 
-            return new View(self::PROFILE_VIEW, array('user' => Session::getLogged(), 'success' => 'Votre mot de passe a bien été modifié'));
+            return new View(self::PROFILE_VIEW, array('user' => Session::getLogged(), 'success' => FeedbackMessages::PASSWORD_CHANGE_SUCCESS));
         } else {
             // Show an error
-            return new View(self::PROFILE_VIEW, array('user' => Session::getLogged(), 'error' => 'Champs manquants'));
+            return new View(self::PROFILE_VIEW, array('user' => Session::getLogged(), 'error' => FeedbackMessages::MISSING_FIELDS));
         }
     }
 }

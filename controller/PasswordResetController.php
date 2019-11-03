@@ -7,10 +7,12 @@ namespace controller;
 use core\Controller;
 use core\Form;
 use core\Redirection;
+use core\Regexes;
 use core\Session;
 use core\View;
 use model\wrappers\PasswordResets;
 use model\wrappers\Users;
+use view\FeedbackMessages;
 
 /**
  * Handles the password reset form
@@ -20,8 +22,6 @@ use model\wrappers\Users;
  */
 class PasswordResetController extends Controller {
 
-    // UUID Without dashes
-    public const TOKEN_REGEX = '#[a-zA-Z0-9]{32}#';
 
     public const PASSWORD_RESET_VIEW = 'passwordreset.php';
     public const RESET_ERROR_VIEW = 'errorreset.php';
@@ -41,7 +41,7 @@ class PasswordResetController extends Controller {
             $form->token = strtolower($form->token);
 
             // If the token isn't what we expect
-            if (preg_match(self::TOKEN_REGEX, $form->token) !== 1) {
+            if (preg_match(Regexes::RESET_TOKEN, $form->token) !== 1) {
                 // If the user malformed the token, send him in hell
                 return Redirection::fromRoute(ROUTE_403);
             }
@@ -50,7 +50,7 @@ class PasswordResetController extends Controller {
 
             // If the token isn't valid
             if (is_null($user)) {
-                return new View(self::RESET_ERROR_VIEW, array('error' => 'Le jeton de réinitialisation n\'est pas/plus valable..'));
+                return new View(self::RESET_ERROR_VIEW, array('error' => FeedbackMessages::INVALID_TOKEN));
             }
 
             // Serves the form with the token as a parameter
@@ -75,7 +75,7 @@ class PasswordResetController extends Controller {
             $partialDataset = array('reset_token' => $form->reset_token);
 
             // If the token isn't what we expect
-            if (preg_match(self::TOKEN_REGEX, $form->reset_token) !== 1) {
+            if (preg_match(Regexes::RESET_TOKEN, $form->reset_token) !== 1) {
                 // If the user malformed the token, send him in hell
                 return Redirection::fromRoute(ROUTE_403);
             }
@@ -84,17 +84,17 @@ class PasswordResetController extends Controller {
 
             // If the token isn't valid
             if (is_null($user)) {
-                return new View(self::RESET_ERROR_VIEW, array_merge($partialDataset, array('error' => 'Le jeton de réinitialisation n\'est pas/plus valable..')));
+                return new View(self::RESET_ERROR_VIEW, array_merge($partialDataset, array('error' => FeedbackMessages::INVALID_TOKEN)));
             }
 
             // If the two passwords does not match
             if ($form->password !== $form->password_repeat) {
-                return new View(self::PASSWORD_RESET_VIEW, array_merge($partialDataset, array('error' => 'The two passwords does not match')));
+                return new View(self::PASSWORD_RESET_VIEW, array_merge($partialDataset, array('error' => FeedbackMessages::PASSWORDS_MISMATCH)));
             }
 
             // If the password is not well-formed
-            if (preg_match(RegisterController::PASSWORD_REGEX, $form->password) !== 1) {
-                return new View(self::PASSWORD_RESET_VIEW, array_merge($partialDataset, array('error' => 'The password length must be between 6 and 255 characters')));
+            if (preg_match(Regexes::PASSWORD, $form->password) !== 1) {
+                return new View(self::PASSWORD_RESET_VIEW, array_merge($partialDataset, array('error' => FeedbackMessages::MALFORMED_PASSWORD)));
             }
 
             // Changes the password

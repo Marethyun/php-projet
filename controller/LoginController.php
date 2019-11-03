@@ -10,6 +10,7 @@ use core\Redirection;
 use core\Session;
 use core\View;
 use model\wrappers\Users;
+use view\FeedbackMessages;
 
 final class LoginController extends Controller {
 
@@ -43,12 +44,12 @@ final class LoginController extends Controller {
 
             // If the user isn't recognized, render the view with an error
             if (is_null($user)) {
-                return new View(self::VIEW_FILE, array('error' => 'Bad username'));
+                return new View(self::VIEW_FILE, array('error' => FeedbackMessages::MALFORMED_USERNAME));
             }
 
             // Or if the password entered isn't good
             if (!Users::verifyPassword($user, $form->password)) {
-                return new View(self::VIEW_FILE, array('error' => 'Bad password'));
+                return new View(self::VIEW_FILE, array('error' => FeedbackMessages::MALFORMED_PASSWORD));
             }
 
             // Else, log the user in and send him home
@@ -57,7 +58,7 @@ final class LoginController extends Controller {
 
         } else {
             // Render the view with an error
-            return new View(self::VIEW_FILE, array('error' => 'A form parameter is missing'));
+            return new View(self::VIEW_FILE, array('error' => FeedbackMessages::MISSING_FIELDS));
         }
     }
 }

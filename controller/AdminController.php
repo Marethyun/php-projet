@@ -8,13 +8,14 @@ use core\Controller;
 use core\Properties;
 use core\Property;
 use core\Redirection;
+use core\Regexes;
 use core\Session;
 use core\View;
+use view\FeedbackMessages;
 
 class AdminController extends Controller {
 
     public const ADMIN_VIEW = 'admin.php';
-    public const TYPE_REGEX = '#type_(\w)+#';
 
     public function GET() {
         if (!Session::isLogged()) {
@@ -42,7 +43,7 @@ class AdminController extends Controller {
         $properties = array();
 
         foreach ($_POST as $name => $value) {
-            if (!preg_match(self::TYPE_REGEX, $name)) {
+            if (!preg_match(Regexes::ADMIN_PROPERTY_TYPE, $name)) {
                 array_push($properties, new Property($_POST['type_' . $name], $name, $value));
             }
         }
@@ -54,6 +55,6 @@ class AdminController extends Controller {
 
         }
 
-        return new View(self::ADMIN_VIEW, array('properties' => $properties, 'success' => 'Configuration enregistrée avec succès'));
+        return new View(self::ADMIN_VIEW, array('properties' => $properties, 'success' => FeedbackMessages::CONFIG_SUCCESS));
     }
 }
