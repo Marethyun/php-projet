@@ -58,7 +58,7 @@ CREATE TABLE users
     id       int                  NOT NULL
         PRIMARY KEY,
     username varchar(255)         NOT NULL,
-    email    varchar(30)          NOT NULL,
+    email    varchar(255)         NOT NULL,
     password varchar(255)         NOT NULL,
     admin    tinyint(1) DEFAULT 0 NOT NULL
 );
