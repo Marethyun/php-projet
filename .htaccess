@@ -1,0 +1,20 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(freenote.marethyun.ovh)$
+RewriteRule ^/?$ /index.php?controller=home
+RewriteRule ^/?500/?$ /index.php?controller=500
+RewriteRule ^/?405/?$ /index.php?controller=405
+RewriteRule ^/?404/?$ /index.php?controller=404
+RewriteRule ^/?403/?$ /index.php?controller=403
+RewriteRule ^/?400/?$ /index.php?controller=400
+RewriteRule ^/?login/?$ /index.php?controller=login
+RewriteRule ^/?profile/?$ /index.php?controller=profile
+RewriteRule ^/?register/?$ /index.php?controller=register
+RewriteRule ^/?disconnect/?$ /index.php?controller=disconnect
+RewriteRule ^/?askreset/?$ /index.php?controller=askreset
+RewriteRule ^/?admin/?$ /index.php?controller=admin
+RewriteRule ^/?reset/([a-zA-Z0-9]{32})$ /index.php?controller=reset&token=$1
+RewriteRule ^/?thread/([a-zA-Z0-9]{6})$ /index.php?controller=thread&thread=$1
+ErrorDocument 404 /index.php?controller=404
+ErrorDocument 500 /index.php?controller=500
+ErrorDocument 403 /index.php?controller=403
