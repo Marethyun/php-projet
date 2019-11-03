@@ -1,7 +1,7 @@
 <header>
     <nav>
         <ol>
-            <li class="Accueil"><a class="LiensVariés" href="<?= \core\Router::getInstance()->routeUri(ROUTE_HOME) ?>"><img src="assets/open-book1.png">FreeNote</img></a></li>
+            <li class="Accueil"><a class="LiensVariés" href="<?= \core\Router::getInstance()->routeUri(ROUTE_HOME) ?>"><img src="/assets/open-book1.png">FreeNote</img></a></li>
             <?php if (\core\Session::isLogged()) { ?>
                 <?php if (\core\Session::getLogged()->admin) { ?>
                 <li class="Liens"><a class="LiensVariés" href="<?= \core\Router::getInstance()->routeUri(ROUTE_ADMIN) ?>">Admin</a></li>
