@@ -1,30 +1,40 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
     <head>
-        <title>Register</title>
-        <meta charset="UTF-8">
+        <title>FreeNote</title>
+        <?php include_once 'head.php' ?>
     </head>
+
     <body>
-    <?php if (isset($GLOBALS[DATASET_ENTRY]['error'])) { ?>
-        <p style="color: red"><?= $GLOBALS[DATASET_ENTRY]['error'] ?></p>
-    <?php } ?>
-        <form action="<?= \core\Router::getInstance()->routeUri(ROUTE_REGISTER, array('token' => $GLOBALS[DATASET_ENTRY]['reset_token'])) ?>" method="post">
-            <label>
-                Username
-                <input type="text" name="username">
-            </label>
-            <label>
-                Mail
-                <input type="text" name="email">
-            </label>
-            <label>
-                Password
-                <input type="password" name="password">
-            </label>
-            <label>
-                Repeat password
-                <input type="password" name="password_repeat">
-            </label>
-            <input type="submit">
-        </form>
+    <?php include_once 'header.php'?>
+
+    <main>
+        <div class="box">
+            <h1 class="hform">Inscription</h1>
+            <form class="formulaires" action="<?= \core\Router::getInstance()->routeUri(ROUTE_REGISTER) ?>" method="POST">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" name="username" id="username"/>
+
+                <label for="email">E-mail</label>
+                <input type="text" name="email" id="email"/>
+
+                <label for="password">Mot de Passe</label>
+                <input type="password" name="password" id="password"/>
+
+                <label for="password2">Verification du Mot de Passe</label>
+                <input type="password" name="password_repeat" id="password2"/>
+
+                <?php if (isset($GLOBALS[DATASET_ENTRY]['error'])) { ?>
+                    <p class="messageerreur"><?= $GLOBALS[DATASET_ENTRY]['error'] ?></p>
+                <?php } ?>
+
+                <input type="submit" name="action" value="Valider" id="mailer">
+                <p class="textchangementform">Tu as déjà un compte ? <a class="changementformulaire" href="<?= \core\Router::getInstance()->routeUri(ROUTE_LOGIN) ?>">Se Connecter</a></p>
+            </form>
+        </div>
+    </main>
+
+    <?php include_once 'footer.php' ?>
     </body>
+
 </html>
