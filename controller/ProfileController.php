@@ -59,7 +59,7 @@ class ProfileController extends Controller {
             // Relog the user in
             Session::logUser($user);
 
-            return new View(self::PROFILE_VIEW, array('user' => Session::getLogged(), 'success' => 'Votre mot de passe a bien été motifié'));
+            return new View(self::PROFILE_VIEW, array('user' => Session::getLogged(), 'success' => 'Votre mot de passe a bien été modifié'));
         } else {
             // Show an error
             return new View(self::PROFILE_VIEW, array('user' => Session::getLogged(), 'error' => 'Champs manquants'));
