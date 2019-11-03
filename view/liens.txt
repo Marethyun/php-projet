@@ -1,3 +1,0 @@
-cross : https://www.flaticon.com/free-icon/cross_390914
-check : https://www.flaticon.com/free-icon/check_390973#term=valid%C3%A9&page=1&position=6
-open book : https://www.flaticon.com/free-icon/open-book_327116
