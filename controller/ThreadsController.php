@@ -99,7 +99,7 @@ final class ThreadsController extends Controller {
 
                 // The new fragment must be valid
                 if (preg_match(Regexes::VALID_FRAGMENT, $form->fragment) !== 1) {
-                    return new View(self::THREADS_VIEW, array('error' => FeedbackMessages::MALFORMED_FRAGMENT));
+                    return new View(self::THREADS_VIEW, array('error' => FeedbackMessages::MALFORMED_FRAGMENT, 'thread' => $thread));
                 }
 
                 /// Time to select the message where the fragment will be inserted: get its ID
