@@ -23,7 +23,7 @@
                 <?php } ?>
 
                 <input type="submit" name="action" value="Valider" id="mailer">
-                <p class="textchangementform">Besoin d'un compte ? <a class="changementformulaire" href="<?= \core\Router::getInstance()->routeUri(ROUTE_REGISTER) ?>>">S'inscrire</a></p>
+                <p class="textchangementform">Besoin d'un compte ? <a class="changementformulaire" href="<?= \core\Router::getInstance()->routeUri(ROUTE_REGISTER) ?>">S'inscrire</a></p>
 
             </form>
         </div>
