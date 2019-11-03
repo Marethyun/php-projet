@@ -27,7 +27,7 @@ $thread = $GLOBALS[DATASET_ENTRY]['thread'];
                 <?php if (empty($message->fragments)) { ?>
                     (suite à écrire..)
                 <?php } else { ?>
-                    <?php foreach ($message->fragments as $kf => $fragment) { ?><?= $fragment->content ?> <?php } ?> <?php if (array_key_last($thread->messages) === $km) { ?>(suite à écrire..)<?php } ?>
+                    <?php foreach ($message->fragments as $kf => $fragment) { ?><abbr title="<?= $fragment->creator->username ?>" style="text-decoration: white dotted underline"><?= $fragment->content ?></abbr> <?php } ?> <?php if (array_key_last($thread->messages) === $km) { ?>(suite à écrire..)<?php } ?>
                 <?php } ?>
                 </p>
             <?php } ?>
