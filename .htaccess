@@ -8,6 +8,7 @@ RewriteRule ^/?404/?$ /index.php?controller=404
 RewriteRule ^/?403/?$ /index.php?controller=403
 RewriteRule ^/?400/?$ /index.php?controller=400
 RewriteRule ^/?login/?$ /index.php?controller=login
+RewriteRule ^/?profile/?$ /index.php?controller=profile
 RewriteRule ^/?register/?$ /index.php?controller=register
 RewriteRule ^/?disconnect/?$ /index.php?controller=disconnect
 RewriteRule ^/?askreset/?$ /index.php?controller=askreset

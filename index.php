@@ -47,6 +47,7 @@ define('ROUTE_403', '403');
 define('ROUTE_400', '400');
 define('ROUTE_HOME', 'home');
 define('ROUTE_LOGIN', 'login');
+define('ROUTE_PROFILE', 'profile');
 define('ROUTE_REGISTER', 'register');
 define('ROUTE_ASKRESET', 'askreset');
 define('ROUTE_RESET', 'reset');

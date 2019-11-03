@@ -52,6 +52,7 @@ final class App {
         $router->addRoute(new Route('403',        '/403', new ErrorController(403)));
         $router->addRoute(new Route('400',        '/400', new ErrorController(400)));
         $router->addRoute(new Route('login',      '/login', new LoginController()));
+        $router->addRoute(new Route('profile',    '/profile', new LoginController()));
         $router->addRoute(new Route('disconnect', '/disconnect', new DisconnectController()));
         $router->addRoute(new Route('register',   '/register', new RegisterController()));
         $router->addRoute(new Route('askreset',   '/askreset', new AskResetController()));
