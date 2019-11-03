@@ -28,32 +28,34 @@
                 </thead>
                 <tbody>
                 <?php foreach ($GLOBALS[DATASET_ENTRY]['threads'] as $thread) { ?>
-                    <tr>
-                        <th>
-                            <?php if ($thread->opened) { ?>
-                            <span class="ouvert">Ouverte <i class="fas fa-check"></i></span>
-                            <?php } else { ?>
-                            <span class="fermé">Fermée <i class="fas fa-times"></i>
-                            <?php } ?>
-                        </th>
-                        <th><a class="LiensVariés" href="<?= \core\Router::getInstance()->routeUri(ROUTE_THREAD, array('thread' => \model\wrappers\Ids::toHex($thread->id))) ?>"><?= \model\wrappers\Ids::toHex($thread->id) ?></a></th>
-                        <th>
-                            <?php if(empty($thread->messages)) { ?>(Discussion vide)<?php }?>
-                            <?php if(empty(end($thread->messages)->fragments)) {?>
-                                <?php if (!$thread->opened and count($thread->messages) >= 2) {?>
-                                    <?php foreach ($thread->messages[count($thread->messages) - 2]->fragments as $fragment) { ?>
-                                        <?= $fragment->content ?>
+                    <a class="LiensVariés" href="<?= \core\Router::getInstance()->routeUri(ROUTE_THREAD, array('thread' => \model\wrappers\Ids::toHex($thread->id))) ?>">
+                        <tr>
+                            <th>
+                                <?php if ($thread->opened) { ?>
+                                <span class="ouvert">Ouverte <i class="fas fa-check"></i></span>
+                                <?php } else { ?>
+                                <span class="fermé">Fermée <i class="fas fa-times"></i>
+                                <?php } ?>
+                            </th>
+                            <th>#<?= \model\wrappers\Ids::toHex($thread->id) ?></th>
+                            <th>
+                                <?php if(empty($thread->messages)) { ?>(Discussion vide)<?php }?>
+                                <?php if(empty(end($thread->messages)->fragments)) {?>
+                                    <?php if (!$thread->opened and count($thread->messages) >= 2) {?>
+                                        <?php foreach ($thread->messages[count($thread->messages) - 2]->fragments as $fragment) { ?>
+                                            <?= $fragment->content ?>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        (Discussion à compléter)
                                     <?php } ?>
                                 <?php } else { ?>
-                                    (Discussion à compléter)
+                                    <?php foreach (end($thread->messages)->fragments as $fragment) { ?>
+                                        <?= $fragment->content ?>
+                                    <?php } ?>
                                 <?php } ?>
-                            <?php } else { ?>
-                                <?php foreach (end($thread->messages)->fragments as $fragment) { ?>
-                                    <?= $fragment->content ?>
-                                <?php } ?>
-                            <?php } ?>
-                        </th>
-                    </tr>
+                            </th>
+                        </tr>
+                    </a>
                 <?php } ?>
                 </tbody>
             </table>
