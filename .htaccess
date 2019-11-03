@@ -11,6 +11,7 @@ RewriteRule ^/?login/?$ /index.php?controller=login
 RewriteRule ^/?register/?$ /index.php?controller=register
 RewriteRule ^/?disconnect/?$ /index.php?controller=disconnect
 RewriteRule ^/?askreset/?$ /index.php?controller=askreset
+RewriteRule ^/?admin/?$ /index.php?controller=admin
 RewriteRule ^/?reset/([a-zA-Z0-9]{32})$ /index.php?controller=reset&token=$1
 RewriteRule ^/?thread/([a-zA-Z0-9]{6})$ /index.php?controller=thread&thread=$1
 ErrorDocument 404 /index.php?controller=404

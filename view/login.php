@@ -7,7 +7,7 @@
     <?php if (isset($GLOBALS[DATASET_ENTRY]['error'])) { ?>
         <p style="color: red"><?= $GLOBALS[DATASET_ENTRY]['error'] ?></p>
     <?php } ?>
-        <form action="/?controller=login" method="post">
+        <form action="<?= \core\Router::getInstance()->routeUri(ROUTE_LOGIN) ?>" method="post">
             <label>
                 Username
                 <input type="text" name="username">
