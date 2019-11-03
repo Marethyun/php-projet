@@ -11,6 +11,7 @@ use core\Session;
 use core\View;
 use model\wrappers\PasswordResets;
 use model\wrappers\Users;
+use view\FeedbackMessages;
 
 /**
  * Handles the password reset form
@@ -50,7 +51,7 @@ class PasswordResetController extends Controller {
 
             // If the token isn't valid
             if (is_null($user)) {
-                return new View(self::RESET_ERROR_VIEW, array('error' => 'Le jeton de réinitialisation n\'est pas/plus valable..'));
+                return new View(self::RESET_ERROR_VIEW, array('error' => FeedbackMessages::INVALID_TOKEN));
             }
 
             // Serves the form with the token as a parameter
@@ -84,17 +85,17 @@ class PasswordResetController extends Controller {
 
             // If the token isn't valid
             if (is_null($user)) {
-                return new View(self::RESET_ERROR_VIEW, array_merge($partialDataset, array('error' => 'Le jeton de réinitialisation n\'est pas/plus valable..')));
+                return new View(self::RESET_ERROR_VIEW, array_merge($partialDataset, array('error' => FeedbackMessages::INVALID_TOKEN)));
             }
 
             // If the two passwords does not match
             if ($form->password !== $form->password_repeat) {
-                return new View(self::PASSWORD_RESET_VIEW, array_merge($partialDataset, array('error' => 'The two passwords does not match')));
+                return new View(self::PASSWORD_RESET_VIEW, array_merge($partialDataset, array('error' => FeedbackMessages::PASSWORDS_MISMATCH)));
             }
 
             // If the password is not well-formed
             if (preg_match(RegisterController::PASSWORD_REGEX, $form->password) !== 1) {
-                return new View(self::PASSWORD_RESET_VIEW, array_merge($partialDataset, array('error' => 'The password length must be between 6 and 255 characters')));
+                return new View(self::PASSWORD_RESET_VIEW, array_merge($partialDataset, array('error' => FeedbackMessages::MALFORMED_PASSWORD)));
             }
 
             // Changes the password

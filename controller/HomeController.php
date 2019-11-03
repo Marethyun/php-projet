@@ -9,6 +9,7 @@ use core\View;
 use core\Controller;
 use model\wrappers\Ids;
 use model\wrappers\Threads;
+use view\FeedbackMessages;
 
 final class HomeController extends Controller {
 
@@ -34,14 +35,14 @@ final class HomeController extends Controller {
 
             // The thread count for a user must not get over the max per user
             if (Threads::threadCountForUser(Session::getLogged()) + 1 > MAX_THREADS_USER) {
-                return new View(self::HOME_VIEW, array('threads' => Threads::fillAll(Threads::getAll()), 'error' => 'Vous avez dépassé le maximum de discussions'));
+                return new View(self::HOME_VIEW, array('threads' => Threads::fillAll(Threads::getAll()), 'error' => FeedbackMessages::THREADS_MAX_REACHED));
             }
 
             $newThreadId = Threads::persistNew(Session::getLogged()->id);
 
             return Redirection::fromRoute(ROUTE_THREAD, array('thread' => Ids::toHex($newThreadId)));
         } else {
-            return new View(self::HOME_VIEW, array('threads' => Threads::fillAll(Threads::getAll()), 'error' => 'Champs manquants'));
+            return new View(self::HOME_VIEW, array('threads' => Threads::fillAll(Threads::getAll()), 'error' => FeedbackMessages::MISSING_FIELDS));
         }
     }
 }

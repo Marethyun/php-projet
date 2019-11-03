@@ -16,6 +16,7 @@ use model\ORM;
 use model\ORMException;
 use model\wrappers\Ids;
 use model\wrappers\Users;
+use view\FeedbackMessages;
 
 final class RegisterController extends Controller {
 
@@ -48,27 +49,27 @@ final class RegisterController extends Controller {
 
             // If the user already exists
             if (!is_null($user)) {
-                return new View(self::VIEW_FILE, array('error' => 'User already registered with this name or email address'));
+                return new View(self::VIEW_FILE, array('error' => FeedbackMessages::USER_ALREADY_EXISTS));
             }
 
             // If the username is malformed
             if (preg_match(self::USERNAME_REGEX, $form->username) !== 1) {
-                return new View(self::VIEW_FILE, array('error' => 'The username can only contains letters, digits, or underscores (min 6 chars)'));
+                return new View(self::VIEW_FILE, array('error' => FeedbackMessages::MALFORMED_USERNAME));
             }
 
             // If the email is malformed
             if (!filter_var($form->email, FILTER_VALIDATE_EMAIL)) {
-                return new View(self::VIEW_FILE, array('error' => 'The email is malformed'));
+                return new View(self::VIEW_FILE, array('error' => FeedbackMessages::MALFORMED_EMAIL));
             }
 
             // If the two passwords does not match
             if ($form->password !== $form->password_repeat) {
-                return new View(self::VIEW_FILE, array('error' => 'The two passwords does not match'));
+                return new View(self::VIEW_FILE, array('error' => FeedbackMessages::PASSWORDS_MISMATCH));
             }
 
             // If the password is not well-formed
             if (preg_match(self::PASSWORD_REGEX, $form->password) !== 1) {
-                return new View(self::VIEW_FILE, array('error' => 'The password length must be between 6 and 255 characters'));
+                return new View(self::VIEW_FILE, array('error' => FeedbackMessages::PASSWORDS_MISMATCH));
             }
 
             $table = ORM::table(Users::USERS_TABLE);
@@ -99,13 +100,13 @@ final class RegisterController extends Controller {
                 return Redirection::fromRoute(ROUTE_HOME);
 
             } catch (ORMException $e) {
-                return new View(self::VIEW_FILE, array('error' => 'An error occurred'));
+                return new View(self::VIEW_FILE, array('error' => FeedbackMessages::GENERIC_ERROR));
             } catch (MailException $e) {
-                return new View(self::VIEW_FILE, array('error' => 'Your account has been created but we could not send you an email..'));
+                return new View(self::VIEW_FILE, array('error' => FeedbackMessages::REGISTRATION_SUCCESS));
             }
 
         } else {
-            return new View(self::VIEW_FILE, array('error' => 'A form parameter is missing'));
+            return new View(self::VIEW_FILE, array('error' => FeedbackMessages::MISSING_FIELDS));
         }
     }
 }

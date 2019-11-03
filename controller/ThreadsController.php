@@ -9,13 +9,11 @@ use core\Form;
 use core\Redirection;
 use core\Session;
 use core\View;
-use model\entities\Message;
-use model\ORM;
-use model\Query;
 use model\wrappers\Fragments;
 use model\wrappers\Ids;
 use model\wrappers\Messages;
 use model\wrappers\Threads;
+use view\FeedbackMessages;
 
 final class ThreadsController extends Controller {
     public const THREADS_VIEW = 'threads.php';
@@ -89,7 +87,7 @@ final class ThreadsController extends Controller {
                 $form = new Form(array('fragment', 'message_id'), $_POST);
 
                 if (!$form->isFull()) {
-                    return new View(self::THREADS_VIEW, array('error' => 'Champs manquants', 'thread' => $thread));
+                    return new View(self::THREADS_VIEW, array('error' => FeedbackMessages::MISSING_FIELDS, 'thread' => $thread));
                 }
 
                 // The message ID must be valid
@@ -99,7 +97,7 @@ final class ThreadsController extends Controller {
 
                 // If we cannot store the new fragment in the new message
                 if (!Messages::isValidForExtension(Ids::fromHex($form->message_id), $thread->id)) {
-                    return new View(self::THREADS_VIEW, array('error' => 'Message invalide ou métadonnées du message invalides', 'thread' => $thread));
+                    return new View(self::THREADS_VIEW, array('error' => FeedbackMessages::INVALID_MESSAGE_METADATA, 'thread' => $thread));
                 }
 
                 // Don't pay attention to the white spaces
@@ -107,7 +105,7 @@ final class ThreadsController extends Controller {
 
                 // The new fragment must be valid
                 if (preg_match(self::GOOD_FRAGMENT_REGEX, $form->fragment) !== 1) {
-                    return new View(self::THREADS_VIEW, array('error' => 'Votre message ne respecte pas les règles...'));
+                    return new View(self::THREADS_VIEW, array('error' => FeedbackMessages::MALFORMED_FRAGMENT));
                 }
 
                 /// Time to select the message where the fragment will be inserted: get its ID
@@ -122,7 +120,7 @@ final class ThreadsController extends Controller {
 
                 Threads::fill($thread);
 
-                return new View(self::THREADS_VIEW, array('success' => 'Fragment de message inséré avec succès !', 'thread' => $thread));
+                return new View(self::THREADS_VIEW, array('success' => FeedbackMessages::FRAGMENT_SUCCESS, 'thread' => $thread));
             }
 
             if ($form->action === 'close_thread') {
@@ -134,7 +132,7 @@ final class ThreadsController extends Controller {
 
                 $thread = Threads::fill(Threads::getById($thread->id)[0]);
 
-                return new View(self::THREADS_VIEW, array('success' => 'La discussion a bien été fermée !', 'thread' => $thread));
+                return new View(self::THREADS_VIEW, array('success' => FeedbackMessages::THREAD_CLOSED_SUCCESS, 'thread' => $thread));
             }
 
             // If the form 'action' does not correspond with something handleable

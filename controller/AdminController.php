@@ -10,6 +10,7 @@ use core\Property;
 use core\Redirection;
 use core\Session;
 use core\View;
+use view\FeedbackMessages;
 
 class AdminController extends Controller {
 
@@ -54,6 +55,6 @@ class AdminController extends Controller {
 
         }
 
-        return new View(self::ADMIN_VIEW, array('properties' => $properties, 'success' => 'Configuration enregistrée avec succès'));
+        return new View(self::ADMIN_VIEW, array('properties' => $properties, 'success' => FeedbackMessages::CONFIG_SUCCESS));
     }
 }
