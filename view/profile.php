@@ -31,8 +31,16 @@ $user = $GLOBALS[DATASET_ENTRY]['user'];
                 <label for="password">Nouveau Mot de Passe</label>
                 <input type="password" name="password" id="password"/>
 
-                <label for="password2">Verifier votre Nouveau Mot de Passe</label>
+                <label for="password2">Verifier le mot de Passe</label>
                 <input type="password" name="password_repeat" id="password2"/>
+
+                <?php if (isset($GLOBALS[DATASET_ENTRY]['error'])) { ?>
+                    <p style="color: red"><?= $GLOBALS[DATASET_ENTRY]['error'] ?></p>
+                <?php } ?>
+
+                <?php if (isset($GLOBALS[DATASET_ENTRY]['success'])) { ?>
+                    <p style="color: green"><?= $GLOBALS[DATASET_ENTRY]['success'] ?></p>
+                <?php } ?>
 
                 <input type="submit" name="action" value="Enregistrer les modifications" id="mailer">
             </form>
