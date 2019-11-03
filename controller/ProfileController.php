@@ -7,6 +7,7 @@ namespace controller;
 use core\Controller;
 use core\Form;
 use core\Redirection;
+use core\Regexes;
 use core\Session;
 use core\View;
 use model\wrappers\Users;
@@ -15,10 +16,6 @@ use view\FeedbackMessages;
 class ProfileController extends Controller {
 
     public const PROFILE_VIEW = 'profile.php';
-
-    // TODO Generalize regexes in a single file
-    public const PASSWORD_REGEX = '#.{6,255}#';
-
 
     public function GET() {
         // You must be logged in to see your profile
@@ -47,7 +44,7 @@ class ProfileController extends Controller {
             }
 
             // If the password isn't correct
-            if (preg_match(self::PASSWORD_REGEX, $form->password) !== 1) {
+            if (preg_match(Regexes::PASSWORD, $form->password) !== 1) {
                 // TODO Generalize message
                 return new View(self::PROFILE_VIEW, array('user' => Session::getLogged(), 'error' => FeedbackMessages::MALFORMED_PASSWORD));
             }

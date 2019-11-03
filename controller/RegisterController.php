@@ -9,6 +9,7 @@ use core\Form;
 use core\Mail;
 use core\MailException;
 use core\Redirection;
+use core\Regexes;
 use core\Session;
 use core\View;
 use model\entities\User;
@@ -21,8 +22,6 @@ use view\FeedbackMessages;
 final class RegisterController extends Controller {
 
     public const VIEW_FILE = 'register.php';
-    public const PASSWORD_REGEX = '#.{6,255}#';
-    public const USERNAME_REGEX = '#[a-zA-Z0-9_]{6,255}#';
     public const REGISTRATION_MAIL_SUBJECT = 'Votre compte a été créé !';
 
     /**
@@ -53,7 +52,7 @@ final class RegisterController extends Controller {
             }
 
             // If the username is malformed
-            if (preg_match(self::USERNAME_REGEX, $form->username) !== 1) {
+            if (preg_match(Regexes::USERNAME, $form->username) !== 1) {
                 return new View(self::VIEW_FILE, array('error' => FeedbackMessages::MALFORMED_USERNAME));
             }
 
@@ -68,7 +67,7 @@ final class RegisterController extends Controller {
             }
 
             // If the password is not well-formed
-            if (preg_match(self::PASSWORD_REGEX, $form->password) !== 1) {
+            if (preg_match(Regexes::PASSWORD, $form->password) !== 1) {
                 return new View(self::VIEW_FILE, array('error' => FeedbackMessages::PASSWORDS_MISMATCH));
             }
 
