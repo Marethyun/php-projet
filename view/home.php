@@ -73,6 +73,8 @@
         </div>
         <?php } ?>
 
+        <?php if (\core\Session::isLogged() and \core\Session::getLogged()->admin) { ?>
+
         <div class="Zone">
             <p class="paccueil">Vous êtes administrateur, tout le fonctionnement du site est entre vos mains, faites très attention à ce que vous faites si vous craignez les remarques des utilisateurs de freenote les plus haineux.<br>
             <ul>
@@ -81,6 +83,8 @@
                 <li>- Configurer freenote à l'aide d'un <span class="souligner">magnifique</span> panneau d'administration.</li>
             </ul>
         </div>
+
+        <?php } ?>
     </main>
 
     <?php include_once 'footer.php' ?>
