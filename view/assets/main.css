@@ -1,0 +1,499 @@
+/** Sur toutes les Pages **/
+
+header {
+    position: sticky;
+    height: 6rem;
+    top: 0;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 3rem;
+    color: #F2F2E9;
+}
+
+footer {
+    position: fixed;
+    height: 12%;
+    bottom: 0;
+    width: 100%;
+    background-color: #3d3f4c;
+    font-size: 0.75rem;
+    color: #F2F2E9;
+}
+
+body {
+    margin: 0;
+    background-position: center;
+    background-size: cover;
+    background-image: url("duotone.png");
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2rem;
+    color: white;
+    width: 100%;
+    height: auto;
+}
+
+main {
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+p.pied {
+    text-align: center;
+}
+
+p.paccueil {
+    margin: 2rem;
+}
+
+ol {
+    margin: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+li.Profil {
+    display: none;
+    text-decoration: none;
+    float: right;
+    margin-right: 3rem;
+    margin-top: 0.75rem;
+}
+
+li.Accueil {
+    text-decoration: none;
+    float: left;
+    margin-top: 0.75rem;
+    opacity: 1;
+}
+
+li.Accueil:hover {
+    background-color: #696b80;
+    border-radius: 0.25rem;
+}
+
+li.Liens {
+    /**display: none;**/
+    text-decoration: none;
+    float: right;
+    margin-top: 0.75rem;
+    margin-right: 3rem;
+}
+
+li.Liens:hover {
+    background-color: #696b80;
+    border-radius: 0.25rem;
+}
+
+.LiensVariés {
+    color: white;
+}
+
+.mono {
+    font-family: monospace !important;
+}
+
+a:visited, a:link {
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+}
+
+img, img:hover {
+  width: 3rem;
+  height: 3rem;
+}
+
+.fermé {
+  color: #B14244;
+}
+
+.ouvert {
+  color: #A5EB78;
+}
+
+.souligner {
+  text-decoration: wavy underline;
+}
+
+/** Page d'Accueil **/
+
+.Zone {
+    border-color: transparent;
+    border-style: solid;
+    border-radius: 0.25rem;
+    text-align: center;
+    list-style-type: none;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    margin-bottom: 0%;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#Description {
+    border-style: solid;
+    text-align: justify;
+    border-color: transparent;
+    border-radius: 0.25rem;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 90%;
+}
+
+th {
+  border-radius: 0.25rem;
+  border-color: transparent;
+  border-style: solid;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/** Page d'erreur **/
+
+#erreur {
+  border-style: solid;
+  text-align: center;
+  border-color: transparent;
+  border-radius: 0.25rem;
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-top: 15%;
+  width: 25%;
+  height: 25%;
+  background-color: #3d3f4c;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/** Inscription - Se Connecter **/
+
+.box {
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 0.5rem;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 3rem;
+    margin-bottom: 5%;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+h1.hform {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 5%;
+}
+
+.formboutton {
+  margin: 5%;
+}
+
+.formulaires  {
+    margin: 10%;
+    width: 80%;
+    font-size: 1.75rem;
+}
+
+.textchangementform {
+    color: #696b80;
+    font-size: 1rem;
+}
+
+.messageerreur {
+    color: #B14244;
+    font-size : 1rem;
+}
+
+.changementformulaire {
+    color: #26b1b7;
+    font-size: 1rem;
+}
+
+#mailer {
+    background-color: #26b1b7;
+    border-color: transparent;
+    font-size: 1.25rem;
+}
+
+label {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    color: #F2F2E9;
+    background-color: #343640;
+    border-color: #2d2e37;
+    border-style: solid;
+    border-radius: 0.25rem;
+    height: 2rem;
+}
+
+/** Page de réinitialisation de mot de passse **/
+
+.boxreini {
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 0.5rem;
+  background-color: #3d3f4c;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-left: 32%;
+  margin-right: 32%;
+}
+
+/** Profil **/
+
+.box {
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 0.5rem;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    margin-left: 32%;
+    margin-right: 32%;
+}
+
+.profilform {
+    margin: 10%;
+    width: 80%;
+    font-size: 1.75rem;
+}
+
+.modifmdpform {
+    margin: 10%;
+    width: 80%;
+    font-size: 1.75rem;
+}
+
+/** Discussion Type **/
+
+.DiscussionType {
+    border-color: transparent;
+    border-style: solid;
+    border-radius: 0.25rem;
+    text-align: center;
+    list-style-type: none;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 10%;
+    margin-top: 5%;
+    background-color: #3d3f4c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.message {
+  text-align: left;
+  margin: 5%;
+  border-radius: 0.5rem;
+  border-color: transparent;
+  border-style: solid;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 2%;
+}
+
+/** Media Query **/
+
+@media only screen and (min-width:1px) and (max-width: 300px) {
+    .box {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    p.textchangementform {
+        color: #696b80;
+        font-size: 1rem;
+    }
+    .LiensVariés {
+      font-size: 0.5rem;
+    }
+    li.Liens {
+      margin-top: 0.25rem;
+    }
+    img {
+      height: 1.25rem;
+      width: 1.25rem;
+    }
+    header {
+        font-size: 2rem;
+        height: 10rem;
+    }
+    h1.hform {
+      font-size: 1.5rem;
+    }
+    body {
+      font-size: 0.5rem;
+    }
+    li.Liens {
+        float: left;
+    }
+    #Description {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    #Discussion {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    main {
+      margin-top: 5%;
+      margin-bottom: 30%;
+    }
+
+}
+
+@media only screen and (min-width:300px) and (max-width: 560px) {
+    .box {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    p.textchangementform {
+        color: #696b80;
+        font-size: 1rem;
+    }
+    header {
+        font-size: 2rem;
+        height: 12rem;
+    }
+    h1.hform {
+      font-size: 1.5rem;
+    }
+    body {
+      font-size: 1rem;
+    }
+    li.Liens {
+        float: left;
+    }
+    #Description {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    #Discussion {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    main {
+      margin-top: 5%;
+      margin-bottom: 35%;
+    }
+}
+
+@media only screen and (min-width:560px) and (max-width: 770px) {
+    .box {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    p.textchangementform {
+        color: #696b80;
+        font-size: 1rem;
+    }
+    header {
+        font-size: 2rem;
+        height: 7.5rem;
+    }
+    li.Liens {
+        float: left;
+    }
+    #Description {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    #Discussion {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    main {
+      margin-top: 5%;
+      margin-bottom: 25%;
+    }
+}
+
+@media only screen and (min-width: 770px) and (max-width: 900px) {
+    .box {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    p.textchangementform {
+        color: #696b80;
+        font-size: 1.5rem;
+    }
+    .changementformulaire {
+        color: #26b1b7;
+        font-size: 1.5rem;
+    }
+    header {
+        font-size: 2.25rem;
+        height: 5rem;
+    }
+    li.Liens {
+        float: left;
+        margin-left: 0rem;
+        margin-right: 0rem;
+    }
+    #Description {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    #Discussion {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    main {
+      margin-top: 5%;
+      margin-bottom: 15%;
+    }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
+    .box {
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+    p.textchangementform {
+        color: #696b80;
+        font-size: 1.5rem;
+    }
+    .changementformulaire {
+        color: #26b1b7;
+        font-size: 1.5rem;
+    }
+    header {
+        font-size: 2.5rem;
+        height: 5rem;
+    }
+    li.Liens {
+        float: right;
+        margin-left: 0rem;
+        margin-right: 0rem;
+    }
+    #Description {
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+    #Discussion {
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+    main {
+      margin-top: 5%;
+      margin-bottom: 15%;
+    }
+}
