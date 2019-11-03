@@ -24,7 +24,7 @@ body {
     margin: 0;
     background-position: center;
     background-size: cover;
-    background-image: url("./duotone.png");
+    background-image: url("duotone.png");
     font-family: 'Open Sans', sans-serif;
     font-size: 2rem;
     color: white;
