@@ -12,8 +12,9 @@
         <div class="Zone">
             <h1 class="hform">Description du service</h1>
             <p class="paccueil">
-                Coactique aliquotiens nostri pedites ad eos persequendos scandere clivos sublimes etiam si lapsantibus plantis fruticeta prensando vel dumos ad vertices venerint summos, inter arta tamen et invia nullas acies explicare permissi nec firmare nisu valido gressus: hoste discursatore rupium abscisa volvente, ruinis ponderum inmanium consternuntur, aut ex necessitate ultima fortiter dimicante, superati periculose per prona discedunt.
-            </p>
+                FreeNote est un site web amusant, sur lequel vous pouvez discuter avec vos amis.<br>
+                La règle du jeu est de former des messages en ne pouvant ajouter qu'un ou deux mots à chaque fois.<br>
+                À l'intérieur des messages vous avez le droit à des virgules, et si votre fragment de message se termine par un point, un point d'exclamation, ou un point d'interrogation, le message se termine et un message vide est créé à la suite.            </p>
         </div>
 
         <div class="Zone">
