@@ -5,6 +5,8 @@ Le groupe est composé de:
 - Ange BACCI (Groupe 2A)
 - Maxime LECLERE (Groupe 2A)
 
+Le service est disponible à l'URL http://freenote.marethyun.ovh/
+
 Nous restons à votre disposition par mail pour des renseignements.
 
 ## Répartitions des tâches
