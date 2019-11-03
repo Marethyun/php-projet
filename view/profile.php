@@ -19,7 +19,7 @@ $user = $GLOBALS[DATASET_ENTRY]['user'];
                 <input type="text" name="username" id="username" value="<?= $user->username ?>" disabled/>
 
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" value="<?= $user->username ?>" disabled/>
+                <input type="email" name="email" id="email" value="<?= $user->email ?>" disabled/>
 
                 <p class="textchangementform">Vous voulez vous déconnecter ? <a class="changementformulaire" href="<?= \core\Router::getInstance()->routeUri(ROUTE_DISCONNECT) ?>">Se déconnecter</a></p>
             </div>
