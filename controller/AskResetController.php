@@ -8,8 +8,10 @@ use core\Controller;
 use core\Form;
 use core\Mail;
 use core\MailException;
+use core\Redirection;
 use core\RouteException;
 use core\Router;
+use core\Session;
 use core\View;
 use model\entities\PasswordReset;
 use model\ORMException;
@@ -31,6 +33,12 @@ class AskResetController extends Controller {
      * Serves the form
      */
     public function GET() {
+        // You must not be logged
+        if (Session::isLogged()) {
+            // Forbidden
+            return Redirection::fromRoute(ROUTE_403);
+        }
+
         return new View(self::ASK_RESET_VIEW);
     }
 
@@ -38,6 +46,12 @@ class AskResetController extends Controller {
      * Treats the form
      */
     public function POST() {
+        // You must not be logged
+        if (Session::isLogged()) {
+            // Forbidden
+            return Redirection::fromRoute(ROUTE_403);
+        }
+
         $form = new Form(array('email'), $_POST);
 
         if ($form->isFull()) {

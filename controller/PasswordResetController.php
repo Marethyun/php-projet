@@ -7,6 +7,7 @@ namespace controller;
 use core\Controller;
 use core\Form;
 use core\Redirection;
+use core\Session;
 use core\View;
 use model\wrappers\PasswordResets;
 use model\wrappers\Users;
@@ -26,6 +27,12 @@ class PasswordResetController extends Controller {
     public const RESET_ERROR_VIEW = 'errorreset.php';
 
     public function GET() {
+        // You must not be logged
+        if (Session::isLogged()) {
+            // Forbidden
+            return Redirection::fromRoute(ROUTE_403);
+        }
+
         $form = new Form(array('token'), $_GET);
 
         // If the token is provided
@@ -55,6 +62,12 @@ class PasswordResetController extends Controller {
     }
 
     public function POST() {
+        // You must not be logged
+        if (Session::isLogged()) {
+            // Forbidden
+            return Redirection::fromRoute(ROUTE_403);
+        }
+
         $form = new Form(array('password', 'password_repeat', 'reset_token'), $_POST);
 
         if ($form->isFull()) {
