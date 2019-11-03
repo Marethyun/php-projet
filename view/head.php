@@ -5,3 +5,10 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/0e0936faeb.js" crossorigin="anonymous"></script>
 <link rel="icon" type="image/png" href="https://i.ibb.co/3Tn5DVG/open-book1.png">
+<!-- Prevents resend on reload -->
+<!-- https://stackoverflow.com/a/45656609 -->
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
